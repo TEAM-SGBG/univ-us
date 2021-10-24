@@ -1,3 +1,3 @@
-import InterestContainer from "./InterestContainer";
+import InterestContainer from './InterestContainer';
 
 export default InterestContainer;
