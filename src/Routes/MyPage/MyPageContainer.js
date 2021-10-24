@@ -1,10 +1,9 @@
-import React from "react";
-import MyPagePresenter from "./MyPagePresenter";
+import MyPagePresenter from './MyPagePresenter';
 
-function MyPageContainer(){
-       return(
-           <MyPagePresenter/>
-       )
-};
+function MyPageContainer() {
+  return (
+    <MyPagePresenter />
+  );
+}
 
 export default MyPageContainer;

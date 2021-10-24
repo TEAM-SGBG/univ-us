@@ -1,7 +1,3 @@
-import React from 'react';
-
-export default ()=>{
-    return(
-        <div>Home</div>
-    )
-};
+export default () => (
+  <div>Home</div>
+);
