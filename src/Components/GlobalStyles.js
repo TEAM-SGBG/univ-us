@@ -13,6 +13,9 @@ const GlobalStyles = createGlobalStyle`
     body{
         
     }
+    div{
+        padding: 0 200px;
+    }
 `;
 
 export default GlobalStyles;
