@@ -6,14 +6,14 @@ const Wrapper = styled.div`
   width:1200px;
 `;
 
-function InterestPresenter() {
+function HomePresenter() {
   return (
     <Wrapper>
       <Header />
-      Interest
+      컨텐츠 채워넣기 ㅇㅅㅇ
       <Footer />
     </Wrapper>
   );
 }
 
-export default InterestPresenter;
+export default HomePresenter;
