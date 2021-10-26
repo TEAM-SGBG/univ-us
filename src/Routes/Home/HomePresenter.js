@@ -1,12 +1,18 @@
 // eslint-disable-next-line import/no-unresolved
-import Header from 'Components/Header';
+import Footer from 'Components/Footer'; import Header from 'Components/Header'; import styled from 'styled-components';
+
+const Wrapper = styled.div`
+  margin: 0 auto;
+  width:1200px;
+`;
 
 function HomePresenter() {
   return (
-    <div>
+    <Wrapper>
       <Header />
-      home
-    </div>
+      컨텐츠 채워넣기 ㅇㅅㅇ
+      <Footer />
+    </Wrapper>
   );
 }
 
