@@ -15,6 +15,13 @@ const EventTitle = styled.p`
   padding-top: 64px;
 `;
 
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
 function CategoryPresenter({ mainEvents, type }) {
   const mappingType = useCallback(() => {
     if (type === 'sushi') return '수시행사';
@@ -23,17 +30,11 @@ function CategoryPresenter({ mainEvents, type }) {
   }, [type]);
 
   return (
-    <div style={{
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center',
-      alignItems: 'center',
-    }}
-    >
+    <Wrapper>
       <EventTitle>{mappingType()}</EventTitle>
       {mainEvents.map((event) => <EventCard key={event.id} eventPost={event} />)}
       <Pagination style={{ textAlign: 'center' }} />
-    </div>
+    </Wrapper>
   );
 }
 
