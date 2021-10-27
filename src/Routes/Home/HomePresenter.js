@@ -1,5 +1,4 @@
-// eslint-disable-next-line import/no-unresolved
-import Footer from 'Components/Footer'; import Header from 'Components/Header'; import styled from 'styled-components';
+import styled from 'styled-components';
 
 const Wrapper = styled.div`
   margin: 0 auto;
@@ -14,7 +13,7 @@ const MainContainer = styled.div`
   padding: 48px 60px;
 `;
 
-const RecomendationTitle = styled.p`
+const RecommendationTitle = styled.p`
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
@@ -23,7 +22,7 @@ const RecomendationTitle = styled.p`
   color: #333333;
 `;
 
-const RecomendationDetail = styled.p`
+const RecommendationDetail = styled.p`
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
@@ -32,15 +31,15 @@ const RecomendationDetail = styled.p`
   color: #979797;
 `;
 
-const RecomendationContainer = styled.div`
+const RecommendationContainer = styled.div`
   margin-top: 34px;
 `;
 
-const RecomendationItems = styled.div`
+const RecommendationItems = styled.div`
   margin-right: 20px;
 `;
 
-const RecomendationItemsDate = styled.p`
+const RecommendationItemsDate = styled.p`
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
@@ -52,7 +51,7 @@ const RecomendationItemsDate = styled.p`
   margin-left: 5px;
 `;
 
-const RecomendationItemsName = styled.p`
+const RecommendationItemsName = styled.p`
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
@@ -67,22 +66,20 @@ const RecomendationItemsName = styled.p`
 function HomePresenter() {
   return (
     <Wrapper>
-      <Header />
       <MainImageWrapper>
         <img alt="main img" src="img/건국대.png" />
       </MainImageWrapper>
       <MainContainer>
-        <RecomendationTitle>지금, 이 행사 어때요?</RecomendationTitle>
-        <RecomendationDetail>에디터가 추천하는 놓쳐서 안 될 행사 ✨</RecomendationDetail>
-        <RecomendationContainer>
-          <RecomendationItems>
+        <RecommendationTitle>지금, 이 행사 어때요?</RecommendationTitle>
+        <RecommendationDetail>에디터가 추천하는 놓쳐서 안 될 행사 ✨</RecommendationDetail>
+        <RecommendationContainer>
+          <RecommendationItems>
             <img alt="items" src="img/건국대.png" height="146px" width="260px" />
-            <RecomendationItemsDate>10월 28일(목) 온라인</RecomendationItemsDate>
-            <RecomendationItemsName>2022 건국대학교 정시 입시설명회</RecomendationItemsName>
-          </RecomendationItems>
-        </RecomendationContainer>
+            <RecommendationItemsDate>10월 28일(목) 온라인</RecommendationItemsDate>
+            <RecommendationItemsName>2022 건국대학교 정시 입시설명회</RecommendationItemsName>
+          </RecommendationItems>
+        </RecommendationContainer>
       </MainContainer>
-      <Footer />
     </Wrapper>
   );
 }

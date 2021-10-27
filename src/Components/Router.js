@@ -1,4 +1,7 @@
-import { HashRouter as BrouserRouter, Route, Switch } from 'react-router-dom';
+import {
+  // eslint-disable-next-line no-unused-vars
+  HashRouter as BrowserRouter, Route, Switch, useLocation,
+} from 'react-router-dom';
 import { Redirect } from 'react-router';
 
 import Home from '../Routes/Home';
@@ -7,9 +10,13 @@ import Login from '../Routes/Login';
 import MyPage from '../Routes/MyPage';
 import SignUp from '../Routes/SignUp';
 import UserInfo from '../Routes/UserInfo';
+import Category from '../Routes/Category';
+import Header from './Header';
+import Footer from './Footer';
 
 export default () => (
-  <BrouserRouter>
+  <BrowserRouter>
+    <Header />
     <Switch>
       <Route exact path="/">
         <Home />
@@ -29,7 +36,11 @@ export default () => (
       <Route exact path="/userinfo">
         <UserInfo />
       </Route>
+      <Route exact path="/category">
+        <Category />
+      </Route>
       <Redirect from="*" to="/" />
     </Switch>
-  </BrouserRouter>
+    <Footer />
+  </BrowserRouter>
 );
