@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 const HeaderBackground = styled.div`
   margin: 0 auto;
   padding: 30px 60px;
-  padding-bottom:0px;
+  padding-bottom: 0px;
+  margin-bottom: 20px;
   height: 162px;
   width: 1200px;
   background-color: white;
