@@ -89,9 +89,9 @@ const Header = () => (
     </LogoutButton>
     <NavList>
       <NavItem to="/events">전체</NavItem>
-      <NavItem to="/category">수시행사</NavItem>
-      <NavItem to="/category">정시행사</NavItem>
-      <NavItem to="/category">대학박람회</NavItem>
+      <NavItem to={{ pathname: '/category', search: '?type=sushi' }}>수시행사</NavItem>
+      <NavItem to={{ pathname: '/category', search: '?type=jungshi' }}>정시행사</NavItem>
+      <NavItem to={{ pathname: '/category', search: '?type=fair' }}>대학박람회</NavItem>
       <NavItem to="/search">대학찾기</NavItem>
     </NavList>
   </HeaderBackground>

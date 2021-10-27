@@ -1,4 +1,7 @@
-import { HashRouter as BrowserRouter, Route, Switch } from 'react-router-dom';
+import {
+  // eslint-disable-next-line no-unused-vars
+  HashRouter as BrowserRouter, Route, Switch, useLocation,
+} from 'react-router-dom';
 import { Redirect } from 'react-router';
 
 import Home from '../Routes/Home';
