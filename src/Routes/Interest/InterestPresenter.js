@@ -8,11 +8,13 @@ const Wrapper = styled.div`
 
 function InterestPresenter() {
   return (
-    <Wrapper>
+    <>
       <Header />
-      Interest
+      <Wrapper>
+        Interest
+      </Wrapper>
       <Footer />
-    </Wrapper>
+    </>
   );
 }
 

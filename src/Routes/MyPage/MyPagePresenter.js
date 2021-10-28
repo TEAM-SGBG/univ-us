@@ -8,11 +8,13 @@ const Wrapper = styled.div`
 
 function MyPagePresenter() {
   return (
-    <Wrapper>
+    <>
       <Header />
-      MyPage
+      <Wrapper>
+        MyPage
+      </Wrapper>
       <Footer />
-    </Wrapper>
+    </>
   );
 }
 

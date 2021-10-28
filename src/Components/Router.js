@@ -3,7 +3,6 @@ import {
   HashRouter as BrowserRouter, Route, Switch, useLocation,
 } from 'react-router-dom';
 import { Redirect } from 'react-router';
-
 import Home from '../Routes/Home';
 import Interest from '../Routes/Interest';
 import Login from '../Routes/Login';
@@ -11,14 +10,11 @@ import MyPage from '../Routes/MyPage';
 import SignUp from '../Routes/SignUp';
 import UserInfo from '../Routes/UserInfo';
 import Category from '../Routes/Category';
-import Header from './Header';
-import Footer from './Footer';
 
 export default () => (
   <BrowserRouter>
-    <Header />
     <Switch>
-      <Route exact path="/">
+      <Route exact path="/home">
         <Home />
       </Route>
       <Route exact path="/interest">
@@ -39,8 +35,7 @@ export default () => (
       <Route exact path="/category">
         <Category />
       </Route>
-      <Redirect from="*" to="/" />
+      <Redirect from="*" to="/home" />
     </Switch>
-    <Footer />
   </BrowserRouter>
 );

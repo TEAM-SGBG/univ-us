@@ -8,11 +8,13 @@ const Wrapper = styled.div`
 
 function UserInfoPresenter() {
   return (
-    <Wrapper>
+    <>
       <Header />
-      UserInfo
+      <Wrapper>
+        UserInfo
+      </Wrapper>
       <Footer />
-    </Wrapper>
+    </>
   );
 }
 
