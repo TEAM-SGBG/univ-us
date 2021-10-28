@@ -1,6 +1,4 @@
-// eslint-disable-next-line import/no-unresolved
 import MiniFooter from 'Components/MiniFooter';
-// eslint-disable-next-line import/no-unresolved
 import MiniHeader from 'Components/MiniHeader';
 import styled from 'styled-components';
 

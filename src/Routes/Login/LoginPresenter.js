@@ -1,5 +1,7 @@
-// eslint-disable-next-line import/no-unresolved
-import MiniFooter from 'Components/MiniFooter'; import styled from 'styled-components'; import { Link } from 'react-router-dom'; import MiniHeader from 'Components/MiniHeader';
+import MiniFooter from 'Components/MiniFooter';
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+import MiniHeader from 'Components/MiniHeader';
 
 const Wrapper = styled.div`
   margin: 0 auto;

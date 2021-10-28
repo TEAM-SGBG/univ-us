@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-// import { Link } from 'react-router-dom';
 
 const FooterBackground = styled.div`
   margin: 0 auto;
