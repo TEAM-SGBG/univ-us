@@ -3,6 +3,7 @@ import {
   Card, Col, Row, Avatar,
 } from 'antd';
 import { EyeOutlined, HeartOutlined, HeartTwoTone } from '@ant-design/icons';
+import { useState, useCallback } from 'react';
 
 const CardStyle = styled(Card)`
   width: 75em;
@@ -14,13 +15,24 @@ const CardStyle = styled(Card)`
 `;
 
 function EventCard({ eventPost }) {
+  const [liked, setLiked] = useState(eventPost.liked);
+
+  const onToggleLike = useCallback(() => {
+    setLiked(((prevState) => !prevState));
+  }, []);
+
   return (
     <CardStyle
       cover={(
-        <img
-          alt="example"
-          src="https://dummyimage.com/360x200/000/fff"
-        />
+        <a
+          href={`#/events/${eventPost.id}`}
+          rel="noreferrer"
+        >
+          <img
+            alt="example"
+            src="https://dummyimage.com/360x200/000/fff"
+          />
+        </a>
 )}
       bodyStyle={{ width: '100%' }}
     >
@@ -41,7 +53,14 @@ function EventCard({ eventPost }) {
           </Col>
         </Row>
         <Row align="middle">
-          <Col span={8} style={{ textAlign: 'left' }}>{eventPost.title}</Col>
+          <Col span={24} style={{ textAlign: 'left' }}>
+            <a
+              href={`#/events/${eventPost.id}`}
+              rel="noreferrer"
+            >
+              {eventPost.title}
+            </a>
+          </Col>
         </Row>
         <Row align="middle">
           <Col span={4} style={{ textAlign: 'left' }}>
@@ -53,7 +72,7 @@ function EventCard({ eventPost }) {
             <EyeOutlined />
             {eventPost.view}
             {' '}
-            {eventPost.liked ? <HeartTwoTone twoToneColor="#eb2f96" /> : <HeartOutlined />}
+            {liked ? <HeartTwoTone onClick={onToggleLike} twoToneColor="#eb2f96" /> : <HeartOutlined onClick={onToggleLike} />}
           </Col>
         </Row>
       </div>
