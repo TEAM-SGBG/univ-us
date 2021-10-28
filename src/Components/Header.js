@@ -19,16 +19,40 @@ const SignInButton = styled.button`
   background: #FAF8FF;
   border-radius: 16px;
   border: none;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 11px;
+  line-height: 32px;
+  text-align: center;
+  letter-spacing: 0.42px;
+  color: #5C3FBF;
+  &:hover{
+        color:white;
+        background-color:#5C3FBF;
+    }
 `;
 
 const LoginButton = styled.button`
-  padding: 0 20px;
-  margin-left: 16px;
   width:90px;
   height: 32px;
+  padding: 0 20px;
+  margin-left: 16px;
   background: #FAF8FF;
   border-radius: 16px;
   border: none;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 11px;
+  line-height: 32px;
+  text-align: center;
+  letter-spacing: 0.42px;
+  color: #5C3FBF;
+  &:hover{
+        color:white;
+        background-color:#5C3FBF;
+    }
 `;
 
 const LogoutButton = styled.button`
@@ -39,17 +63,18 @@ const LogoutButton = styled.button`
   background: #FAF8FF;
   border-radius: 16px;
   border: none;
-`;
-
-const ButtonText = styled.p`
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
   font-size: 11px;
-  line-height: 33px;
+  line-height: 32px;
   text-align: center;
   letter-spacing: 0.42px;
   color: #5C3FBF;
+  &:hover{
+        color:white;
+        background-color:#5C3FBF;
+    }
 `;
 
 const NavList = styled.ul`
@@ -76,24 +101,39 @@ const NavItem = styled(Link)`
     }
 `;
 
+function GoSignin() {
+  console.log('go signup');
+  window.location.replace('#/signup');
+}
+
+function GoLogin() {
+  console.log('go login');
+  window.location.replace('#/login');
+}
+
+function GoLogout() {
+  console.log('go logout');
+  window.location.assign('#/home');
+}
+
 const Header = () => (
   <HeaderBackground>
     <img alt="logo" src="img/logo.png" />
-    <SignInButton>
-      <ButtonText>회원가입</ButtonText>
+    <SignInButton onClick={GoSignin}>
+      회원가입
     </SignInButton>
-    <LoginButton>
-      <ButtonText>로그인</ButtonText>
+    <LoginButton onClick={GoLogin}>
+      로그인
     </LoginButton>
-    <LogoutButton>
-      <ButtonText>로그아웃</ButtonText>
+    <LogoutButton onClick={GoLogout}>
+      로그아웃
     </LogoutButton>
     <NavList>
       <NavItem to="/events">전체</NavItem>
       <NavItem to={{ pathname: '/category', search: '?type=sushi' }}>수시행사</NavItem>
       <NavItem to={{ pathname: '/category', search: '?type=jungshi' }}>정시행사</NavItem>
       <NavItem to={{ pathname: '/category', search: '?type=fair' }}>대학박람회</NavItem>
-      <NavItem to="/search">대학찾기</NavItem>
+      <NavItem to="/search">행사찾기</NavItem>
     </NavList>
   </HeaderBackground>
 );

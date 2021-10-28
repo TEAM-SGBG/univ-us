@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-// import { Link } from 'react-router-dom';
 
 const FooterBackground = styled.div`
+  margin: 0 auto;
   padding: 20px 60px;
   width: 1200px;
   background-color: white;
@@ -26,7 +26,6 @@ const FooterLetter = styled.div`
   line-height: 19px;
   letter-spacing: 0.56px;
   color: #979797;
-
   margin-top: 4px;
 `;
 

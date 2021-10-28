@@ -1,6 +1,8 @@
 import { Pagination } from 'antd';
 import styled from 'styled-components';
 import { useCallback } from 'react';
+import Header from '../../Components/Header';
+import Footer from '../../Components/Footer';
 import EventCard from '../../Components/Event/EventCard';
 
 const EventTitle = styled.p`
@@ -30,11 +32,15 @@ function CategoryPresenter({ mainEvents, type }) {
   }, [type]);
 
   return (
-    <Wrapper>
-      <EventTitle>{mappingType()}</EventTitle>
-      {mainEvents.map((event) => <EventCard key={event.id} eventPost={event} />)}
-      <Pagination style={{ textAlign: 'center' }} />
-    </Wrapper>
+    <>
+      <Header />
+      <Wrapper>
+        <EventTitle>{mappingType()}</EventTitle>
+        {mainEvents.map((event) => <EventCard key={event.id} eventPost={event} />)}
+        <Pagination style={{ textAlign: 'center' }} />
+      </Wrapper>
+      <Footer />
+    </>
   );
 }
 
