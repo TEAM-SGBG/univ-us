@@ -9,6 +9,7 @@ import MyPage from '../Routes/MyPage';
 import SignUp from '../Routes/SignUp';
 import UserInfo from '../Routes/UserInfo';
 import Category from '../Routes/Category';
+import Event from '../Routes/Event';
 
 export default () => (
   <BrowserRouter>
@@ -33,6 +34,9 @@ export default () => (
       </Route>
       <Route exact path="/category">
         <Category />
+      </Route>
+      <Route path="/events">
+        <Event />
       </Route>
       <Redirect from="*" to="/home" />
     </Switch>
