@@ -66,8 +66,6 @@ function CategoryPresenter({ mainEvents, type }) {
 
   const onChangePageNumber = (v) => {
     setPageNumber(v);
-    console.log(`start: ${(pageNumber - 1) * 5}`);
-    console.log(`end: ${Math.min(mainEvents.length, pageNumber * 5)}`);
   };
 
   return (
