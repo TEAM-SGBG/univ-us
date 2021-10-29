@@ -61,7 +61,7 @@ function EventCard({ eventPost }) {
       <Wrapper>
         <Row align="middle">
           <Col span={12} style={{ textAlign: 'left' }}>
-            {eventPost.date}
+            {eventPost.date.toLocaleDateString()}
           </Col>
           <Col span={12} style={{ textAlign: 'right' }}>
             price:
@@ -82,7 +82,7 @@ function EventCard({ eventPost }) {
           <Col span={12} style={{ textAlign: 'left' }}>
             <Avatar src={eventPost.avatar} />
             {' '}
-            {eventPost.channelName}
+            {eventPost.channel.name}
           </Col>
           <Col span={12} style={{ textAlign: 'right' }}>
             <EyeOutlined />

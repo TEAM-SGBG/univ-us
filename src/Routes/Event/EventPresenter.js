@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import { Divider, Row } from 'antd';
 import { useCallback, useState } from 'react';
 import { HeartOutlined, HeartTwoTone } from '@ant-design/icons';
+import EventForm from '../../Components/Event/EventForm';
+import ChannelCard from '../../Components/Channel/ChannelCard';
 
 const Wrapper = styled.div`
   display: flex;
@@ -26,6 +28,15 @@ const EventTitle = styled.p`
   align-self: flex-start;
 `;
 
+const EventDescription = styled.p`
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  letter-spacing: 0.56px;
+  color: #5C3FBF;
+`;
+
 function EventPresenter({ currentPost }) {
   const [liked, setLiked] = useState(currentPost.liked);
 
@@ -38,8 +49,7 @@ function EventPresenter({ currentPost }) {
       <Header />
       <Wrapper>
         <EventTitle>
-          {currentPost.title}
-          {' '}
+          {`${currentPost.title} `}
           {liked ? <HeartTwoTone onClick={onToggleLike} twoToneColor="#eb2f96" /> : <HeartOutlined onClick={onToggleLike} />}
         </EventTitle>
         <Row><img src="https://dummyimage.com/1100x400/000/fff" alt="example" style={{ width: '100%' }} /></Row>
@@ -52,13 +62,17 @@ function EventPresenter({ currentPost }) {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
+          marginTop: '20px',
         }}
         >
-          <p>{currentPost.description}</p>
+          <EventDescription>{currentPost.description}</EventDescription>
         </Row>
-        <Row>채널 정보</Row>
-        <Divider />
-        <Row>{currentPost.channelName}</Row>
+        <Row style={{ alignSelf: 'flex-start' }}>
+          <EventForm currentPost={currentPost} />
+        </Row>
+        <EventTitle>채널 정보</EventTitle>
+        <Divider style={{ borderTop: '3px solid rgba(0, 0, 0, 0.06)' }} />
+        <ChannelCard currentChannel={currentPost.channel} />
       </Wrapper>
       <Footer />
     </div>
