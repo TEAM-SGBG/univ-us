@@ -1,18 +1,29 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import styled from 'styled-components';
+import Slider from 'react-slick';
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
 
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+
 const Wrapper = styled.div`
   margin: 0 auto;
-  width:1200px;
+`;
+
+const StyledSlider = styled(Slider)`
+  .slick-slide {
+    height: 380px;
+  }
 `;
 
 const MainImageWrapper = styled.div`
-
+  height: 380px;
 `;
 
 const MainContainer = styled.div`
-  padding: 48px 60px;
+  width: 1100px;
+  padding: 48px 180px;
 `;
 
 const RecommendationTitle = styled.p`
@@ -188,12 +199,22 @@ const SubscribeButton = styled.button`
 `;
 
 function HomePresenter() {
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
   return (
     <>
       <Header />
       <Wrapper>
         <MainImageWrapper>
-          <img alt="main img" src="img/건국대.png" />
+          <StyledSlider {...settings}>
+            <img alt="main img" src="img/건국대.png" />
+            <img alt="main img" src="img/건국대2.jpeg" height="380px" />
+          </StyledSlider>
         </MainImageWrapper>
         <MainContainer>
           <RecommendationTitle>지금, 이 행사 어때요?</RecommendationTitle>
