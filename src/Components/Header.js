@@ -77,6 +77,11 @@ const LogoutButton = styled.button`
     }
 `;
 
+const HomeButton = styled.button`
+    background: none;
+    border: none;
+`;
+
 const NavList = styled.ul`
   display:flex;
   margin-top:57px;
@@ -116,9 +121,15 @@ function GoLogout() {
   window.location.assign('#/home');
 }
 
+function GoHome() {
+  window.location.replace('#/Home');
+}
+
 const Header = () => (
   <HeaderBackground>
-    <img alt="logo" src="img/logo.png" />
+    <HomeButton onClick={GoHome}>
+      <img alt="logo" src="img/logo.png" />
+    </HomeButton>
     <SignInButton onClick={GoSignin}>
       회원가입
     </SignInButton>
