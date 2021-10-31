@@ -213,12 +213,12 @@ function HomePresenter() {
         <MainImageWrapper>
           <StyledSlider {...settings}>
             <img alt="main img" src="img/건국대.png" />
-            <img alt="main img" src="img/건국대2.jpeg" height="380px" />
+            <img alt="main img" src="img/건국대2.jpeg" />
           </StyledSlider>
         </MainImageWrapper>
         <MainContainer>
-          <RecommendationTitle>지금, 이 행사 어때요?</RecommendationTitle>
-          <RecommendationDetail>에디터가 추천하는 놓쳐서 안 될 행사 ✨</RecommendationDetail>
+          <RecommendationTitle>지금, 이 행사 어때요? ✨</RecommendationTitle>
+          <RecommendationDetail>에디터가 추천하는 놓쳐서 안 될 행사</RecommendationDetail>
           <RecommendationContainer>
             <RecommendationItems>
               <img alt="items" src="img/건국대.png" height="146px" width="260px" />
@@ -226,7 +226,7 @@ function HomePresenter() {
               <RecommendationItemsName>2022 건국대학교 정시 입시설명회</RecommendationItemsName>
             </RecommendationItems>
           </RecommendationContainer>
-          <PopularTitle>이번 주, 모두가 주목한 행사</PopularTitle>
+          <PopularTitle>이번 주, 모두가 주목한 행사 🖐🏻</PopularTitle>
           <PopularDetail>지금 가장 인기 있는 행사만 모았어요</PopularDetail>
           <PopularContainer>
             <PopularItems>
@@ -235,7 +235,7 @@ function HomePresenter() {
               <PopularItemsName>2022 건국대학교 정시 입시설명회</PopularItemsName>
             </PopularItems>
           </PopularContainer>
-          <PopularTitle>따끈따끈한 신규 행사</PopularTitle>
+          <PopularTitle>따끈따끈한 신규 행사 🔥</PopularTitle>
           <PopularDetail>주목하세요! 이번주 개설된 신규 행사</PopularDetail>
           <PopularContainer>
             <PopularItems>
