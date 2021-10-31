@@ -1,7 +1,5 @@
-import MiniFooter from 'Components/MiniFooter';
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-import MiniHeader from 'Components/MiniHeader';
+// eslint-disable-next-line import/no-unresolved
+import MiniFooter from 'Components/MiniFooter'; import styled from 'styled-components'; import { Link } from 'react-router-dom'; import MiniHeader from 'Components/MiniHeader';
 
 const Wrapper = styled.div`
   margin: 0 auto;
@@ -15,6 +13,9 @@ const Wrapper = styled.div`
 const Image = styled.div`
   width: 700px;
   padding: 25px;
+  background-image:Url('img/HappyLogin.png');
+  background-position:center center;
+  background-repeat: no-repeat;
 `;
 
 const LoginForm = styled.div`
@@ -84,9 +85,7 @@ function LoginPresenter() {
     <>
       <MiniHeader />
       <Wrapper>
-        <Image>
-          (대충 사람들 즐겁게 모이는 그림)
-        </Image>
+        <Image />
         <LoginForm>
           <LoginH1>
             로그인

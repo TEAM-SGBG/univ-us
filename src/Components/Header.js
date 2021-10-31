@@ -108,17 +108,17 @@ const NavItem = styled(Link)`
 
 function GoSignin() {
   console.log('go signup');
-  window.location.replace('#/signup');
+  window.location.assign('#/signup');
 }
 
 function GoLogin() {
   console.log('go login');
-  window.location.replace('#/login');
+  window.location.assign('#/login');
 }
 
 function GoLogout() {
   console.log('go logout');
-  window.location.assign('#/home');
+  window.location.replace('#/home');
 }
 
 function GoHome() {

@@ -12,6 +12,8 @@ const Wrapper = styled.div`
 `;
 
 const StyledSlider = styled(Slider)`
+  margin: 0 auto;
+  width:1920px;
   .slick-slide {
     height: 380px;
   }

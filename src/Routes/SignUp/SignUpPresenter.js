@@ -56,9 +56,9 @@ function SignUpPresenter() {
         <SignupForm>
           <H1>회원가입</H1>
           개인회원
-          <MyRadio type="radio" id="huey" name="member" value="person" checked />
+          <MyRadio type="radio" name="member" value="person" checked />
           학교/기관회원
-          <MyRadio type="radio" id="huey" name="member" value="school" />
+          <MyRadio type="radio" name="member" value="school" />
           <H2>아이디</H2>
           <MyInput type="text" />
           <H2>이름/기업명</H2>
