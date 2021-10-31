@@ -213,7 +213,7 @@ function HomePresenter() {
         <MainImageWrapper>
           <StyledSlider {...settings}>
             <img alt="main img" src="img/건국대.png" />
-            <img alt="main img" src="img/건국대2.jpeg" />
+            <img alt="main img" src="img/건국대2.jpeg" height="380px" />
           </StyledSlider>
         </MainImageWrapper>
         <MainContainer>
