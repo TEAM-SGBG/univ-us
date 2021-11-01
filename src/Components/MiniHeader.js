@@ -14,9 +14,20 @@ const MiniHeaderImg = styled.img`
     float:left;
 `;
 
+const HomeButton = styled.button`
+    background: none;
+    border: none;
+`;
+
+function GoHome() {
+  window.location.replace('#/home');
+}
+
 const MiniHeader = () => (
   <HeaderBackground>
-    <MiniHeaderImg alt="logo" src="img/logo.png" />
+    <HomeButton onClick={GoHome}>
+      <MiniHeaderImg alt="logo" src="img/logo.png" />
+    </HomeButton>
   </HeaderBackground>
 );
 
