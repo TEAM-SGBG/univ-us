@@ -9,18 +9,25 @@ import 'slick-carousel/slick/slick-theme.css';
 
 const Wrapper = styled.div`
   margin: 0 auto;
+  overflow-x: hidden;
 `;
 
 const StyledSlider = styled(Slider)`
   margin: 0 auto;
-  width:1920px;
   .slick-slide {
     height: 380px;
   }
 `;
 
-const MainImageWrapper = styled.div`
+const SliderImageContainer = styled.div`
   height: 380px;
+  overflow: hidden;
+`;
+
+const SlideImage = styled.img`
+  width:100%;
+  height:100%;
+  object-fit:cover; 
 `;
 
 const MainContainer = styled.div`
@@ -207,17 +214,26 @@ function HomePresenter() {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 5000,
+    pauseOnHover: true,
   };
+
   return (
     <>
       <Header />
       <Wrapper>
-        <MainImageWrapper>
-          <StyledSlider {...settings}>
-            <img alt="main img" src="img/건국대.png" />
-            <img alt="main img" src="img/건국대2.jpeg" height="380px" />
-          </StyledSlider>
-        </MainImageWrapper>
+        <StyledSlider {...settings}>
+          <SliderImageContainer>
+            <SlideImage alt="blabla" src="img/건국대3.jpeg" />
+          </SliderImageContainer>
+          <SliderImageContainer>
+            <SlideImage alt="blabla" src="img/건국대3.jpeg" />
+          </SliderImageContainer>
+          <SliderImageContainer>
+            <SlideImage alt="blabla" src="img/건국대3.jpeg" />
+          </SliderImageContainer>
+        </StyledSlider>
         <MainContainer>
           <RecommendationTitle>지금, 이 행사 어때요? ✨</RecommendationTitle>
           <RecommendationDetail>에디터가 추천하는 놓쳐서 안 될 행사</RecommendationDetail>
