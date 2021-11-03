@@ -72,7 +72,6 @@ const RecommendationItemsDate = styled.p`
   font-size: 12px;
   line-height: 19px;
   color: #979797;
-
   margin-top: 10px;
   margin-left: 5px;
 `;
@@ -229,7 +228,7 @@ function HomePresenter() {
           navigation
           pagination={{ clickable: true }}
           loop
-          Autoplay={{ delay: 1000 }}
+          autoplay={{ delay: 1000 }}
         >
           {SlideImages.map((index) => <SwiperSlide><img alt="blabla" src={index.default} width="100%" /></SwiperSlide>)}
         </StyledSwiper>
