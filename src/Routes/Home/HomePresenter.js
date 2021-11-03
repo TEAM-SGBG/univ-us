@@ -1,38 +1,42 @@
+/* eslint-disable global-require */
 /* eslint-disable react/jsx-props-no-spreading */
 import styled from 'styled-components';
-import Slider from 'react-slick';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import SwiperCore, {
+  Navigation,
+  Pagination,
+  Scrollbar,
+  A11y,
+  Autoplay,
+} from 'swiper';
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
+import 'swiper/swiper.scss';
+import 'swiper/components/navigation/navigation.scss'; // *
+import 'swiper/components/pagination/pagination.scss'; // *
+import 'swiper/components/scrollbar/scrollbar.scss'; // *
 
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Autoplay]); // *
 
 const Wrapper = styled.div`
   margin: 0 auto;
   overflow-x: hidden;
 `;
 
-const StyledSlider = styled(Slider)`
-  margin: 0 auto;
-  .slick-slide {
-    height: 380px;
-  }
-`;
-
-const SliderImageContainer = styled.div`
-  height: 380px;
-  overflow: hidden;
-`;
-
-const SlideImage = styled.img`
-  width:100%;
-  height:100%;
-  object-fit:cover; 
-`;
-
 const MainContainer = styled.div`
   width: 1100px;
   padding: 48px 180px;
+`;
+
+const StyledSwiper = styled(Swiper)`
+  .swiper-slide {
+    background: #fff;
+    text-align: center;
+    font-size: 18px;
+    line-height: 200px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+  }
 `;
 
 const RecommendationTitle = styled.p`
@@ -207,33 +211,28 @@ const SubscribeButton = styled.button`
   border-radius: 37px;
 `;
 
-function HomePresenter() {
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 5000,
-    pauseOnHover: true,
-  };
+const SlideImages = [
+  require('img/건국대.png'),
+  require('img/건국대2.jpeg'),
+  require('img/건국대3.jpeg'),
+];
 
+function HomePresenter() {
   return (
     <>
       <Header />
       <Wrapper>
-        <StyledSlider {...settings}>
-          <SliderImageContainer>
-            <SlideImage alt="blabla" src="img/건국대3.jpeg" />
-          </SliderImageContainer>
-          <SliderImageContainer>
-            <SlideImage alt="blabla" src="img/건국대3.jpeg" />
-          </SliderImageContainer>
-          <SliderImageContainer>
-            <SlideImage alt="blabla" src="img/건국대3.jpeg" />
-          </SliderImageContainer>
-        </StyledSlider>
+        <StyledSwiper
+          style={{ height: '380px' }}
+          spaceBetween={0}
+          slidesPerView={1}
+          navigation
+          pagination={{ clickable: true }}
+          loop
+          Autoplay={{ delay: 1000 }}
+        >
+          {SlideImages.map((index) => <SwiperSlide><img alt="blabla" src={index.default} width="100%" /></SwiperSlide>)}
+        </StyledSwiper>
         <MainContainer>
           <RecommendationTitle>지금, 이 행사 어때요? ✨</RecommendationTitle>
           <RecommendationDetail>에디터가 추천하는 놓쳐서 안 될 행사</RecommendationDetail>

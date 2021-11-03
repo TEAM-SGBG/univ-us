@@ -80,6 +80,9 @@ const LogoutButton = styled.button`
 const HomeButton = styled.button`
     background: none;
     border: none;
+    &:hover{
+      cursor: pointer;
+    }
 `;
 
 const NavList = styled.ul`
