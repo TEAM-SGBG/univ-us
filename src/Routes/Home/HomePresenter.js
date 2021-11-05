@@ -204,11 +204,24 @@ const ChannelItemCount = styled.p`
 
 const SubscribeButton = styled.button`
   background: #ffffff;
-  margin:20px 20px;
+  padding: 2px 43px;
+  margin-top: 16px;
+  margin-left: 25px;
   color: #8D71DD;
   border: 1px solid #8D71DD;
   box-sizing: border-box;
   border-radius: 37px;
+`;
+
+const SubscribeButtonTxt = styled.p`
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 33px;
+  text-align: center;
+  letter-spacing: 0.42px;
+  color: #8D71DD;
 `;
 
 const SlideImages = [
@@ -272,7 +285,9 @@ function HomePresenter() {
                 <ChannelItemTitle>건국대학교</ChannelItemTitle>
                 <ChannelItemCount>2개의 행사</ChannelItemCount>
                 <SubscribeButton>
-                  +구독
+                  <SubscribeButtonTxt>
+                    + 구독
+                  </SubscribeButtonTxt>
                 </SubscribeButton>
               </ChannelItems>
             </ChannelItemsContainer>
