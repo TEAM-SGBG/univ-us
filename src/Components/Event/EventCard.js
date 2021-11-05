@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import {
-  Col, Row, Avatar, Image, Typography,
+  Col, Row, Avatar, Image, Typography, Space,
 } from 'antd';
 import { EyeOutlined, HeartOutlined, HeartTwoTone } from '@ant-design/icons';
 import { useState, useCallback } from 'react';
@@ -101,15 +101,17 @@ function EventCard({ eventPost }) {
         </RowWrapper>
         <RowWrapper align="middle">
           <ColWrapper span={12} style={{ textAlign: 'left' }}>
-            <Avatar src={eventPost.avatar} />
-            {' '}
-            {eventPost.channel.name}
+            <Space>
+              <Avatar src={eventPost.avatar} />
+              {eventPost.channel.name}
+            </Space>
           </ColWrapper>
           <ColWrapper span={12} style={{ textAlign: 'right' }}>
             <EyeOutlined />
-            {eventPost.view}
-            {' '}
-            {liked ? <HeartTwoTone onClick={onToggleLike} twoToneColor="#eb2f96" /> : <HeartOutlined onClick={onToggleLike} />}
+            <Space>
+              {eventPost.view}
+              {liked ? <HeartTwoTone onClick={onToggleLike} twoToneColor="#eb2f96" /> : <HeartOutlined onClick={onToggleLike} />}
+            </Space>
           </ColWrapper>
         </RowWrapper>
       </Wrapper>
