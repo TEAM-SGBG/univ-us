@@ -10,6 +10,7 @@ import SignUp from '../Routes/SignUp';
 import UserInfo from '../Routes/UserInfo';
 import Category from '../Routes/Category';
 import Event from '../Routes/Event';
+import HostCenter from '../Routes/HostCenter';
 
 export default () => (
   <BrowserRouter>
@@ -37,6 +38,9 @@ export default () => (
       </Route>
       <Route path="/events">
         <Event />
+      </Route>
+      <Route exact path="/hostcenter">
+        <HostCenter />
       </Route>
       <Redirect from="*" to="/home" />
     </Switch>
