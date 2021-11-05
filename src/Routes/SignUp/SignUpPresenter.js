@@ -48,7 +48,7 @@ const SignupBtn = styled.button`
   color:white;
 `;
 
-function SignUpPresenter() {
+function SignUpPresenter({ GoHome }) {
   return (
     <>
       <MiniHeader />
@@ -65,7 +65,7 @@ function SignUpPresenter() {
           <MyInput type="text" />
           <H2>비밀번호</H2>
           <MyInput type="password" />
-          <SignupBtn>
+          <SignupBtn onClick={GoHome}>
             회원가입
           </SignupBtn>
         </SignupForm>
