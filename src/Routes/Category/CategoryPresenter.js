@@ -16,6 +16,12 @@ const EventTitle = styled.p`
   letter-spacing: 0.56px;
   padding-top: 64px;
   max-width: 1100px;
+
+  @media screen and (min-width: 0px) {
+    width: 360px;
+    display: block;
+  }
+  
   @media screen and (min-width: 425px) {
     width: 360px;
   }
@@ -39,6 +45,12 @@ const Wrapper = styled.div`
 const DividerWrapper = styled(Divider)`
   width: 1100px;
   min-width: auto;
+
+  @media screen and (min-width: 0px) {
+    width: 360px;
+    display: block;
+  }
+  
   @media screen and (min-width: 425px) {
     width: 360px;
     min-width: auto;
