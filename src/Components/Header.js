@@ -88,7 +88,7 @@ function GoSignin() {
 
 function GoMypage() {
   console.log('go mypage');
-  window.location.assign('#/mypage');
+  window.location.assign('/mypage');
 }
 
 function GoLogin() {
@@ -120,7 +120,7 @@ const Header = () => (
       </div>
       <div>
         <ButtonWrapper onClick={GoMypage}>
-            MyPage
+          MyPage
         </ButtonWrapper>
         <ButtonWrapper onClick={GoHostCenter}>
           호스트센터
