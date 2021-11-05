@@ -1,5 +1,5 @@
 import {
-  HashRouter as BrowserRouter, Route, Switch,
+  BrowserRouter, Route, Switch,
 } from 'react-router-dom';
 import { Redirect } from 'react-router';
 import Home from '../Routes/Home';

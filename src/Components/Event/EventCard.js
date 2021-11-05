@@ -47,7 +47,7 @@ function EventCard({ eventPost }) {
     <CardStyle
       cover={(
         <a
-          href={`#/events/${eventPost.id}`}
+          href={`/events/${eventPost.id}`}
           rel="noreferrer"
         >
           <img
@@ -71,7 +71,7 @@ function EventCard({ eventPost }) {
         <Row align="middle">
           <Col span={24} style={{ textAlign: 'left' }}>
             <a
-              href={`#/events/${eventPost.id}`}
+              href={`/events/${eventPost.id}`}
               rel="noreferrer"
             >
               {eventPost.title}

@@ -82,21 +82,21 @@ const NavItem = styled(Link)`
 
 function GoSignin() {
   console.log('go signup');
-  window.location.assign('#/signup');
+  window.location.assign('/signup');
 }
 
 function GoLogin() {
   console.log('go login');
-  window.location.assign('#/login');
+  window.location.assign('/login');
 }
 
 function GoLogout() {
   console.log('go logout');
-  window.location.replace('#/home');
+  window.location.replace('/home');
 }
 
 function GoHome() {
-  window.location.replace('#/Home');
+  window.location.replace('/home');
 }
 
 const Header = () => (
@@ -104,7 +104,7 @@ const Header = () => (
     <Wrapper>
       <div>
         <HomeButton onClick={GoHome}>
-          <img alt="logo" src="img/logo.png" />
+          <img alt="logo" src="/img/logo.png" />
         </HomeButton>
       </div>
       <div>

@@ -20,7 +20,7 @@ const HomeButton = styled.button`
 `;
 
 function GoHome() {
-  window.location.replace('#/home');
+  window.location.replace('/home');
 }
 
 const MiniHeader = () => (
