@@ -17,6 +17,9 @@ const MiniHeaderImg = styled.img`
 const HomeButton = styled.button`
     background: none;
     border: none;
+    &:hover{
+      cursor: pointer;
+    }
 `;
 
 function GoHome() {

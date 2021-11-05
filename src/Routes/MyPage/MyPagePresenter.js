@@ -1,5 +1,5 @@
 import Footer from 'Components/Footer';
-import Header from 'Components/Header';
+import MiniHeader from 'Components/MiniHeader';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
@@ -7,12 +7,14 @@ const Wrapper = styled.div`
   width:1200px;
 `;
 
-function MyPagePresenter() {
+function MyPagePresenter({ goUserinfo }) {
   return (
     <>
-      <Header />
+      <MiniHeader />
       <Wrapper>
-        MyPage
+        <button type="button" onClick={goUserinfo}>
+          내 정보
+        </button>
       </Wrapper>
       <Footer />
     </>

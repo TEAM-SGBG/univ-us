@@ -30,6 +30,7 @@ const Wrapper = styled.div`
 const ButtonWrapper = styled.button`
   height: 32px;
   padding: 0 20px;
+  margin-left: 16px;
   background: #FAF8FF;
   border-radius: 16px;
   border: none;
@@ -85,6 +86,11 @@ function GoSignin() {
   window.location.assign('/signup');
 }
 
+function GoMypage() {
+  console.log('go mypage');
+  window.location.assign('#/mypage');
+}
+
 function GoLogin() {
   console.log('go login');
   window.location.assign('/login');
@@ -92,6 +98,7 @@ function GoLogin() {
 
 function GoLogout() {
   console.log('go logout');
+  alert('로그아웃되었습니다.');
   window.location.replace('/home');
 }
 
@@ -112,6 +119,9 @@ const Header = () => (
         </HomeButton>
       </div>
       <div>
+        <ButtonWrapper onClick={GoMypage}>
+            MyPage
+        </ButtonWrapper>
         <ButtonWrapper onClick={GoHostCenter}>
           호스트센터
         </ButtonWrapper>
