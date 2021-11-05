@@ -99,6 +99,10 @@ function GoHome() {
   window.location.replace('/home');
 }
 
+function GoHostCenter() {
+  window.location.assign('/hostcenter');
+}
+
 const Header = () => (
   <HeaderBackground>
     <Wrapper>
@@ -108,7 +112,9 @@ const Header = () => (
         </HomeButton>
       </div>
       <div>
-        <ButtonWrapper>호스트센터</ButtonWrapper>
+        <ButtonWrapper onClick={GoHostCenter}>
+          호스트센터
+        </ButtonWrapper>
         <ButtonWrapper onClick={GoSignin}>
           회원가입
         </ButtonWrapper>
