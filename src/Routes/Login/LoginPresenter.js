@@ -13,7 +13,7 @@ const Wrapper = styled.div`
 const Image = styled.div`
   width: 700px;
   padding: 25px;
-  background-image:Url('img/HappyLogin.png');
+  background-image:url('public/img/HappyLogin.png');
   background-position:center center;
   background-repeat: no-repeat;
 `;
@@ -80,7 +80,7 @@ const LoginBtn = styled.button`
   color:white;
 `;
 
-function LoginPresenter() {
+function LoginPresenter({ GoHome }) {
   return (
     <>
       <MiniHeader />
@@ -106,7 +106,7 @@ function LoginPresenter() {
             비밀번호
           </LoginH2>
           <MyInput type="password" />
-          <LoginBtn>
+          <LoginBtn onClick={GoHome}>
             로그인
           </LoginBtn>
         </LoginForm>

@@ -12,8 +12,30 @@ const HeaderBackground = styled.div`
 `;
 
 const SignInButton = styled.button`
-  margin-left: 680px;
+  margin-left: 570px;
   padding: 0 20px;
+  width:90px;
+  height: 32px;
+  background: #FAF8FF;
+  border-radius: 16px;
+  border: none;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 11px;
+  line-height: 32px;
+  text-align: center;
+  letter-spacing: 0.42px;
+  color: #5C3FBF;
+  &:hover{
+        color:white;
+        background-color:#5C3FBF;
+    }
+`;
+
+const MyPageButton = styled.button`
+  padding: 0 20px;
+  margin-left: 16px;
   width:90px;
   height: 32px;
   background: #FAF8FF;
@@ -80,6 +102,9 @@ const LogoutButton = styled.button`
 const HomeButton = styled.button`
     background: none;
     border: none;
+    &:hover{
+      cursor: pointer;
+    }
 `;
 
 const NavList = styled.ul`
@@ -111,6 +136,11 @@ function GoSignin() {
   window.location.assign('#/signup');
 }
 
+function GoMypage() {
+  console.log('go mypage');
+  window.location.assign('#/mypage');
+}
+
 function GoLogin() {
   console.log('go login');
   window.location.assign('#/login');
@@ -118,11 +148,12 @@ function GoLogin() {
 
 function GoLogout() {
   console.log('go logout');
+  alert('로그아웃되었습니다.');
   window.location.replace('#/home');
 }
 
 function GoHome() {
-  window.location.replace('#/Home');
+  window.location.replace('#/home');
 }
 
 const Header = () => (
@@ -133,6 +164,9 @@ const Header = () => (
     <SignInButton onClick={GoSignin}>
       회원가입
     </SignInButton>
+    <MyPageButton onClick={GoMypage}>
+      MyPage
+    </MyPageButton>
     <LoginButton onClick={GoLogin}>
       로그인
     </LoginButton>
