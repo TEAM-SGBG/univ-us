@@ -64,33 +64,6 @@ const RecommendationContainer = styled.div`
   display: flex;
 `;
 
-// const RecommendationItems = styled.div`
-//   margin-right: 20px;
-// `;
-//
-// const RecommendationItemsDate = styled.p`
-//   font-family: Roboto;
-//   font-style: normal;
-//   font-weight: normal;
-//   font-size: 12px;
-//   line-height: 19px;
-//   color: #979797;
-//
-//   margin-top: 10px;
-//   margin-left: 5px;
-// `;
-//
-// const RecommendationItemsName = styled.p`
-//   font-family: Roboto;
-//   font-style: normal;
-//   font-weight: normal;
-//   font-size: 12px;
-//   line-height: 20px;
-//   color: #333333;
-//   margin-top: 10px;
-//   margin-left: 5px;
-// `;
-
 const PopularTitle = styled.p`
   font-family: Roboto;
   font-style: normal;
