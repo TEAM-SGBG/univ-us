@@ -87,10 +87,7 @@ function EventCard({ eventPost }) {
           <ColWrapper span={12} style={{ textAlign: 'left' }}>
             {eventPost.date.toLocaleDateString()}
           </ColWrapper>
-          <ColWrapper span={12} style={{ textAlign: 'right' }}>
-            price:
-            {eventPost.price}
-          </ColWrapper>
+          <ColWrapper span={12} style={{ textAlign: 'right' }} />
         </RowWrapper>
         <RowWrapper align="middle">
           <ColWrapper span={24} style={{ textAlign: 'left' }}>
