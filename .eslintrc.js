@@ -13,5 +13,6 @@ module.exports = {
     'react/prop-types': 0,
     'import/no-unresolved': [0],
     'react/jsx-no-bind': [0],
+    'react/jsx-props-no-spreading': 'warn',
   },
 };

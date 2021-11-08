@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Space } from 'antd';
 import { useHistory } from 'react-router';
-import useMediaQuery from '../Hooks/useMediaQuery';
+import useMediaQuery from '../../Hooks/useMediaQuery';
 
 const Wrapper = styled.div`
   display: flex;
