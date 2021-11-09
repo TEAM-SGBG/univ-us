@@ -58,6 +58,10 @@ const HostCenterHeader = () => {
     history.push('/home');
   };
 
+  const goChannel = () => {
+    history.push('/hostcenter/channel');
+  };
+
   return (
     <Wrapper>
       <LogoWrapper>
@@ -67,9 +71,7 @@ const HostCenterHeader = () => {
       </LogoWrapper>
       <MenuWrapper>
         <Space size={isDesktop ? 50 : 15}>
-          <MenuTitle>
-            내 채널
-          </MenuTitle>
+          <ButtonWrapper onClick={goChannel}>내 채널</ButtonWrapper>
           <MenuTitle>|</MenuTitle>
           <ButtonWrapper onClick={goHome}>유니버스 홈</ButtonWrapper>
         </Space>

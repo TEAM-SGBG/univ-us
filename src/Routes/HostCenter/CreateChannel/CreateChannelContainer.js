@@ -6,7 +6,7 @@ const user = {
   nickname: '원영',
 };
 
-function CreateChannelContainer() {
+const CreateChannelContainer = () => {
   const history = useHistory();
 
   return (
@@ -15,6 +15,6 @@ function CreateChannelContainer() {
       <CreateChannelPresenter user={user} />
     </>
   );
-}
+};
 
 export default CreateChannelContainer;

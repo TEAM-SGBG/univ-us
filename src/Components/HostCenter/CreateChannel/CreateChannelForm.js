@@ -185,7 +185,7 @@ const CreateChannelForm = () => {
           <ButtonWrapper
             onClick={isValidate}
             loading={duplicateCheckLoading}
-            disabled={channelID.validateStatus === 'error' || duplicateCheck}
+            disabled={channelID.validateStatus !== 'success' || duplicateCheck}
           >
             {duplicateCheck ? '✓' : '중복 확인'}
           </ButtonWrapper>
@@ -219,12 +219,10 @@ const CreateChannelForm = () => {
         onOk={handleOk}
         onCancel={handleCancel}
       >
-        <p>
-          <Space>
-            {channelName.value}
-            채널을 개설하시겠습니까?
-          </Space>
-        </p>
+        <Space>
+          {channelName.value}
+          채널을 개설하시겠습니까?
+        </Space>
       </Modal>
     </Form>
   );

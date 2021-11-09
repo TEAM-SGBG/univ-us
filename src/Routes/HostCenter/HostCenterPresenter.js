@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { Button, Typography } from 'antd';
 import { useHistory } from 'react-router';
-import HostCenterHeader from '../../Components/HostCenter/HostCenterHeader';
 import useMediaQuery from '../../Hooks/useMediaQuery';
 
 const MainSection = styled.div`
@@ -55,7 +54,6 @@ function HostCenterPresenter() {
 
   return (
     <>
-      <HostCenterHeader />
       <MainSection>
         <Wrapper>
           <TitleSection>
@@ -66,7 +64,6 @@ function HostCenterPresenter() {
             지금 시작하기
           </ButtonWrapper>
         </Wrapper>
-
       </MainSection>
     </>
   );
