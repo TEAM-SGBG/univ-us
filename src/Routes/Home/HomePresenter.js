@@ -225,7 +225,7 @@ function HomePresenter({
           navigation
           pagination={{ clickable: true }}
           loop
-          Autoplay={{ delay: 1000 }}
+          autoplay={{ delay: 1000 }}
         >
           {SlideImages.map((index) => (
             <SwiperSlide>

@@ -13,7 +13,7 @@ const Wrapper = styled.div`
 const Image = styled.div`
   width: 700px;
   padding: 25px;
-  background-image:url('public/img/HappyLogin.png');
+  background-image:url('img/HappyLogin.png');
   background-position:center center;
   background-repeat: no-repeat;
 `;
