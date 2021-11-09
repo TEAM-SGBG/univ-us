@@ -4,6 +4,9 @@ module.exports = {
     es2020: true,
     node: true,
   },
+  parserOptions: {
+    ecmaVersion: 2020,
+  },
   extends: ['airbnb'],
   rules: {
     'linebreak-style': 0,
