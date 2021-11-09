@@ -9,6 +9,7 @@ import SwiperCore, {
   A11y,
   Autoplay,
 } from 'swiper';
+import ChannelPreview from 'Components/Channel/ChannelPreview';
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
 import 'swiper/swiper.scss';
@@ -142,64 +143,65 @@ const ChannelContainerDetail = styled.p`
 
 const ChannelItemsContainer = styled.div`
   margin-top: 24px;
+  display: flex;
 `;
 
-const ChannelItems = styled.div`
-  background: #FFFFFF;
-  border: 1px solid #EBEBEB;
-  border-radius: 3px;
-  height: 270px;
-  width: 168px;
-`;
+// const ChannelItems = styled.div`
+//   background: #FFFFFF;
+//   border: 1px solid #EBEBEB;
+//   border-radius: 3px;
+//   height: 270px;
+//   width: 168px;
+// `;
 
-const ChannelImage = styled.div`
-  padding: 43px 47px 0 47px;
-`;
+// const ChannelImage = styled.div`
+//   padding: 43px 47px 0 47px;
+// `;
 
-const ChannelItemTitle = styled.p`
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 15px;
-  line-height: 24px;
-  text-align: center;
-  letter-spacing: 0.56px;
-  color: #333333;
-  margin-top: 15px;
-`;
+// const ChannelItemTitle = styled.p`
+//   font-family: Roboto;
+//   font-style: normal;
+//   font-weight: normal;
+//   font-size: 15px;
+//   line-height: 24px;
+//   text-align: center;
+//   letter-spacing: 0.56px;
+//   color: #333333;
+//   margin-top: 15px;
+// `;
 
-const ChannelItemCount = styled.p`
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 11px;
-  line-height: 19px;
-  text-align: center;
-  letter-spacing: 0.56px;
-  color: #333333;
-`;
+// const ChannelItemCount = styled.p`
+//   font-family: Roboto;
+//   font-style: normal;
+//   font-weight: normal;
+//   font-size: 11px;
+//   line-height: 19px;
+//   text-align: center;
+//   letter-spacing: 0.56px;
+//   color: #333333;
+// `;
 
-const SubscribeButton = styled.button`
-  background: #ffffff;
-  padding: 2px 43px;
-  margin-top: 16px;
-  margin-left: 25px;
-  color: #8D71DD;
-  border: 1px solid #8D71DD;
-  box-sizing: border-box;
-  border-radius: 37px;
-`;
+// const SubscribeButton = styled.button`
+//   background: #ffffff;
+//   padding: 2px 43px;
+//   margin-top: 16px;
+//   margin-left: 25px;
+//   color: #8D71DD;
+//   border: 1px solid #8D71DD;
+//   box-sizing: border-box;
+//   border-radius: 37px;
+// `;
 
-const SubscribeButtonTxt = styled.p`
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 10px;
-  line-height: 33px;
-  text-align: center;
-  letter-spacing: 0.42px;
-  color: #8D71DD;
-`;
+// const SubscribeButtonTxt = styled.p`
+//   font-family: Roboto;
+//   font-style: normal;
+//   font-weight: normal;
+//   font-size: 10px;
+//   line-height: 33px;
+//   text-align: center;
+//   letter-spacing: 0.42px;
+//   color: #8D71DD;
+// `;
 
 const SlideImages = [
   require('img/건국대.png'),
@@ -211,6 +213,7 @@ function HomePresenter({
   RecommendationEvents,
   PopularEvents,
   NewEvents,
+  PopularChannel,
   // eslint-disable-next-line no-unused-vars
   type,
 }) {
@@ -225,7 +228,7 @@ function HomePresenter({
           navigation
           pagination={{ clickable: true }}
           loop
-          autoplay={{ delay: 1000 }}
+          autoplay={{ delay: 3000 }}
         >
           {SlideImages.map((index) => (
             <SwiperSlide>
@@ -253,18 +256,7 @@ function HomePresenter({
             <ChannelContainerTitle>인기 채널</ChannelContainerTitle>
             <ChannelContainerDetail>인기있는 채널과 구독중인 채널을 바로 만나보세요!</ChannelContainerDetail>
             <ChannelItemsContainer>
-              <ChannelItems>
-                <ChannelImage>
-                  <img alt="items" src="img/건국대.png" width="72px" height="72px" />
-                </ChannelImage>
-                <ChannelItemTitle>건국대학교</ChannelItemTitle>
-                <ChannelItemCount>2개의 행사</ChannelItemCount>
-                <SubscribeButton>
-                  <SubscribeButtonTxt>
-                    + 구독
-                  </SubscribeButtonTxt>
-                </SubscribeButton>
-              </ChannelItems>
+              {PopularChannel.map((channel) => (<ChannelPreview channel={channel} />))}
             </ChannelItemsContainer>
           </ChannelContainer>
         </MainContainer>
