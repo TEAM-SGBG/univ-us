@@ -71,7 +71,7 @@ const HostCenterHeader = () => {
             내 채널
           </MenuTitle>
           <MenuTitle>|</MenuTitle>
-          <ButtonWrapper onClick={goHome}>이벤터스 홈</ButtonWrapper>
+          <ButtonWrapper onClick={goHome}>유니버스 홈</ButtonWrapper>
         </Space>
       </MenuWrapper>
     </Wrapper>
