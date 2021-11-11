@@ -91,7 +91,7 @@ function GoMypage() {
   window.location.assign('/mypage');
 }
 
-function GoLogin() {
+async function GoLogin() {
   console.log('go login');
   window.location.assign('/login');
 }
@@ -141,7 +141,7 @@ const Header = () => (
       <NavItem to={{ pathname: '/category', search: '?type=sushi' }}>수시행사</NavItem>
       <NavItem to={{ pathname: '/category', search: '?type=jungshi' }}>정시행사</NavItem>
       <NavItem to={{ pathname: '/category', search: '?type=fair' }}>대학박람회</NavItem>
-      <NavItem to="/search">행사찾기</NavItem>
+      <NavItem to="/home">행사찾기</NavItem>
     </NavList>
   </HeaderBackground>
 );
