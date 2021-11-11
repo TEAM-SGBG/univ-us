@@ -1,6 +1,6 @@
 import { Divider, Pagination } from 'antd';
 import styled from 'styled-components';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
 import EventCard from '../../Components/Event/EventCard';
@@ -21,7 +21,7 @@ const EventTitle = styled.p`
     width: 360px;
     display: block;
   }
-  
+
   @media screen and (min-width: 425px) {
     width: 360px;
   }
@@ -50,7 +50,7 @@ const DividerWrapper = styled(Divider)`
     width: 360px;
     display: block;
   }
-  
+
   @media screen and (min-width: 425px) {
     width: 360px;
     min-width: auto;
@@ -80,6 +80,10 @@ function CategoryPresenter({ mainEvents, type }) {
     setPageNumber(v);
   };
 
+  useEffect(() => {
+    setPageNumber(1);
+  }, [type]);
+
   return (
     <>
       <Header />
@@ -92,6 +96,7 @@ function CategoryPresenter({ mainEvents, type }) {
         <Pagination
           style={{ textAlign: 'center', marginBottom: '20px' }}
           total={mainEvents.length}
+          current={pageNumber}
           onChange={onChangePageNumber}
           defaultPageSize={5}
         />
