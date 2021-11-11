@@ -4,6 +4,9 @@ module.exports = {
     es2020: true,
     node: true,
   },
+  parserOptions: {
+    ecmaVersion: 2020,
+  },
   extends: ['airbnb'],
   rules: {
     'linebreak-style': 0,
@@ -13,5 +16,6 @@ module.exports = {
     'react/prop-types': 0,
     'import/no-unresolved': [0],
     'react/jsx-no-bind': [0],
+    'react/jsx-props-no-spreading': 'warn',
   },
 };

@@ -9,7 +9,6 @@ const currentPost = {
     name: '건국대학교',
     subscribed: false,
   },
-  price: 0,
   view: 104,
   liked: false,
   date: new Date(),

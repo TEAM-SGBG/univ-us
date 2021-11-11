@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Button, Typography } from 'antd';
-import HostCenterHeader from '../../Components/HostCenterHeader';
+import { useHistory } from 'react-router';
 import useMediaQuery from '../../Hooks/useMediaQuery';
 
 const MainSection = styled.div`
@@ -39,21 +39,31 @@ const Wrapper = styled.div`
   }
 `;
 
+const ButtonWrapper = styled(Button)`
+  height: 48px;
+  min-width: 14%;
+`;
+
 function HostCenterPresenter() {
   const isDesktop = useMediaQuery('(min-width: 960px)');
+  const history = useHistory();
+
+  const createChannel = () => {
+    history.push('/hostcenter/createchannel');
+  };
 
   return (
     <>
-      <HostCenterHeader />
       <MainSection>
         <Wrapper>
           <TitleSection>
             <MainTitle level={isDesktop ? 1 : 2}>내가 원하는 행사를</MainTitle>
             <MainTitle level={isDesktop ? 1 : 2}>지금 만들어보세요.</MainTitle>
           </TitleSection>
-          <Button style={{ height: '48px', minWidth: '14%' }}>지금 시작하기</Button>
+          <ButtonWrapper onClick={createChannel}>
+            지금 시작하기
+          </ButtonWrapper>
         </Wrapper>
-
       </MainSection>
     </>
   );
