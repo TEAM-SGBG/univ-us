@@ -1,6 +1,7 @@
 import { useHistory } from 'react-router';
 import { Avatar } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
+import { useState } from 'react';
 import ChannelPresenter from './ChannelPresenter';
 
 const user = {
@@ -75,11 +76,25 @@ const user = {
 
 function ChannelContainer() {
   const history = useHistory();
+  const [pageNumber, setPageNumber] = useState(1);
+
+  const onChangePageNumber = (v) => {
+    setPageNumber(v);
+  };
+
+  const goChannelCreate = () => {
+    history.push('/hostcenter/createchannel');
+  };
 
   return (
     <>
       {!user && history.push('/signup')}
-      <ChannelPresenter user={user} />
+      <ChannelPresenter
+        user={user}
+        pageNumber={pageNumber}
+        goChannelCreate={goChannelCreate}
+        onChangePageNumber={onChangePageNumber}
+      />
     </>
   );
 }

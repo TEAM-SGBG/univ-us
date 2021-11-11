@@ -7,7 +7,8 @@ import { MoreOutlined } from '@ant-design/icons';
 
 const CardWrapper = styled.div`
   margin: 10px 0;
-  border: 1px solid black;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 3px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -28,7 +29,9 @@ const CenterSection = styled.div`
 `;
 
 const RightSection = styled.div`
-  
+  display: flex;
+  justify-content: center;
+  padding-bottom: 60px;
   flex-grow: 1;
 `;
 
@@ -42,6 +45,27 @@ const menu = (
     </Menu.Item>
   </Menu>
 );
+
+const ButtonWrapper = styled(Button)`
+  background: #5C3FBF;
+  border-radius: 3px;
+  color: white;
+
+  :hover{
+    background: #5C3FBF;
+    color: white;
+  }
+
+  :active{
+    background: #5C3FBF;
+    color: white;
+  }
+
+  :focus{
+    background: #5C3FBF;
+    color: white;
+  }
+`;
 
 const HostCenterChannelCard = ({ channel }) => {
   // eslint-disable-next-line no-unused-vars
@@ -70,7 +94,7 @@ const HostCenterChannelCard = ({ channel }) => {
         </Space>
       </LeftSection>
       <CenterSection>
-        <Button>행사 개설</Button>
+        <ButtonWrapper>행사 개설</ButtonWrapper>
       </CenterSection>
       <RightSection>
         <Dropdown overlay={menu} trigger={['click']}>

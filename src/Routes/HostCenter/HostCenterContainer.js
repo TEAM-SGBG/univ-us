@@ -2,11 +2,13 @@ import {
   Route, Switch, useLocation, useRouteMatch,
 } from 'react-router-dom';
 import styled from 'styled-components';
+import { useHistory } from 'react-router';
 import HostCenterPresenter from './HostCenterPresenter';
 import CreateChannelContainer from './CreateChannel';
 import HostCenterHeader from '../../Components/HostCenter/HostCenterHeader';
 import HostCenterFooter from '../../Components/HostCenter/HostCenterFooter';
 import ChannelContainer from './Channel';
+import useMediaQuery from '../../Hooks/useMediaQuery';
 
 const Layout = styled.div`
   display: flex;
@@ -18,13 +20,23 @@ const Layout = styled.div`
 function HostCenterContainer() {
   const { path } = useRouteMatch();
   const { pathname } = useLocation();
+  const isDesktop = useMediaQuery('(min-width: 960px)');
+  const history = useHistory();
+
+  const createChannel = () => {
+    history.push('/hostcenter/createchannel');
+  };
 
   return (
     <Layout isHome={pathname.split('/').slice(-1)[0] === 'hostcenter'}>
       <HostCenterHeader />
       <Switch>
         <Route exact path={path}>
-          <HostCenterPresenter />
+          <HostCenterPresenter
+            isDesktop={isDesktop}
+            history={history}
+            createChannel={createChannel}
+          />
         </Route>
         <Route path={`${path}/createchannel`}>
           <CreateChannelContainer />
