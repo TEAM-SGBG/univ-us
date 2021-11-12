@@ -2,8 +2,9 @@ import styled from 'styled-components';
 import {
   Button, Dropdown, Menu, Space, Typography,
 } from 'antd';
-import { useState } from 'react';
+import { useCallback } from 'react';
 import { MoreOutlined } from '@ant-design/icons';
+import { useHistory } from 'react-router';
 
 const CardWrapper = styled.div`
   margin: 10px 0;
@@ -68,8 +69,11 @@ const ButtonWrapper = styled(Button)`
 `;
 
 const HostCenterChannelCard = ({ channel }) => {
-  // eslint-disable-next-line no-unused-vars
-  const [ellipsis, setEllipsis] = useState(true);
+  const history = useHistory();
+
+  const goEventCreate = useCallback(() => {
+    history.push('/hostcenter/createevent');
+  }, []);
 
   return (
     <CardWrapper>
@@ -94,7 +98,7 @@ const HostCenterChannelCard = ({ channel }) => {
         </Space>
       </LeftSection>
       <CenterSection>
-        <ButtonWrapper>행사 개설</ButtonWrapper>
+        <ButtonWrapper onClick={goEventCreate}>행사 개설</ButtonWrapper>
       </CenterSection>
       <RightSection>
         <Dropdown overlay={menu} trigger={['click']}>

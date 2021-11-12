@@ -9,6 +9,7 @@ import HostCenterHeader from '../../Components/HostCenter/HostCenterHeader';
 import HostCenterFooter from '../../Components/HostCenter/HostCenterFooter';
 import ChannelContainer from './Channel';
 import useMediaQuery from '../../Hooks/useMediaQuery';
+import CreateEventContainer from './CreateEvent';
 
 const Layout = styled.div`
   display: flex;
@@ -40,6 +41,9 @@ function HostCenterContainer() {
         </Route>
         <Route path={`${path}/createchannel`}>
           <CreateChannelContainer />
+        </Route>
+        <Route path={`${path}/createevent`}>
+          <CreateEventContainer />
         </Route>
         <Route path={`${path}/channel`}>
           <ChannelContainer />
