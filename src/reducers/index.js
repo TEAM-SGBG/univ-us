@@ -1,9 +1,16 @@
 import { combineReducers } from 'redux';
+import user from './user';
+import eventPosts from './eventPosts';
+import channel from './channel';
 
 const initialState = {
   status: 'test',
   user: {
     isLoggedIn: false,
+  },
+  hostcenter: {
+    isDuplicated: null,
+    currentChannel: null,
   },
 };
 
@@ -29,10 +36,29 @@ const rootReducer = combineReducers({
             isLoggedIn: false,
           },
         };
+      case 'URL_DUPLICATE_CHECK_REQUEST':
+        return {
+          ...state,
+          hostcenter: {
+            ...state.hostcenter,
+            isDuplicated: true,
+          },
+        };
+      case 'CREATE_CHANNEL_REQUEST':
+        return {
+          ...state,
+          hostcenter: {
+            ...state.hostcenter,
+            currentChannel: action.data.channelID,
+          },
+        };
       default:
         return state;
     }
   },
+  user,
+  eventPosts,
+  channel,
 });
 
 export default rootReducer;
