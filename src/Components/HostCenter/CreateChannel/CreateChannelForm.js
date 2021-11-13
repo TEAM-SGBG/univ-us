@@ -4,10 +4,9 @@ import {
 } from 'antd';
 import styled from 'styled-components';
 import { useHistory } from 'react-router';
+import { useDispatch } from 'react-redux';
 
 const InputWrapper = styled(Input)`
-  height: 48px;
-  
   :hover{
     border-color: #5C3FBF;
   }
@@ -22,7 +21,6 @@ const InputWrapper = styled(Input)`
 
 const ButtonWrapper = styled(Button)`
   width: 100%;
-  height: 48px;
   background: #FAF8FF;
   border: 0;
   cursor: 'pointer';
@@ -46,6 +44,7 @@ const ButtonWrapper = styled(Button)`
 
 const CreateChannelForm = () => {
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const [channelName, setChannelName] = useState({ value: '' });
   const [channelID, setChannelID] = useState({ value: '' });
@@ -60,7 +59,13 @@ const CreateChannelForm = () => {
 
   const handleOk = () => {
     setIsModalVisible(false);
-    history.push('/hostcenter/channel');
+    dispatch({
+      type: 'CREATE_CHANNEL_REQUEST',
+      data: {
+        channelID: channelID.value,
+      },
+    });
+    history.push(`/hostcenter/${channelID.value}/event`);
   };
 
   const handleCancel = () => {
@@ -120,6 +125,12 @@ const CreateChannelForm = () => {
   const isValidate = () => {
     if (duplicateCheck) return;
     setDuplicateCheckLoading(true);
+    dispatch({
+      type: 'URL_DUPLICATE_CHECK_REQUEST',
+      data: {
+        channel_id: channelID,
+      },
+    });
     setTimeout(() => {
       setDuplicateCheck(true);
       setDuplicateCheckLoading(false);

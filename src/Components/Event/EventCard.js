@@ -85,7 +85,7 @@ function EventCard({ eventPost }) {
       <Wrapper>
         <RowWrapper align="middle">
           <ColWrapper span={12} style={{ textAlign: 'left' }}>
-            {eventPost.date.toLocaleDateString()}
+            {new Date(eventPost.date).toLocaleDateString()}
           </ColWrapper>
           <ColWrapper span={12} style={{ textAlign: 'right' }} />
         </RowWrapper>

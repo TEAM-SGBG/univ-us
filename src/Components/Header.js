@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useCallback } from 'react';
+import { useHistory } from 'react-router';
 
 const HeaderBackground = styled.div`
   margin: 0 auto;
@@ -102,12 +103,9 @@ function GoHome() {
   window.location.replace('/home');
 }
 
-function GoHostCenter() {
-  window.location.assign('/hostcenter');
-}
-
 const Header = () => {
   const { isLoggedIn } = useSelector((state) => state.index.user);
+  const history = useHistory();
 
   const GoLogout = useCallback(() => {
     console.log('go logout');
@@ -115,6 +113,10 @@ const Header = () => {
 
     window.location.replace('/home');
   }, []);
+
+  const GoHostCenter = () => {
+    history.push('/hostcenter');
+  };
 
   return (
     <HeaderBackground>
@@ -146,7 +148,7 @@ const Header = () => {
         </div>
       </Wrapper>
       <NavList>
-        <NavItem to="/events">전체</NavItem>
+        <NavItem to={{ pathname: '/category', search: '?type=all' }}>전체</NavItem>
         <NavItem to={{ pathname: '/category', search: '?type=sushi' }}>수시행사</NavItem>
         <NavItem to={{ pathname: '/category', search: '?type=jungshi' }}>정시행사</NavItem>
         <NavItem to={{ pathname: '/category', search: '?type=fair' }}>대학박람회</NavItem>

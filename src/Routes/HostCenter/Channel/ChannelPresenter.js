@@ -1,5 +1,7 @@
 import styled from 'styled-components';
-import { Button, Pagination, Typography } from 'antd';
+import {
+  Button, Pagination, Skeleton, Typography,
+} from 'antd';
 import HostCenterChannelCard from '../../../Components/HostCenter/HostCenterChannelCard';
 
 const Wrapper = styled.div`
@@ -39,13 +41,17 @@ const Title = styled(Typography.Title)`
 `;
 
 const ChannelPresenter = ({
-  user, pageNumber, onChangePageNumber, goChannelCreate,
+  pageNumber, onChangePageNumber, goChannelCreate,
+  loadChannelLoading,
+  mainChannels,
 }) => (
   <Wrapper>
     <Title level={3}>내 채널 리스트</Title>
-    {user.channel
-      .slice((pageNumber - 1) * 3, Math.min(user.channel.length, pageNumber * 3))
-      .map((channel) => <HostCenterChannelCard channel={channel} key={channel.id} />)}
+    {loadChannelLoading
+      ? <Skeleton />
+      : mainChannels
+        .slice((pageNumber - 1) * 3, Math.min(mainChannels.length, pageNumber * 3))
+        .map((channel) => <HostCenterChannelCard channel={channel} key={channel.id} />)}
     <CreateChannelButton
       onClick={goChannelCreate}
     >
@@ -53,7 +59,7 @@ const ChannelPresenter = ({
     </CreateChannelButton>
     <Pagination
       style={{ textAlign: 'center', marginBottom: '20px' }}
-      total={user.channel.length}
+      total={mainChannels.length}
       onChange={onChangePageNumber}
       defaultPageSize={3}
     />
