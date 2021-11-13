@@ -10,8 +10,8 @@ const EventForm = ({ currentPost }) => (
     marginTop: '60px',
   }}
   >
-    <p style={{ alignSelf: 'flex-start' }}>{`일시: ${currentPost.date.toLocaleDateString()}`}</p>
-    <p style={{ alignSelf: 'flex-start' }}>{`신청: ${currentPost.startDate.toLocaleDateString()} - ${currentPost.endDate.toLocaleDateString()}`}</p>
+    <p style={{ alignSelf: 'flex-start' }}>{`일시: ${new Date(currentPost.date).toLocaleDateString()}`}</p>
+    <p style={{ alignSelf: 'flex-start' }}>{`신청: ${new Date(currentPost.startDate).toLocaleDateString()} - ${new Date(currentPost.endDate).toLocaleDateString()}`}</p>
     <p style={{ alignSelf: 'flex-start' }}>{`장소: ${currentPost.place}`}</p>
     <Button style={{
       width: '100%',

@@ -1,0 +1,46 @@
+[
+  {
+    "name": "건국대학교",
+    "id": 1,
+    "avatar": "https://dummyimage.com/64x64/000/fff",
+    "channelID": "konkuk",
+    "events": [
+      {
+        "id": 1,
+        "title": "2022 건국대학교 정시 설명회 시작",
+        "avatar": null,
+        "view": 104,
+        "date": "2021-11-03T00:00:00.000Z"
+      },
+      {
+        "id": 2,
+        "title": "2022 건국대학교 정시 설명회",
+        "avatar": null,
+        "view": 104,
+        "date": "2021-11-03T00:00:00.000Z"
+      }
+    ]
+  },
+  {
+    "name": "건국대학교1",
+    "id": 2,
+    "avatar": "https://dummyimage.com/64x64/000/fff",
+    "channelID": "konkuk11",
+    "events": [
+      {
+        "id": 1,
+        "title": "2022 건국대학교 정시 설명회 시작",
+        "avatar": null,
+        "view": 104,
+        "date": "2021-11-03T00:00:00.000Z"
+      },
+      {
+        "id": 2,
+        "title": "2022 건국대학교 정시 설명회",
+        "avatar": null,
+        "view": 41,
+        "date": "2021-11-03T00:00:00.000Z"
+      }
+    ]
+  }
+]
