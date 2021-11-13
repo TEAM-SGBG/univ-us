@@ -1,5 +1,8 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { useCallback } from 'react';
+import { useHistory } from 'react-router';
 
 const HeaderBackground = styled.div`
   margin: 0 auto;
@@ -96,54 +99,63 @@ function GoLogin() {
   window.location.assign('/login');
 }
 
-function GoLogout() {
-  console.log('go logout');
-  alert('로그아웃되었습니다.');
-  window.location.replace('/home');
-}
-
 function GoHome() {
   window.location.replace('/home');
 }
 
-function GoHostCenter() {
-  window.location.assign('/hostcenter');
-}
+const Header = () => {
+  const { isLoggedIn } = useSelector((state) => state.index.user);
+  const history = useHistory();
 
-const Header = () => (
-  <HeaderBackground>
-    <Wrapper>
-      <div>
-        <HomeButton onClick={GoHome}>
-          <img alt="logo" src="/img/logo.png" />
-        </HomeButton>
-      </div>
-      <div>
-        <ButtonWrapper onClick={GoMypage}>
-          MyPage
-        </ButtonWrapper>
-        <ButtonWrapper onClick={GoHostCenter}>
-          호스트센터
-        </ButtonWrapper>
-        <ButtonWrapper onClick={GoSignin}>
-          회원가입
-        </ButtonWrapper>
-        <ButtonWrapper onClick={GoLogin}>
-          로그인
-        </ButtonWrapper>
-        <ButtonWrapper onClick={GoLogout}>
-          로그아웃
-        </ButtonWrapper>
-      </div>
-    </Wrapper>
-    <NavList>
-      <NavItem to="/events">전체</NavItem>
-      <NavItem to={{ pathname: '/category', search: '?type=sushi' }}>수시행사</NavItem>
-      <NavItem to={{ pathname: '/category', search: '?type=jungshi' }}>정시행사</NavItem>
-      <NavItem to={{ pathname: '/category', search: '?type=fair' }}>대학박람회</NavItem>
-      <NavItem to="/search">행사찾기</NavItem>
-    </NavList>
-  </HeaderBackground>
-);
+  const GoLogout = useCallback(() => {
+    console.log('go logout');
+    alert('로그아웃되었습니다.');
+
+    window.location.replace('/home');
+  }, []);
+
+  const GoHostCenter = () => {
+    history.push('/hostcenter');
+  };
+
+  return (
+    <HeaderBackground>
+      <Wrapper>
+        <div>
+          <HomeButton onClick={GoHome}>
+            <img alt="logo" src="/img/logo.png" />
+          </HomeButton>
+        </div>
+        <div>
+          <ButtonWrapper onClick={GoMypage}>
+            MyPage
+          </ButtonWrapper>
+          <ButtonWrapper onClick={GoHostCenter}>
+            호스트센터
+          </ButtonWrapper>
+          <ButtonWrapper onClick={GoSignin}>
+            회원가입
+          </ButtonWrapper>
+          {isLoggedIn ? (
+            <ButtonWrapper onClick={GoLogout}>
+              로그아웃
+            </ButtonWrapper>
+          ) : (
+            <ButtonWrapper onClick={GoLogin}>
+              로그인
+            </ButtonWrapper>
+          )}
+        </div>
+      </Wrapper>
+      <NavList>
+        <NavItem to={{ pathname: '/category', search: '?type=all' }}>전체</NavItem>
+        <NavItem to={{ pathname: '/category', search: '?type=sushi' }}>수시행사</NavItem>
+        <NavItem to={{ pathname: '/category', search: '?type=jungshi' }}>정시행사</NavItem>
+        <NavItem to={{ pathname: '/category', search: '?type=fair' }}>대학박람회</NavItem>
+        <NavItem to="/search">행사찾기</NavItem>
+      </NavList>
+    </HeaderBackground>
+  );
+};
 
 export default Header;
