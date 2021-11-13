@@ -5,6 +5,7 @@ import {
 import { useCallback } from 'react';
 import { MoreOutlined } from '@ant-design/icons';
 import { useHistory } from 'react-router';
+import { Link } from 'react-router-dom';
 
 const CardWrapper = styled.div`
   margin: 10px 0;
@@ -72,29 +73,29 @@ const HostCenterChannelCard = ({ channel }) => {
   const history = useHistory();
 
   const goEventCreate = useCallback(() => {
-    history.push('/hostcenter/createevent');
+    history.push(`/hostcenter/${channel.channelID}/createevent`);
   }, []);
 
   return (
     <CardWrapper>
       <LeftSection>
         <Space>
-          {channel.avatar}
+          <img src={channel.avatar} alt="channel_avatar" />
           <Typography.Text
             style={{ width: 100 }}
             ellipsis
           >
             {channel.name}
           </Typography.Text>
-          <a
+          <Link
             style={{
               fontSize: '11px',
               color: '#A9AFB3',
             }}
-            href={channel.url}
+            to={`${channel.channelID}/event`}
           >
             {'채널바로 가기 >'}
-          </a>
+          </Link>
         </Space>
       </LeftSection>
       <CenterSection>
