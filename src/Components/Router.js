@@ -1,5 +1,5 @@
 import {
-  HashRouter as BrowserRouter, Route, Switch,
+  BrowserRouter, Route, Switch,
 } from 'react-router-dom';
 import { Redirect } from 'react-router';
 import Home from '../Routes/Home';
@@ -10,6 +10,7 @@ import SignUp from '../Routes/SignUp';
 import UserInfo from '../Routes/UserInfo';
 import Category from '../Routes/Category';
 import Event from '../Routes/Event';
+import HostCenter from '../Routes/HostCenter';
 
 export default () => (
   <BrowserRouter>
@@ -37,6 +38,9 @@ export default () => (
       </Route>
       <Route path="/events">
         <Event />
+      </Route>
+      <Route path="/hostcenter">
+        <HostCenter />
       </Route>
       <Redirect from="*" to="/home" />
     </Switch>

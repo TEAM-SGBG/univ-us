@@ -62,7 +62,9 @@ const Dontgo = styled.div`
   width:200px;
 `;
 
-function UserInfoPresenter() {
+function UserInfoPresenter({
+  Save, ChangeName, ChangePw, DontGo, onChangeName, onChangePw,
+}) {
   return (
     <>
       <MiniHeader />
@@ -83,20 +85,22 @@ function UserInfoPresenter() {
         <LoginH2>
           이름/기업명
         </LoginH2>
-        <MyInput type="email" />
-        <ConfirmBtn>
+        <MyInput type="email" onChange={onChangeName} />
+        <ConfirmBtn onClick={ChangeName}>
           변경
         </ConfirmBtn>
         <LoginH2>
           비밀번호
         </LoginH2>
-        <MyInput type="password" />
-        <ConfirmBtn>
+        <MyInput type="password" onChange={onChangePw} />
+        <ConfirmBtn onClick={ChangePw}>
           변경
         </ConfirmBtn>
         <Hline />
-        <SaveBtn>회원정보 저장하기</SaveBtn>
-        <Dontgo>유니버스 탈퇴하기</Dontgo>
+        <SaveBtn onClick={Save}>
+          회원정보 저장하기
+        </SaveBtn>
+        <Dontgo onClick={DontGo}>유니버스 탈퇴하기</Dontgo>
       </Wrapper>
       <Footer />
     </>

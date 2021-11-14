@@ -1,18 +1,26 @@
 import styled from 'styled-components';
 import {
-  Card, Col, Row, Avatar,
+  Col, Row, Avatar, Image, Typography, Space,
 } from 'antd';
 import { EyeOutlined, HeartOutlined, HeartTwoTone } from '@ant-design/icons';
 import { useState, useCallback } from 'react';
+import { useHistory } from 'react-router';
 
-const CardStyle = styled(Card)`
+const CardStyle = styled.div`
   margin-top: 30px;
   margin-bottom: 30px;
   text-align: center;
   display: flex;
   justify-self: center;
   max-width: 1100px;
+  border: 1px solid #E4E4E4;
+  box-sizing: border-box;
 
+  @media screen and (min-width: 0px) {  
+    width: 300px;
+    display: block;
+  }
+  
   @media screen and (min-width: 425px) {
     width: 360px;
     display: block;
@@ -29,68 +37,80 @@ const CardStyle = styled(Card)`
   }
 `;
 
+const RowWrapper = styled(Row)`
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+`;
+
+const ColWrapper = styled(Col)`
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+`;
+
 const Wrapper = styled.div`
   display: flex;
+  flex-grow: 1;
   flex-direction: column;
-  width: 100%;
-  justify-content: center;
+  justify-content: space-around;
+  padding: 15px;
 `;
 
 function EventCard({ eventPost }) {
   const [liked, setLiked] = useState(eventPost.liked);
+  const history = useHistory();
 
   const onToggleLike = useCallback(() => {
     setLiked(((prevState) => !prevState));
+  }, [liked]);
+
+  const goEventPage = useCallback(() => {
+    history.push(`/events/${eventPost.id}`);
   }, []);
 
   return (
-    <CardStyle
-      cover={(
-        <a
-          href={`#/events/${eventPost.id}`}
-          rel="noreferrer"
-        >
-          <img
-            alt="example"
-            src="https://dummyimage.com/360x200/000/fff"
-          />
-        </a>
-)}
-      bodyStyle={{ width: '100%' }}
-    >
+    <CardStyle>
+      <Image
+        alt="example"
+        src="https://dummyimage.com/360x200/000/fff"
+        onClick={goEventPage}
+        preview={{
+          mask: null,
+        }}
+        style={{ cursor: 'pointer' }}
+      />
       <Wrapper>
-        <Row align="middle">
-          <Col span={12} style={{ textAlign: 'left' }}>
-            {eventPost.date.toLocaleDateString()}
-          </Col>
-          <Col span={12} style={{ textAlign: 'right' }}>
-            price:
-            {eventPost.price}
-          </Col>
-        </Row>
-        <Row align="middle">
-          <Col span={24} style={{ textAlign: 'left' }}>
-            <a
-              href={`#/events/${eventPost.id}`}
-              rel="noreferrer"
-            >
+        <RowWrapper align="middle">
+          <ColWrapper span={12} style={{ textAlign: 'left' }}>
+            {new Date(eventPost.date).toLocaleDateString()}
+          </ColWrapper>
+          <ColWrapper span={12} style={{ textAlign: 'right' }} />
+        </RowWrapper>
+        <RowWrapper align="middle">
+          <ColWrapper span={24} style={{ textAlign: 'left' }}>
+            <Typography.Link style={{ fontSize: '16px', color: 'black' }} onClick={goEventPage}>
               {eventPost.title}
-            </a>
-          </Col>
-        </Row>
-        <Row align="middle">
-          <Col span={12} style={{ textAlign: 'left' }}>
-            <Avatar src={eventPost.avatar} />
-            {' '}
-            {eventPost.channel.name}
-          </Col>
-          <Col span={12} style={{ textAlign: 'right' }}>
+            </Typography.Link>
+          </ColWrapper>
+        </RowWrapper>
+        <RowWrapper align="middle">
+          <ColWrapper span={12} style={{ textAlign: 'left' }}>
+            <Space>
+              <Avatar src={eventPost.avatar} />
+              {eventPost.channel.name}
+            </Space>
+          </ColWrapper>
+          <ColWrapper span={12} style={{ textAlign: 'right' }}>
             <EyeOutlined />
-            {eventPost.view}
-            {' '}
-            {liked ? <HeartTwoTone onClick={onToggleLike} twoToneColor="#eb2f96" /> : <HeartOutlined onClick={onToggleLike} />}
-          </Col>
-        </Row>
+            <Space>
+              {eventPost.view}
+              {liked ? <HeartTwoTone onClick={onToggleLike} twoToneColor="#eb2f96" /> : <HeartOutlined onClick={onToggleLike} />}
+            </Space>
+          </ColWrapper>
+        </RowWrapper>
       </Wrapper>
     </CardStyle>
   );

@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "img": "img/건국대학교.png",
+        "title": "건국대학교",
+        "events": 2
+    },
+    {
+        "id": 2,
+        "img": "img/건국대학교.png",
+        "title": "건국대학교",
+        "events": 2
+    },
+    {
+        "id": 3,
+        "img": "img/건국대학교.png",
+        "title": "건국대학교",
+        "events": 2
+    },
+    {
+        "id": 4,
+        "img": "img/건국대학교.png",
+        "title": "건국대학교",
+        "events": 2
+    },
+    {
+        "id": 5,
+        "img": "img/건국대학교.png",
+        "title": "건국대학교",
+        "events": 2
+    },
+    {
+        "id": 6,
+        "img": "img/건국대학교.png",
+        "title": "건국대학교",
+        "events": 2
+    }
+]
