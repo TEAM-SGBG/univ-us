@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { Space } from 'antd';
 import { useHistory } from 'react-router';
+import { Link } from 'react-router-dom';
 import useMediaQuery from '../../Hooks/useMediaQuery';
 
 const Wrapper = styled.div`
@@ -65,9 +66,12 @@ const HostCenterHeader = () => {
   return (
     <Wrapper>
       <LogoWrapper>
-        <a href="/hostcenter">
-          <img src="https://event-us.kr/Content/neweventus/image/hostcenter_logo.svg" alt="event-us-logo" />
-        </a>
+        <Link to="/hostcenter">
+          <img
+            src="https://event-us.kr/Content/neweventus/image/hostcenter_logo.svg"
+            alt="event-us-logo"
+          />
+        </Link>
       </LogoWrapper>
       <MenuWrapper>
         <Space size={isDesktop ? 50 : 15}>

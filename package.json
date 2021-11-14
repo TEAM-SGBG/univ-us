@@ -9,6 +9,10 @@
     "@testing-library/user-event": "^12.1.10",
     "antd": "^4.16.13",
     "axios": "^0.24.0",
+<<<<<<< HEAD
+=======
+    "moment": "^2.29.1",
+>>>>>>> fca577177b2b54b4f86c38eb8fa79f7450eeacd2
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -20,6 +24,7 @@
     "react-scripts": "4.0.3",
     "react-slick": "^0.28.1",
     "redux": "^4.1.2",
+    "redux-saga": "^1.1.3",
     "sass": "^1.43.4",
     "slick-carousel": "^1.8.1",
     "styled-components": "^5.3.3",

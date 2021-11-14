@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { useState } from 'react';
-import { Button, Pagination, Typography } from 'antd';
-import { useHistory } from 'react-router';
+import {
+  Button, Pagination, Skeleton, Typography,
+} from 'antd';
 import HostCenterChannelCard from '../../../Components/HostCenter/HostCenterChannelCard';
 
 const Wrapper = styled.div`
@@ -40,37 +40,30 @@ const Title = styled(Typography.Title)`
   text-align: left;
 `;
 
-const ChannelPresenter = ({ user }) => {
-  const [pageNumber, setPageNumber] = useState(1);
-  const history = useHistory();
-
-  const onChangePageNumber = (v) => {
-    setPageNumber(v);
-  };
-
-  const goChannelCreate = () => {
-    history.push('/hostcenter/createchannel');
-  };
-
-  return (
-    <Wrapper>
-      <Title level={3}>내 채널 리스트</Title>
-      {user.channel
-        .slice((pageNumber - 1) * 3, Math.min(user.channel.length, pageNumber * 3))
+const ChannelPresenter = ({
+  pageNumber, onChangePageNumber, goChannelCreate,
+  loadChannelLoading,
+  mainChannels,
+}) => (
+  <Wrapper>
+    <Title level={3}>내 채널 리스트</Title>
+    {loadChannelLoading
+      ? <Skeleton />
+      : mainChannels
+        .slice((pageNumber - 1) * 3, Math.min(mainChannels.length, pageNumber * 3))
         .map((channel) => <HostCenterChannelCard channel={channel} key={channel.id} />)}
-      <CreateChannelButton
-        onClick={goChannelCreate}
-      >
-        + 채널개설
-      </CreateChannelButton>
-      <Pagination
-        style={{ textAlign: 'center', marginBottom: '20px' }}
-        total={user.channel.length}
-        onChange={onChangePageNumber}
-        defaultPageSize={3}
-      />
-    </Wrapper>
-  );
-};
+    <CreateChannelButton
+      onClick={goChannelCreate}
+    >
+      + 채널개설
+    </CreateChannelButton>
+    <Pagination
+      style={{ textAlign: 'center', marginBottom: '20px' }}
+      total={mainChannels.length}
+      onChange={onChangePageNumber}
+      defaultPageSize={3}
+    />
+  </Wrapper>
+);
 
 export default ChannelPresenter;

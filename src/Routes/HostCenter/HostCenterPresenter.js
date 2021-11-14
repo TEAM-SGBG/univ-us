@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 import { Button, Typography } from 'antd';
-import { useHistory } from 'react-router';
-import useMediaQuery from '../../Hooks/useMediaQuery';
 
 const MainSection = styled.div`
   display: flex;
@@ -44,14 +42,7 @@ const ButtonWrapper = styled(Button)`
   min-width: 14%;
 `;
 
-function HostCenterPresenter() {
-  const isDesktop = useMediaQuery('(min-width: 960px)');
-  const history = useHistory();
-
-  const createChannel = () => {
-    history.push('/hostcenter/createchannel');
-  };
-
+function HostCenterPresenter({ isDesktop, createChannel }) {
   return (
     <>
       <MainSection>

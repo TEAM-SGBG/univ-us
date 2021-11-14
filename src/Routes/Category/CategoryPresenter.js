@@ -1,6 +1,6 @@
 import { Divider, Pagination } from 'antd';
 import styled from 'styled-components';
-import { useCallback, useState } from 'react';
+import { useEffect } from 'react';
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
 import EventCard from '../../Components/Event/EventCard';
@@ -21,7 +21,7 @@ const EventTitle = styled.p`
     width: 360px;
     display: block;
   }
-  
+
   @media screen and (min-width: 425px) {
     width: 360px;
   }
@@ -50,7 +50,7 @@ const DividerWrapper = styled(Divider)`
     width: 360px;
     display: block;
   }
-  
+
   @media screen and (min-width: 425px) {
     width: 360px;
     min-width: auto;
@@ -67,18 +67,12 @@ const DividerWrapper = styled(Divider)`
   }
 `;
 
-function CategoryPresenter({ mainEvents, type }) {
-  const [pageNumber, setPageNumber] = useState(1);
-
-  const mappingType = useCallback(() => {
-    if (type === 'sushi') return '수시행사';
-    if (type === 'jungshi') return '정시행사';
-    return '대학박람회';
+function CategoryPresenter({
+  mainEvents, type, pageNumber, mappingType, onChangePageNumber, initializePageNumber,
+}) {
+  useEffect(() => {
+    initializePageNumber();
   }, [type]);
-
-  const onChangePageNumber = (v) => {
-    setPageNumber(v);
-  };
 
   return (
     <>
@@ -92,6 +86,7 @@ function CategoryPresenter({ mainEvents, type }) {
         <Pagination
           style={{ textAlign: 'center', marginBottom: '20px' }}
           total={mainEvents.length}
+          current={pageNumber}
           onChange={onChangePageNumber}
           defaultPageSize={5}
         />
