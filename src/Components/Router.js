@@ -39,7 +39,7 @@ export default () => (
       <Route path="/events">
         <Event />
       </Route>
-      <Route exact path="/hostcenter">
+      <Route path="/hostcenter">
         <HostCenter />
       </Route>
       <Redirect from="*" to="/home" />

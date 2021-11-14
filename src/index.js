@@ -1,10 +1,17 @@
 import ReactDOM from 'react-dom';
 
 import 'antd/dist/antd.css';
+import { Provider } from 'react-redux';
 import App from './Components/App';
+import ConfigureStore from './store/configureStore';
+import rootReducer from './reducers';
+
+const store = ConfigureStore(rootReducer);
 
 ReactDOM.render(
-  <App />,
+  <Provider store={store}>
+    <App />
+  </Provider>,
   document.getElementById('root'),
 );
 
