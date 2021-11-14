@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
-const PopularItems = styled.div`
+const PreviewItems = styled.div`
   margin-right: 20px;
 `;
 
-const PopularItemsDate = styled.p`
+const PreviewItemsDate = styled.p`
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
@@ -16,7 +16,7 @@ const PopularItemsDate = styled.p`
   margin-left: 5px;
 `;
 
-const PopularItemsName = styled.p`
+const PreviewItemsName = styled.p`
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
@@ -28,13 +28,19 @@ const PopularItemsName = styled.p`
   margin-left: 5px;
 `;
 
+const PreviewItemsImage = styled.img`
+  alt: "items";
+  width: 260px;
+  height: 146px;
+`;
+
 const EventPreview = ({ eventPost }) => (
   <>
-    <PopularItems>
-      <img alt="items" src="img/건국대.png" height="146px" width="260px" />
-      <PopularItemsDate>{eventPost.date.toLocaleDateString()}</PopularItemsDate>
-      <PopularItemsName>{eventPost.title}</PopularItemsName>
-    </PopularItems>
+    <PreviewItems>
+      <PreviewItemsImage src={eventPost.img} />
+      <PreviewItemsDate>{new Date(eventPost.date).toLocaleDateString()}</PreviewItemsDate>
+      <PreviewItemsName>{eventPost.title}</PreviewItemsName>
+    </PreviewItems>
   </>
 );
 

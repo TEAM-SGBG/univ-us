@@ -210,10 +210,10 @@ const SlideImages = [
 ];
 
 function HomePresenter({
-  RecommendationEvents,
-  PopularEvents,
-  NewEvents,
-  PopularChannel,
+  recommendationEvents,
+  popularEvents,
+  newEvents,
+  popularChannel,
   // eslint-disable-next-line no-unused-vars
   type,
 }) {
@@ -240,23 +240,23 @@ function HomePresenter({
           <RecommendationTitle>지금, 이 행사 어때요? ✨</RecommendationTitle>
           <RecommendationDetail>에디터가 추천하는 놓쳐서 안 될 행사</RecommendationDetail>
           <RecommendationContainer>
-            {RecommendationEvents.map((eventPost) => (<EventPreview eventPost={eventPost} />))}
+            {recommendationEvents.map((eventPost) => (<EventPreview eventPost={eventPost} />))}
           </RecommendationContainer>
           <PopularTitle>이번 주, 모두가 주목한 행사 🖐🏻</PopularTitle>
           <PopularDetail>지금 가장 인기 있는 행사만 모았어요</PopularDetail>
           <PopularContainer>
-            {PopularEvents.map((eventPost) => (<EventPreview eventPost={eventPost} />))}
+            {popularEvents.map((eventPost) => (<EventPreview eventPost={eventPost} />))}
           </PopularContainer>
           <PopularTitle>따끈따끈한 신규 행사 🔥</PopularTitle>
           <PopularDetail>주목하세요! 이번주 개설된 신규 행사</PopularDetail>
           <PopularContainer>
-            {NewEvents.map((eventPost) => (<EventPreview eventPost={eventPost} />))}
+            {newEvents.map((eventPost) => (<EventPreview eventPost={eventPost} />))}
           </PopularContainer>
           <ChannelContainer>
             <ChannelContainerTitle>인기 채널</ChannelContainerTitle>
             <ChannelContainerDetail>인기있는 채널과 구독중인 채널을 바로 만나보세요!</ChannelContainerDetail>
             <ChannelItemsContainer>
-              {PopularChannel.map((channel) => (<ChannelPreview channel={channel} />))}
+              {popularChannel.map((channel) => (<ChannelPreview channel={channel} />))}
             </ChannelItemsContainer>
           </ChannelContainer>
         </MainContainer>
