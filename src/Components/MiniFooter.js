@@ -28,7 +28,7 @@ const FooterLetter = styled.div`
 
 const MiniFooter = () => (
   <FooterBackground>
-    <MiniHeaderImg alt="logo" src="/img/logo.png" />
+    <MiniHeaderImg alt="logo" src="img/logo.png" />
     <FooterLetter>
       univ-us
     </FooterLetter>

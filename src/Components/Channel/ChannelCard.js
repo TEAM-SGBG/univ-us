@@ -59,7 +59,7 @@ const ChannelCard = ({ currentChannel }) => {
       display: 'flex', alignItems: 'center', alignSelf: 'flex-start', marginBottom: '10px',
     }}
     >
-      <img src="/img/channel_avatar.png" alt="channelAvatar" width="75px" />
+      <img src="img/channel_avatar.png" alt="channelAvatar" width="75px" />
       <div style={{ display: 'flex', flexDirection: 'column', paddingLeft: '10px' }}>
         <div style={{ display: 'flex', paddingBottom: '10px' }}>
           <ChannelName>
