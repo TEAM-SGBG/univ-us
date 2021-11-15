@@ -50,6 +50,7 @@ const ReservedEvent = styled.div`
 
 const ReservedTable = styled.table`
   border:none;
+  text-align:center;
 `;
 
 const ReservedTh1 = styled.th`
@@ -73,6 +74,12 @@ const ReservedTh3 = styled.th`
   color:#5C3FBF;
 `;
 
+const ReservedTr = styled.tr`
+`;
+
+const ReservedTd = styled.td`
+`;
+
 const LikedEvent = styled.div`
   margin:25px;
 `;
@@ -82,7 +89,7 @@ const SubChannel = styled.div`
 `;
 
 function MyPagePresenter({
-  goUserinfo, myNum, goOne, goTwo, goThree,
+  goUserinfo, myNum, goOne, goTwo, goThree, eventPosts,
 }) {
   return (
     <>
@@ -104,20 +111,55 @@ function MyPagePresenter({
         {(myNum === '1') && (
         <ReservedEvent>
           <ReservedTable>
-            <ReservedTh1>신청일</ReservedTh1>
-            <ReservedTh2>신청행사</ReservedTh2>
-            <ReservedTh3>상세내용</ReservedTh3>
+            <ReservedTr>
+              <ReservedTh1>신청일</ReservedTh1>
+              <ReservedTh2>신청행사</ReservedTh2>
+              <ReservedTh3>상세내용</ReservedTh3>
+            </ReservedTr>
+            {eventPosts.map((event) => (
+              <ReservedTr key>
+                <ReservedTd>{event.id}</ReservedTd>
+                <ReservedTd>{event.title}</ReservedTd>
+                <ReservedTd>{event.channel.name}</ReservedTd>
+              </ReservedTr>
+            ))}
           </ReservedTable>
         </ReservedEvent>
         )}
         {(myNum === '2') && (
           <LikedEvent>
-            대충 좋아요 누른 행사 목록
+            <ReservedTable>
+              <ReservedTr>
+                <ReservedTh1>신청일</ReservedTh1>
+                <ReservedTh2>신청행사</ReservedTh2>
+                <ReservedTh3>상세내용</ReservedTh3>
+              </ReservedTr>
+              {eventPosts.map((event) => (
+                <ReservedTr key>
+                  <ReservedTd>{event.id}</ReservedTd>
+                  <ReservedTd>{event.title}</ReservedTd>
+                  <ReservedTd>{event.date}</ReservedTd>
+                </ReservedTr>
+              ))}
+            </ReservedTable>
           </LikedEvent>
         )}
         {(myNum === '3') && (
           <SubChannel>
-            대충 구독한 채널 목록
+            <ReservedTable>
+              <ReservedTr>
+                <ReservedTh1>신청일</ReservedTh1>
+                <ReservedTh2>신청행사</ReservedTh2>
+                <ReservedTh3>상세내용</ReservedTh3>
+              </ReservedTr>
+              {eventPosts.map((event) => (
+                <ReservedTr key>
+                  <ReservedTd>{event.id}</ReservedTd>
+                  <ReservedTd>{event.title}</ReservedTd>
+                  <ReservedTd>{event.view}</ReservedTd>
+                </ReservedTr>
+              ))}
+            </ReservedTable>
           </SubChannel>
         )}
       </Wrapper>
