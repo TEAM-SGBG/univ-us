@@ -118,43 +118,6 @@ const Header = () => {
     history.push('/hostcenter');
   };
 
-<<<<<<< HEAD
-const Header = () => (
-  <HeaderBackground>
-    <Wrapper>
-      <div>
-        <HomeButton onClick={GoHome}>
-          <img alt="logo" src="/img/logo.png" />
-        </HomeButton>
-      </div>
-      <div>
-        <ButtonWrapper onClick={GoMypage}>
-          MyPage
-        </ButtonWrapper>
-        <ButtonWrapper onClick={GoHostCenter}>
-          호스트센터
-        </ButtonWrapper>
-        <ButtonWrapper onClick={GoSignin}>
-          회원가입
-        </ButtonWrapper>
-        <ButtonWrapper onClick={GoLogin}>
-          로그인
-        </ButtonWrapper>
-        <ButtonWrapper onClick={GoLogout}>
-          로그아웃
-        </ButtonWrapper>
-      </div>
-    </Wrapper>
-    <NavList>
-      <NavItem to="/events">전체</NavItem>
-      <NavItem to={{ pathname: '/category', search: '?type=sushi' }}>수시행사</NavItem>
-      <NavItem to={{ pathname: '/category', search: '?type=jungshi' }}>정시행사</NavItem>
-      <NavItem to={{ pathname: '/category', search: '?type=fair' }}>대학박람회</NavItem>
-      <NavItem to="/home">행사찾기</NavItem>
-    </NavList>
-  </HeaderBackground>
-);
-=======
   return (
     <HeaderBackground>
       <Wrapper>
@@ -194,6 +157,5 @@ const Header = () => (
     </HeaderBackground>
   );
 };
->>>>>>> fca577177b2b54b4f86c38eb8fa79f7450eeacd2
 
 export default Header;
