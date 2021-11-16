@@ -1,7 +1,7 @@
 import { useLocation } from 'react-router-dom';
 import { useCallback, useState } from 'react';
 import CategoryPresenter from './CategoryPresenter';
-import mainEvents from '../../mock/eventPosts.json';
+import eventPosts from '../../mock/HostCenterMock/eventPosts.json';
 
 function CategoryContainer() {
   const useQuery = () => new URLSearchParams(useLocation().search);
@@ -24,7 +24,7 @@ function CategoryContainer() {
 
   return (
     <CategoryPresenter
-      mainEvents={mainEvents.eventPosts}
+      mainEvents={eventPosts}
       type={query.get('type')}
       mappingType={mappingType}
       onChangePageNumber={onChangePageNumber}

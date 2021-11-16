@@ -3,7 +3,7 @@ import {
 } from 'redux-saga/effects';
 // eslint-disable-next-line no-unused-vars
 import axios from 'axios';
-import channel from '../mock/channel.json';
+import channel from '../mock/HostCenterMock/channel.json';
 import {
   DELETE_CHANNEL_FAILURE,
   DELETE_CHANNEL_REQUEST, DELETE_CHANNEL_SUCCESS,

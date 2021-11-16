@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import MyPagePresenter from './MyPagePresenter';
-import channel from '../../mock/channel.json';
-// import eventPosts from '../../mock/eventPosts.json';
-import mainEvents from '../../mock/eventPosts.json';
+import channel from '../../mock/HostCenterMock/channel.json';
+import eventPosts from '../../mock/HostCenterMock/eventPosts.json';
 import user from '../../mock/user.json';
 
 function MyPageContainer() {
@@ -34,7 +33,7 @@ function MyPageContainer() {
       goTwo={goTwo}
       goThree={goThree}
       channel={channel}
-      eventPosts={mainEvents.eventPosts}
+      eventPosts={eventPosts}
       user={user}
     />
   );
