@@ -42,7 +42,7 @@ function HostCenterContainer() {
         <Route path={`${path}/createchannel`}>
           <CreateChannelContainer />
         </Route>
-        <Route path={`${path}/createevent`}>
+        <Route path={`${path}/:id/createevent`}>
           <CreateEventContainer />
         </Route>
         <Route path={`${path}/channel`}>
