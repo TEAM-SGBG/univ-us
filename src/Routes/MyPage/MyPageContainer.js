@@ -1,5 +1,9 @@
 import { useState } from 'react';
 import MyPagePresenter from './MyPagePresenter';
+import channel from '../../mock/channel.json';
+// import eventPosts from '../../mock/eventPosts.json';
+import mainEvents from '../../mock/eventPosts.json';
+import user from '../../mock/user.json';
 
 function MyPageContainer() {
   const [myNum, setNum] = useState('1');
@@ -29,6 +33,9 @@ function MyPageContainer() {
       goOne={goOne}
       goTwo={goTwo}
       goThree={goThree}
+      channel={channel}
+      eventPosts={mainEvents.eventPosts}
+      user={user}
     />
   );
 }

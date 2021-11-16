@@ -94,7 +94,7 @@ function GoMypage() {
   window.location.assign('/mypage');
 }
 
-function GoLogin() {
+async function GoLogin() {
   console.log('go login');
   window.location.assign('/login');
 }

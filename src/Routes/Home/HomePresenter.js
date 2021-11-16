@@ -27,7 +27,6 @@ const Wrapper = styled.div`
 `;
 
 const MainContainer = styled.div`
-  width: 1100px;
   padding: 48px 180px;
 `;
 
@@ -63,6 +62,7 @@ const RecommendationDetail = styled.p`
 const RecommendationContainer = styled.div`
   margin-top: 34px;
   display: flex;
+  overflow:visible;
 `;
 
 const PopularTitle = styled.p`
