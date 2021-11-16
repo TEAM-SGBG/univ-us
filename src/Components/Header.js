@@ -104,7 +104,7 @@ function GoHome() {
 }
 
 const Header = () => {
-  const { isLoggedIn } = useSelector((state) => state.index.user);
+  const { isLoggedIn } = useSelector((state) => state.user);
   const history = useHistory();
 
   const GoLogout = useCallback(() => {
