@@ -14,7 +14,8 @@ function LoginContainer() {
     dispatch({
       type: LOGIN_REQUEST,
     });
-    history.push('/home');
+    const redirectPathName = history.location.state?.from.pathname;
+    history.replace(redirectPathName ?? '/home');
   }
 
   return (

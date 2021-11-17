@@ -32,10 +32,9 @@ const UserMenu = () => {
 
   const { isLoggedIn } = useSelector((state) => state.user);
 
-  // todo: props로 state넘기기, login페이지에서 로그인 성공하면 from.path로 redirect
   const handleClick = ({ key }) => {
     if (key === 'Login') {
-      history.push('login');
+      history.replace({ pathname: '/login', state: { from: history.location } });
     } else if (key === 'AppliedEvents') {
       history.push('/mypage');
     } else if (key === 'InterestedEvents') {
@@ -79,9 +78,11 @@ const UserMenu = () => {
         회원정보
       </Menu.Item>
       <DividerWrapper />
+      {isLoggedIn && (
       <LogoutMenuItem key="Logout">
         로그아웃
       </LogoutMenuItem>
+      )}
     </Menu>
   );
   return (
