@@ -84,25 +84,6 @@ const NavItem = styled(Link)`
     }
 `;
 
-function GoSignin() {
-  console.log('go signup');
-  window.location.assign('/signup');
-}
-
-function GoMypage() {
-  console.log('go mypage');
-  window.location.assign('/mypage');
-}
-
-async function GoLogin() {
-  console.log('go login');
-  window.location.assign('/login');
-}
-
-function GoHome() {
-  window.location.replace('/home');
-}
-
 const Header = () => {
   const { isLoggedIn } = useSelector((state) => state.index.user);
   const history = useHistory();
@@ -111,12 +92,31 @@ const Header = () => {
     console.log('go logout');
     alert('로그아웃되었습니다.');
 
-    window.location.replace('/home');
+    history.push('/home');
   }, []);
 
   const GoHostCenter = () => {
     history.push('/hostcenter');
   };
+
+  function GoSignin() {
+    console.log('go signup');
+    history.push('/signup');
+  }
+
+  function GoMypage() {
+    console.log('go mypage');
+    history.push('/mypage');
+  }
+
+  function GoLogin() {
+    console.log('go login');
+    history.push('/login');
+  }
+
+  function GoHome() {
+    history.push('/home');
+  }
 
   return (
     <HeaderBackground>
@@ -148,11 +148,11 @@ const Header = () => {
         </div>
       </Wrapper>
       <NavList>
-        <NavItem to={{ pathname: '/category', search: '?type=all' }}>전체</NavItem>
+        <NavItem to="/home">메인</NavItem>
+        <NavItem to={{ pathname: '/category', search: '?type=all' }}>전체행사</NavItem>
         <NavItem to={{ pathname: '/category', search: '?type=sushi' }}>수시행사</NavItem>
         <NavItem to={{ pathname: '/category', search: '?type=jungshi' }}>정시행사</NavItem>
         <NavItem to={{ pathname: '/category', search: '?type=fair' }}>대학박람회</NavItem>
-        <NavItem to="/search">행사찾기</NavItem>
       </NavList>
     </HeaderBackground>
   );
