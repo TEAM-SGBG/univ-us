@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { useHistory } from 'react-router';
 
 const HeaderBackground = styled.div`
   margin: 0 auto;
@@ -22,16 +23,19 @@ const HomeButton = styled.button`
     }
 `;
 
-function GoHome() {
-  window.location.replace('/home');
-}
+const MiniHeader = () => {
+  const history = useHistory();
 
-const MiniHeader = () => (
-  <HeaderBackground>
-    <HomeButton onClick={GoHome}>
-      <MiniHeaderImg alt="logo" src="img/logo.png" />
-    </HomeButton>
-  </HeaderBackground>
-);
+  function GoHome() {
+    history.push('/home');
+  }
 
+  return (
+    <HeaderBackground>
+      <HomeButton onClick={GoHome}>
+        <MiniHeaderImg alt="logo" src="img/logo.png" />
+      </HomeButton>
+    </HeaderBackground>
+  );
+};
 export default MiniHeader;

@@ -1,9 +1,10 @@
 import { useState } from 'react';
+import { useHistory } from 'react-router';
 import UserInfoPresenter from './UserInfoPresenter';
 
 function UserInfoContainer() {
+  const history = useHistory();
   const [myName, setName] = useState('');
-
   const [myPw, setPw] = useState('');
 
   const onChangeName = (e) => {
@@ -19,7 +20,7 @@ function UserInfoContainer() {
   function Save() {
     alert('저장되었습니다.');
     console.log('Saved');
-    window.location.assign('/home');
+    history.push('/home');
   }
 
   function ChangeName() {
