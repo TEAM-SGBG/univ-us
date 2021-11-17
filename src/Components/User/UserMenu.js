@@ -80,7 +80,9 @@ const UserMenu = () => {
       <DividerWrapper />
       {isLoggedIn && (
       <LogoutMenuItem key="Logout">
-        로그아웃
+        <a href="http://localhost:3001/auth/logout">
+          로그아웃
+        </a>
       </LogoutMenuItem>
       )}
     </Menu>

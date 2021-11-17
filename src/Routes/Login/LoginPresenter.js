@@ -96,7 +96,8 @@ function LoginPresenter({ GoHome }) {
           <LoginH3>
             <SigninGo to="/signup">이메일로 회원가입</SigninGo>
           </LoginH3>
-          <KakaoLoginBtn>카카오 로그인</KakaoLoginBtn>
+          <KakaoLoginBtn><a href="http://localhost:3001/auth/kakao">카카오 로그인</a></KakaoLoginBtn>
+          <KakaoLoginBtn><a href="http://localhost:3001/auth/google">구글 로그인</a></KakaoLoginBtn>
           <Hline />
           <LoginH2>
             이메일(ID)

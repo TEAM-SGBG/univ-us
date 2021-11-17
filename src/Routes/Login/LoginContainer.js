@@ -14,12 +14,10 @@ function LoginContainer() {
     dispatch({
       type: LOGIN_REQUEST,
     });
-    const redirectPathName = history.location.state?.from.pathname;
-    history.replace(redirectPathName ?? '/home');
   }
 
   return (
-    <LoginPresenter GoHome={GoHome} />
+    <LoginPresenter GoHome={GoHome} redirectURL={history.location.state?.from.pathname ?? '/home'} />
   );
 }
 

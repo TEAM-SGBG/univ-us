@@ -1,6 +1,13 @@
 const initialState = {
+  loginLoading: false,
   isLoggedIn: false,
+  loginError: null,
+
 };
+
+export const AUTH_CHECK_REQUEST = 'AUTH_CHECK_REQUEST';
+export const AUTH_CHECK_SUCCESS = 'AUTH_CHECK_SUCCESS';
+export const AUTH_CHECK_FAILURE = 'AUTH_CHECK_FAILURE';
 
 export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
@@ -12,6 +19,25 @@ export const LOGOUT_FAILURE = 'LOGOUT_FAILURE';
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case AUTH_CHECK_REQUEST:
+      return {
+        ...state,
+        loginLoading: true,
+        isLoggedIn: false,
+      };
+    case AUTH_CHECK_SUCCESS:
+      return {
+        ...state,
+        loginLoading: false,
+        isLoggedIn: action.data,
+      };
+    case AUTH_CHECK_FAILURE:
+      return {
+        ...state,
+        loginLoading: false,
+        isLoggedIn: false,
+        loginError: action.data,
+      };
     case LOGIN_REQUEST:
       return {
         ...state,

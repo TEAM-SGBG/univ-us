@@ -1,9 +1,7 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { useCallback } from 'react';
+import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
-import { LOGOUT_REQUEST } from '../reducers/user';
 
 const HeaderBackground = styled.div`
   margin: 0 auto;
@@ -87,17 +85,7 @@ const NavItem = styled(Link)`
 
 const Header = () => {
   const { isLoggedIn } = useSelector((state) => state.user);
-  const dispatch = useDispatch();
   const history = useHistory();
-
-  const GoLogout = useCallback(() => {
-    console.log('go logout');
-    alert('로그아웃되었습니다.');
-    dispatch({
-      type: LOGOUT_REQUEST,
-    });
-    history.push('/home');
-  }, []);
 
   const GoHostCenter = () => {
     history.push('/hostcenter');
@@ -137,12 +125,16 @@ const Header = () => {
           <ButtonWrapper onClick={GoHostCenter}>
             호스트센터
           </ButtonWrapper>
+          {!isLoggedIn && (
           <ButtonWrapper onClick={GoSignin}>
             회원가입
           </ButtonWrapper>
+          )}
           {isLoggedIn ? (
-            <ButtonWrapper onClick={GoLogout}>
-              로그아웃
+            <ButtonWrapper>
+              <a href="http://localhost:3001/auth/logout">
+                로그아웃
+              </a>
             </ButtonWrapper>
           ) : (
             <ButtonWrapper onClick={GoLogin}>
