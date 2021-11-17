@@ -1,6 +1,7 @@
 import Footer from 'Components/Footer';
 import MiniHeader from 'Components/MiniHeader';
 import styled from 'styled-components';
+import ChannelCard from '../../Components/Channel/ChannelCard';
 
 const Wrapper = styled.div`
   margin: 0 auto;
@@ -50,34 +51,43 @@ const ReservedEvent = styled.div`
 
 const ReservedTable = styled.table`
   border:none;
-  text-align:center;
 `;
 
 const ReservedTh1 = styled.th`
-  text-align:left;
+  text-align:center;
   width: 150px;
   background-color: whitesmoke;
   color:#5C3FBF;
 `;
 
 const ReservedTh2 = styled.th`
-  text-align:left;
+  text-align:center;
   width: 300px;
   background-color: whitesmoke;
   color:#5C3FBF;
 `;
 
 const ReservedTh3 = styled.th`
-  text-align:left;
+  text-align:center;
   width: 700px;
   background-color: whitesmoke;
   color:#5C3FBF;
 `;
 
 const ReservedTr = styled.tr`
+  text-align:center;
 `;
 
-const ReservedTd = styled.td`
+const ReservedTd1 = styled.td`
+  width: 150px;
+  height:50px;
+  line-height:50px;
+`;
+const ReservedTd2 = styled.td`
+   width: 300px;
+`;
+const ReservedTd3 = styled.td`
+   width: 700px;
 `;
 
 const LikedEvent = styled.div`
@@ -89,7 +99,7 @@ const SubChannel = styled.div`
 `;
 
 function MyPagePresenter({
-  goUserinfo, myNum, goOne, goTwo, goThree, eventPosts,
+  goUserinfo, myNum, goOne, goTwo, goThree, eventPosts, channel,
 }) {
   return (
     <>
@@ -118,9 +128,9 @@ function MyPagePresenter({
             </ReservedTr>
             {eventPosts.map((event) => (
               <ReservedTr key>
-                <ReservedTd>{event.id}</ReservedTd>
-                <ReservedTd>{event.title}</ReservedTd>
-                <ReservedTd>{event.channel.name}</ReservedTd>
+                <ReservedTd1>{event.id}</ReservedTd1>
+                <ReservedTd2>{event.title}</ReservedTd2>
+                <ReservedTd3>{event.channel.name}</ReservedTd3>
               </ReservedTr>
             ))}
           </ReservedTable>
@@ -136,9 +146,9 @@ function MyPagePresenter({
               </ReservedTr>
               {eventPosts.map((event) => (
                 <ReservedTr key>
-                  <ReservedTd>{event.id}</ReservedTd>
-                  <ReservedTd>{event.title}</ReservedTd>
-                  <ReservedTd>{event.date}</ReservedTd>
+                  <ReservedTd1>{event.id}</ReservedTd1>
+                  <ReservedTd2>{event.title}</ReservedTd2>
+                  <ReservedTd3>{event.date}</ReservedTd3>
                 </ReservedTr>
               ))}
             </ReservedTable>
@@ -146,20 +156,9 @@ function MyPagePresenter({
         )}
         {(myNum === '3') && (
           <SubChannel>
-            <ReservedTable>
-              <ReservedTr>
-                <ReservedTh1>신청일</ReservedTh1>
-                <ReservedTh2>신청행사</ReservedTh2>
-                <ReservedTh3>상세내용</ReservedTh3>
-              </ReservedTr>
-              {eventPosts.map((event) => (
-                <ReservedTr key>
-                  <ReservedTd>{event.id}</ReservedTd>
-                  <ReservedTd>{event.title}</ReservedTd>
-                  <ReservedTd>{event.view}</ReservedTd>
-                </ReservedTr>
-              ))}
-            </ReservedTable>
+            {channel.map((mychannel) => (
+              <ChannelCard currentChannel={mychannel} />
+            ))}
           </SubChannel>
         )}
       </Wrapper>
