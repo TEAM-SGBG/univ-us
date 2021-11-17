@@ -7,7 +7,7 @@ import UserMenu from '../User/UserMenu';
 
 const Wrapper = styled.div`
   display: flex;
-  height: 96px;
+  min-height: 96px;
   background: #292A2B;
   border-radius: 0;
   align-items: center;
