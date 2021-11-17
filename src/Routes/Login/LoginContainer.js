@@ -15,7 +15,6 @@ function LoginContainer() {
       type: LOGIN_REQUEST,
     });
     history.push('/home');
-    // window.location.assign('/home');
   }
 
   return (

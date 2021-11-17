@@ -1,10 +1,13 @@
 import { useState } from 'react';
+import { useHistory } from 'react-router';
 import MyPagePresenter from './MyPagePresenter';
 import channel from '../../mock/HostCenterMock/channel.json';
 import eventPosts from '../../mock/HostCenterMock/eventPosts.json';
 import user from '../../mock/user.json';
 
 function MyPageContainer() {
+  const history = useHistory();
+
   const [myNum, setNum] = useState('1');
 
   function goOne() {
@@ -21,7 +24,7 @@ function MyPageContainer() {
 
   function goUserinfo() {
     console.log('go userinfo');
-    window.location.assign('/userinfo');
+    history.push('/userinfo');
   }
 
   return (
