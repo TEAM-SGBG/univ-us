@@ -12,6 +12,7 @@ import ChannelContainer from './Channel';
 import useMediaQuery from '../../Hooks/useMediaQuery';
 import CreateEventContainer from './CreateEvent';
 import AuthRoute from '../../Components/Auth/AuthRoute';
+import MyEventContainer from './MyEvent';
 
 const Layout = styled.div`
   display: flex;
@@ -23,8 +24,8 @@ const Layout = styled.div`
 function HostCenterContainer() {
   const { path } = useRouteMatch();
   const { pathname } = useLocation();
-  // eslint-disable-next-line no-unused-vars
   const { isLoggedIn } = useSelector((state) => state.user);
+
   const isDesktop = useMediaQuery('(min-width: 960px)');
   const history = useHistory();
 
@@ -46,8 +47,11 @@ function HostCenterContainer() {
         <AuthRoute authenticated={isLoggedIn} path={`${path}/createchannel`}>
           <CreateChannelContainer />
         </AuthRoute>
-        <AuthRoute authenticated={isLoggedIn} path={`${path}/:id/createevent`}>
+        <AuthRoute authenticated={isLoggedIn} path={`${path}/:channelID/createevent`}>
           <CreateEventContainer />
+        </AuthRoute>
+        <AuthRoute authenticated={isLoggedIn} path={`${path}/:channelID/event`}>
+          <MyEventContainer />
         </AuthRoute>
         <AuthRoute authenticated={isLoggedIn} path={`${path}/channel`}>
           <ChannelContainer />

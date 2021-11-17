@@ -59,9 +59,7 @@ const ChannelPresenter = ({
             .map((channel) => <HostCenterChannelCard channel={channel} key={channel.id} />);
         })()
 }
-    <CreateChannelButton
-      onClick={goChannelCreate}
-    >
+    <CreateChannelButton onClick={goChannelCreate}>
       + 채널개설
     </CreateChannelButton>
     <Pagination
