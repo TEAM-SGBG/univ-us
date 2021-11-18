@@ -1,9 +1,9 @@
 import EventPresenter from './EventPresenter';
-import eventPosts from '../../mock/eventPosts.json';
+import currentPost from '../../mock/HostCenterMock/currentPost.json';
 // todo: get event uid from url and fetch currentPost
 function EventContainer() {
   return (
-    <EventPresenter currentPost={eventPosts.currentPost} />
+    <EventPresenter currentPost={currentPost} />
   );
 }
 

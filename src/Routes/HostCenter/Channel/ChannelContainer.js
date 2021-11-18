@@ -28,17 +28,13 @@ function ChannelContainer() {
   }, []);
 
   return (
-    <>
-      {!user && history.push('/signup')}
-      <ChannelPresenter
-        user={user}
-        pageNumber={pageNumber}
-        loadChannelLoading={loadChannelLoading}
-        mainChannels={mainChannels}
-        goChannelCreate={goChannelCreate}
-        onChangePageNumber={onChangePageNumber}
-      />
-    </>
+    <ChannelPresenter
+      pageNumber={pageNumber}
+      loadChannelLoading={loadChannelLoading}
+      mainChannels={mainChannels}
+      goChannelCreate={goChannelCreate}
+      onChangePageNumber={onChangePageNumber}
+    />
   );
 }
 

@@ -59,7 +59,7 @@ const Wrapper = styled.div`
   padding: 15px;
 `;
 
-function EventCard({ eventPost }) {
+function EventCard({ eventPost, likeDisabled = false }) {
   const [liked, setLiked] = useState(eventPost.liked);
   const history = useHistory();
 
@@ -107,7 +107,7 @@ function EventCard({ eventPost }) {
             <EyeOutlined />
             <Space>
               {eventPost.view}
-              {liked ? <HeartTwoTone onClick={onToggleLike} twoToneColor="#eb2f96" /> : <HeartOutlined onClick={onToggleLike} />}
+              {!likeDisabled && (liked ? <HeartTwoTone onClick={onToggleLike} twoToneColor="#eb2f96" /> : <HeartOutlined onClick={onToggleLike} />)}
             </Space>
           </ColWrapper>
         </RowWrapper>

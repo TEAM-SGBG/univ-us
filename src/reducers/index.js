@@ -5,9 +5,6 @@ import channel from './channel';
 
 const initialState = {
   status: 'test',
-  user: {
-    isLoggedIn: false,
-  },
   hostcenter: {
     isDuplicated: null,
     currentChannel: null,
@@ -20,22 +17,6 @@ const rootReducer = combineReducers({
       case 'TEST':
         console.log('test');
         return state;
-      case 'LOGIN_REQUEST':
-        return {
-          ...state,
-          user: {
-            ...state.user,
-            isLoggedIn: true,
-          },
-        };
-      case 'LOGOUT_REQUEST':
-        return {
-          ...state,
-          user: {
-            ...state.user,
-            isLoggedIn: false,
-          },
-        };
       case 'URL_DUPLICATE_CHECK_REQUEST':
         return {
           ...state,

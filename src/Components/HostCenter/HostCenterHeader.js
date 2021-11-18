@@ -3,10 +3,11 @@ import { Space } from 'antd';
 import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
 import useMediaQuery from '../../Hooks/useMediaQuery';
+import UserMenu from '../User/UserMenu';
 
 const Wrapper = styled.div`
   display: flex;
-  height: 96px;
+  min-height: 96px;
   background: #292A2B;
   border-radius: 0;
   align-items: center;
@@ -78,6 +79,7 @@ const HostCenterHeader = () => {
           <ButtonWrapper onClick={goChannel}>내 채널</ButtonWrapper>
           <MenuTitle>|</MenuTitle>
           <ButtonWrapper onClick={goHome}>유니버스 홈</ButtonWrapper>
+          <UserMenu />
         </Space>
       </MenuWrapper>
     </Wrapper>

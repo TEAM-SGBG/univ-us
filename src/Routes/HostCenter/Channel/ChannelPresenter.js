@@ -47,14 +47,19 @@ const ChannelPresenter = ({
 }) => (
   <Wrapper>
     <Title level={3}>내 채널 리스트</Title>
-    {loadChannelLoading
-      ? <Skeleton />
-      : mainChannels
-        .slice((pageNumber - 1) * 3, Math.min(mainChannels.length, pageNumber * 3))
-        .map((channel) => <HostCenterChannelCard channel={channel} key={channel.id} />)}
-    <CreateChannelButton
-      onClick={goChannelCreate}
-    >
+    {
+        (() => {
+          if (loadChannelLoading) {
+            return <Skeleton />;
+          } if (mainChannels.length === 0) {
+            return <div>생성된 채널이 없습니다.</div>;
+          }
+          return mainChannels
+            .slice((pageNumber - 1) * 3, Math.min(mainChannels.length, pageNumber * 3))
+            .map((channel) => <HostCenterChannelCard channel={channel} key={channel.id} />);
+        })()
+}
+    <CreateChannelButton onClick={goChannelCreate}>
       + 채널개설
     </CreateChannelButton>
     <Pagination

@@ -1,9 +1,9 @@
-import { Divider, Pagination } from 'antd';
+import { Divider } from 'antd';
 import styled from 'styled-components';
-import { useEffect } from 'react';
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
-import EventCard from '../../Components/Event/EventCard';
+import EventList from '../../Components/Event/EventList';
+import eventPosts from '../../mock/HostCenterMock/eventPosts.json';
 
 const EventTitle = styled.p`
   font-family: Roboto;
@@ -67,28 +67,18 @@ const DividerWrapper = styled(Divider)`
   }
 `;
 
-function CategoryPresenter({
-  mainEvents, type, pageNumber, mappingType, onChangePageNumber, initializePageNumber,
-}) {
-  useEffect(() => {
-    initializePageNumber();
-  }, [type]);
-
+function CategoryPresenter({ pageNumber, mappingType, onChangePageNumber }) {
   return (
     <>
       <Header />
       <Wrapper>
         <EventTitle>{mappingType()}</EventTitle>
         <DividerWrapper />
-        {mainEvents
-          .slice((pageNumber - 1) * 5, Math.min(mainEvents.length, pageNumber * 5))
-          .map((event) => <EventCard key={event.id} eventPost={event} />)}
-        <Pagination
-          style={{ textAlign: 'center', marginBottom: '20px' }}
-          total={mainEvents.length}
-          current={pageNumber}
-          onChange={onChangePageNumber}
-          defaultPageSize={5}
+        <EventList
+          mainEvents={eventPosts}
+          pageNumber={pageNumber}
+          onChangePageNumber={onChangePageNumber}
+          maxPageSize={5}
         />
       </Wrapper>
       <Footer />

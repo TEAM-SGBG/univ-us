@@ -1,6 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
 import LoginPresenter from './LoginPresenter';
+import { LOGIN_REQUEST } from '../../reducers/user';
 
 function LoginContainer() {
   const dispatch = useDispatch();
@@ -11,13 +12,12 @@ function LoginContainer() {
     console.log('Go Home');
 
     dispatch({
-      type: 'LOGIN_REQUEST',
+      type: LOGIN_REQUEST,
     });
-    history.push('/home');
   }
 
   return (
-    <LoginPresenter GoHome={GoHome} />
+    <LoginPresenter GoHome={GoHome} redirectURL={history.location.state?.from.pathname ?? '/home'} />
   );
 }
 

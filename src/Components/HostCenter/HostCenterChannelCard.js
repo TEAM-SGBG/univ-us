@@ -6,6 +6,11 @@ import { useCallback } from 'react';
 import { MoreOutlined } from '@ant-design/icons';
 import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { DELETE_CHANNEL_REQUEST } from '../../reducers/channel';
+
+const MODIFY = 'Modify';
+const DELETE = 'Delete';
 
 const CardWrapper = styled.div`
   margin: 10px 0;
@@ -37,17 +42,6 @@ const RightSection = styled.div`
   flex-grow: 1;
 `;
 
-const menu = (
-  <Menu>
-    <Menu.Item key="0">
-      수정
-    </Menu.Item>
-    <Menu.Item key="1">
-      삭제
-    </Menu.Item>
-  </Menu>
-);
-
 const ButtonWrapper = styled(Button)`
   background: #5C3FBF;
   border-radius: 3px;
@@ -71,10 +65,33 @@ const ButtonWrapper = styled(Button)`
 
 const HostCenterChannelCard = ({ channel }) => {
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const goEventCreate = useCallback(() => {
     history.push(`/hostcenter/${channel.channelID}/createevent`);
   }, []);
+
+  const handleClick = ({ key }) => {
+    if (key === MODIFY) {
+      history.push(`/hostcenter/${channel.channelID}/modifychannel`);
+    } else if (key === DELETE) {
+      dispatch({
+        type: DELETE_CHANNEL_REQUEST,
+        data: channel.channelID,
+      });
+    }
+  };
+
+  const menu = (
+    <Menu onClick={handleClick}>
+      <Menu.Item key="Modify">
+        수정
+      </Menu.Item>
+      <Menu.Item key="Delete">
+        삭제
+      </Menu.Item>
+    </Menu>
+  );
 
   return (
     <CardWrapper>
@@ -102,7 +119,7 @@ const HostCenterChannelCard = ({ channel }) => {
         <ButtonWrapper onClick={goEventCreate}>행사 개설</ButtonWrapper>
       </CenterSection>
       <RightSection>
-        <Dropdown overlay={menu} trigger={['click']}>
+        <Dropdown overlay={menu} trigger={['hover']}>
           <MoreOutlined className="ant-dropdown-link" />
         </Dropdown>
       </RightSection>
