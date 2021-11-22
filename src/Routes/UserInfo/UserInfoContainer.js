@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useHistory } from 'react-router';
 import UserInfoPresenter from './UserInfoPresenter';
+import user from '../../mock/user.json';
 
 function UserInfoContainer() {
   const history = useHistory();
@@ -50,6 +51,7 @@ function UserInfoContainer() {
       setPw={setPw}
       onChangeName={onChangeName}
       onChangePw={onChangePw}
+      user={user}
     />
   );
 }

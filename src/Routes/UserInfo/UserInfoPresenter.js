@@ -63,7 +63,7 @@ const Dontgo = styled.div`
 `;
 
 function UserInfoPresenter({
-  Save, ChangeName, ChangePw, DontGo, onChangeName, onChangePw,
+  Save, ChangeName, ChangePw, DontGo, onChangeName, onChangePw, user,
 }) {
   return (
     <>
@@ -80,7 +80,7 @@ function UserInfoPresenter({
           이메일(ID)
         </LoginH2>
         <LoginH2>
-          ssumthingood@gmail.com
+          {user.email}
         </LoginH2>
         <LoginH2>
           이름/기업명
