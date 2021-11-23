@@ -2,7 +2,7 @@
   "id": "dnjsdud",
   "nickname": "원영",
   "email": "원영@konkuk.ac.kr",
-  "subscribed": [],
+  "subscribed": [1, 2, 3],
   "liked": [],
   "avatar": "https://dummyimage.com/32x32/000/fff"
 }

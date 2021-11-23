@@ -1,7 +1,12 @@
 import styled from 'styled-components';
+import { useHistory } from 'react-router';
+import { useCallback } from 'react';
 
 const PreviewItems = styled.div`
   margin-right: 20px;
+  &:hover{
+    cursor:pointer;
+  }
 `;
 
 const PreviewItemsDate = styled.p`
@@ -34,14 +39,22 @@ const PreviewItemsImage = styled.img`
   height: 146px;
 `;
 
-const EventPreview = ({ eventPost }) => (
-  <>
-    <PreviewItems>
-      <PreviewItemsImage src={eventPost.img} />
-      <PreviewItemsDate>{new Date(eventPost.date).toLocaleDateString()}</PreviewItemsDate>
-      <PreviewItemsName>{eventPost.title}</PreviewItemsName>
-    </PreviewItems>
-  </>
-);
+function EventPreview({ eventPost }) {
+  const history = useHistory();
+
+  const goEventPage = useCallback(() => {
+    history.push(`/events/${eventPost.id}`);
+  }, []);
+
+  return (
+    <>
+      <PreviewItems onClick={goEventPage}>
+        <PreviewItemsImage src={eventPost.img} />
+        <PreviewItemsDate>{new Date(eventPost.date).toLocaleDateString()}</PreviewItemsDate>
+        <PreviewItemsName>{eventPost.title}</PreviewItemsName>
+      </PreviewItems>
+    </>
+  );
+}
 
 export default EventPreview;

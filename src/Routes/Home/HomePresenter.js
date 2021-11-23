@@ -240,7 +240,11 @@ function HomePresenter({
           <RecommendationTitle>지금, 이 행사 어때요? ✨</RecommendationTitle>
           <RecommendationDetail>에디터가 추천하는 놓쳐서 안 될 행사</RecommendationDetail>
           <RecommendationContainer>
-            {recommendationEvents.map((eventPost) => (<EventPreview eventPost={eventPost} />))}
+            {recommendationEvents.map((eventPost) => (
+              <EventPreview
+                eventPost={eventPost}
+              />
+            ))}
           </RecommendationContainer>
           <PopularTitle>이번 주, 모두가 주목한 행사 🖐🏻</PopularTitle>
           <PopularDetail>지금 가장 인기 있는 행사만 모았어요</PopularDetail>
