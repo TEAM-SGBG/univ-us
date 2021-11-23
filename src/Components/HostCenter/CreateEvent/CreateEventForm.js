@@ -1,10 +1,11 @@
 import {
   Button, DatePicker,
-  Form, Input, Select,
+  Form, Input, Select, Upload,
 } from 'antd';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import locale from 'antd/es/date-picker/locale/ko_KR';
+import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 
 const InputWrapper = styled(Input)`
   // height: 48px;
@@ -60,6 +61,8 @@ const OFFLINE = 'OFFLINE';
 const ONOFFLINE = 'ONOFFLINE';
 
 const CreateEventForm = () => {
+  const [loading, setLoading] = useState(false);
+
   const [eventName, setEventName] = useState({ value: '' });
   const [eventType, setEventType] = useState({});
   const [eventTime, setEventTime] = useState({ startDate: null, endDate: null });
@@ -150,6 +153,18 @@ const CreateEventForm = () => {
     setEventDescription({ ...validateDescription(e.target.value), value: e.target.value });
   };
 
+  const onUploadChange = (info) => {
+    console.log(info);
+    setLoading(true);
+  };
+
+  const uploadButton = (
+    <div>
+      {loading ? <LoadingOutlined /> : <PlusOutlined />}
+      <div style={{ marginTop: 8 }}>Upload</div>
+    </div>
+  );
+
   useEffect(() => {
     setValidate(eventType.value
         && eventTime.startDate && eventTime.endDate
@@ -166,6 +181,16 @@ const CreateEventForm = () => {
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
     >
+      <Form.Item label="이미지">
+        <Upload
+          name="EventImage"
+          listType="picture-card"
+          showUploadList={false}
+          onChange={onUploadChange}
+        >
+          {uploadButton}
+        </Upload>
+      </Form.Item>
       <Form.Item
         label="행사 이름"
         name="EventName"
