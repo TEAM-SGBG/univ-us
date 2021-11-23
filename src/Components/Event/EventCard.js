@@ -92,7 +92,7 @@ function EventCard({ eventPost, likeDisabled = false }) {
         <RowWrapper align="middle">
           <ColWrapper span={24} style={{ textAlign: 'left' }}>
             <Typography.Link style={{ fontSize: '16px', color: 'black' }} onClick={goEventPage}>
-              {eventPost.title}
+              {eventPost.name}
             </Typography.Link>
           </ColWrapper>
         </RowWrapper>
@@ -100,7 +100,7 @@ function EventCard({ eventPost, likeDisabled = false }) {
           <ColWrapper span={12} style={{ textAlign: 'left' }}>
             <Space>
               <Avatar src={eventPost.avatar} />
-              {eventPost.channel.name}
+              {eventPost.channel_owner.id}
             </Space>
           </ColWrapper>
           <ColWrapper span={12} style={{ textAlign: 'right' }}>

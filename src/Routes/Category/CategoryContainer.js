@@ -1,13 +1,27 @@
 import { useLocation } from 'react-router-dom';
-import { useCallback, useEffect, useState } from 'react';
+import axios from 'axios';
+import { useCallback, useState, useEffect } from 'react';
 import CategoryPresenter from './CategoryPresenter';
-import eventPosts from '../../mock/HostCenterMock/eventPosts.json';
+// import eventPosts from '../../mock/HostCenterMock/eventPosts.json';
 
 function CategoryContainer() {
   const useQuery = () => new URLSearchParams(useLocation().search);
   const query = useQuery();
   const type = query.get('type');
+  const [events, setEvents] = useState([]);
   const [pageNumber, setPageNumber] = useState(1);
+
+  useEffect(() => {
+    axios.get('http://localhost:3001/api/events/all_event').then((response) => {
+      if (response.data.success) {
+        console.log('all_event/success');
+        console.log(response.data.data);
+        setEvents(response.data.data);
+      } else {
+        setEvents(-1);
+      }
+    });
+  }, []);
 
   const mappingType = useCallback(() => {
     if (type === 'sushi') return '수시행사';
@@ -28,7 +42,7 @@ function CategoryContainer() {
 
   return (
     <CategoryPresenter
-      mainEvents={eventPosts}
+      events={events}
       mappingType={mappingType}
       onChangePageNumber={onChangePageNumber}
       pageNumber={pageNumber}
