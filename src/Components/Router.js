@@ -15,7 +15,9 @@ import HostCenter from '../Routes/HostCenter';
 import AuthRoute from './Auth/AuthRoute';
 
 export default () => {
-  const { isLoggedIn } = useSelector((state) => state.user);
+  const { isLoggedIn, loginLoading } = useSelector((state) => state.user);
+
+  const renderLoginLoading = () => <div>로그인 중입니다.</div>;
 
   return (
     <BrowserRouter>
@@ -27,7 +29,8 @@ export default () => {
           <Interest />
         </Route>
         <Route exact path="/login">
-          {isLoggedIn ? <Redirect to="/home" /> : <Login />}
+          {/* eslint-disable-next-line no-nested-ternary */}
+          {loginLoading ? renderLoginLoading() : isLoggedIn ? <Redirect to="/home" /> : <Login />}
         </Route>
         <AuthRoute authenticated={isLoggedIn} exact path="/mypage">
           <MyPage />

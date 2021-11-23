@@ -127,7 +127,7 @@ function MyPagePresenter({
               <ReservedTh3>상세내용</ReservedTh3>
             </ReservedTr>
             {eventPosts.map((event) => (
-              <ReservedTr key>
+              <ReservedTr key={1}>
                 <ReservedTd1>{event.id}</ReservedTd1>
                 <ReservedTd2>{event.title}</ReservedTd2>
                 <ReservedTd3>{event.channel.name}</ReservedTd3>
@@ -145,7 +145,7 @@ function MyPagePresenter({
                 <ReservedTh3>상세내용</ReservedTh3>
               </ReservedTr>
               {eventPosts.map((event) => (
-                <ReservedTr key>
+                <ReservedTr key={1}>
                   <ReservedTd1>{event.id}</ReservedTd1>
                   <ReservedTd2>{event.title}</ReservedTd2>
                   <ReservedTd3>{event.date}</ReservedTd3>

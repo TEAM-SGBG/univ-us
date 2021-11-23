@@ -5,14 +5,14 @@ import CreateEventForm from '../../../Components/HostCenter/CreateEvent/CreateEv
 const FormWrapper = styled.div`
   padding: 20px 5px;
   align-self: center;
-  width: 60vh;
+  width: 70vh;
   
   @media screen and (min-width: 0px) {
     width: 35vh;
   }
 
   @media screen and (min-width: 575px) {
-    width: 60vh;
+    width: 70vh;
   }
 `;
 
