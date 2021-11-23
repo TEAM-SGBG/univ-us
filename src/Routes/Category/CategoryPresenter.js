@@ -67,7 +67,9 @@ const DividerWrapper = styled(Divider)`
   }
 `;
 
-function CategoryPresenter({ pageNumber, mappingType, onChangePageNumber }) {
+function CategoryPresenter({
+  pageNumber, mappingType, onChangePageNumber, goEventPage,
+}) {
   return (
     <>
       <Header />
@@ -79,6 +81,7 @@ function CategoryPresenter({ pageNumber, mappingType, onChangePageNumber }) {
           pageNumber={pageNumber}
           onChangePageNumber={onChangePageNumber}
           maxPageSize={5}
+          goEventPage={goEventPage}
         />
       </Wrapper>
       <Footer />

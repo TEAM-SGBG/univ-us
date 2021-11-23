@@ -1,10 +1,11 @@
-import { useLocation } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 import { useCallback, useEffect, useState } from 'react';
 import CategoryPresenter from './CategoryPresenter';
 import eventPosts from '../../mock/HostCenterMock/eventPosts.json';
 
 function CategoryContainer() {
   const useQuery = () => new URLSearchParams(useLocation().search);
+  const history = useHistory();
   const query = useQuery();
   const type = query.get('type');
   const [pageNumber, setPageNumber] = useState(1);
@@ -22,6 +23,10 @@ function CategoryContainer() {
 
   const initializePageNumber = useCallback(() => { setPageNumber(1); }, []);
 
+  const goEventPage = useCallback((id) => () => {
+    history.push(`/events/${id}`);
+  }, []);
+
   useEffect(() => {
     initializePageNumber();
   }, [type]);
@@ -33,6 +38,7 @@ function CategoryContainer() {
       onChangePageNumber={onChangePageNumber}
       pageNumber={pageNumber}
       initializePageNumber={initializePageNumber}
+      goEventPage={goEventPage}
     />
   );
 }

@@ -51,7 +51,7 @@ function EventPreview({ eventPost }) {
       <PreviewItems onClick={goEventPage}>
         <PreviewItemsImage src={eventPost.img} />
         <PreviewItemsDate>{new Date(eventPost.date).toLocaleDateString()}</PreviewItemsDate>
-        <PreviewItemsName>{eventPost.title}</PreviewItemsName>
+        <PreviewItemsName>{eventPost.name}</PreviewItemsName>
       </PreviewItems>
     </>
   );

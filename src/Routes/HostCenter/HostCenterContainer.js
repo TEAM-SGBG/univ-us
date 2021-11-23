@@ -4,6 +4,7 @@ import {
 import styled from 'styled-components';
 import { useHistory } from 'react-router';
 import { useSelector } from 'react-redux';
+import EventInfoContainer from 'Routes/EventInfo/EventInfoContainer';
 import HostCenterPresenter from './HostCenterPresenter';
 import CreateChannelContainer from './CreateChannel';
 import HostCenterHeader from '../../Components/HostCenter/HostCenterHeader';
@@ -55,6 +56,9 @@ function HostCenterContainer() {
         </AuthRoute>
         <AuthRoute authenticated={isLoggedIn} path={`${path}/channel`}>
           <ChannelContainer />
+        </AuthRoute>
+        <AuthRoute authenticated={isLoggedIn} path={`${path}/:channelId/event/:eventId`}>
+          <EventInfoContainer />
         </AuthRoute>
         <Route>Not Found</Route>
       </Switch>
