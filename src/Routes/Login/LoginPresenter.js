@@ -54,33 +54,33 @@ const KakaoLoginBtn = styled.button`
   font-weight: bold;
 `;
 
-const Hline = styled.hr`
-  border:none;
-  height:3px;
-  margin: 25px 0;
-  background-color:whitesmoke;
-`;
+// const Hline = styled.hr`
+//   border:none;
+//   height:3px;
+//   margin: 25px 0;
+//   background-color:whitesmoke;
+// `;
 
-const MyInput = styled.input`
-  width: 450px;
-  height: 60px;
-  margin: 15px 0;
-  border : 3px solid whitesmoke;
-  border-radius: 15px;
-  background-color: white;
-`;
+// const MyInput = styled.input`
+//   width: 450px;
+//   height: 60px;
+//   margin: 15px 0;
+//   border : 3px solid whitesmoke;
+//   border-radius: 15px;
+//   background-color: white;
+// `;
 
-const LoginBtn = styled.button`
-  width: 450px;
-  height: 60px;
-  margin-top:25px;
-  border-radius: 15px;
-  background-color: #5C3FBF;
-  font-weight: bold;
-  color:white;
-`;
+// const LoginBtn = styled.button`
+//   width: 450px;
+//   height: 60px;
+//   margin-top:25px;
+//   border-radius: 15px;
+//   background-color: #5C3FBF;
+//   font-weight: bold;
+//   color:white;
+// `;
 
-function LoginPresenter({ GoHome }) {
+function LoginPresenter() {
   return (
     <>
       <MiniHeader />
@@ -97,9 +97,9 @@ function LoginPresenter({ GoHome }) {
             <SigninGo to="/signup">이메일로 회원가입</SigninGo>
           </LoginH3>
           <KakaoLoginBtn><a href="http://localhost:3001/auth/kakao">카카오 로그인</a></KakaoLoginBtn>
+          <br />
           <KakaoLoginBtn><a href="http://localhost:3001/auth/google">구글 로그인</a></KakaoLoginBtn>
-          <Hline />
-          <LoginH2>
+          {/* <LoginH2>
             이메일(ID)
           </LoginH2>
           <MyInput type="email" />
@@ -109,7 +109,7 @@ function LoginPresenter({ GoHome }) {
           <MyInput type="password" />
           <LoginBtn onClick={GoHome}>
             로그인
-          </LoginBtn>
+          </LoginBtn> */}
         </LoginForm>
       </Wrapper>
       <MiniFooter />

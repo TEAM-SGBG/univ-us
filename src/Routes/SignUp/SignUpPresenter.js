@@ -19,9 +19,9 @@ const H1 = styled.h1`
   font-weight: bold;
 `;
 
-const MyRadio = styled.input`
-  margin : 15px;
-`;
+// const MyRadio = styled.input`
+//   margin : 15px;
+// `;
 
 const H2 = styled.h2`
   font-size:15px;
@@ -55,16 +55,16 @@ function SignUpPresenter({ GoHome }) {
       <Wrapper>
         <SignupForm>
           <H1>회원가입</H1>
-          개인회원
+          {/* 개인회원
           <MyRadio type="radio" name="member" value="person" checked />
           학교/기관회원
-          <MyRadio type="radio" name="member" value="school" />
-          <H2>아이디</H2>
+          <MyRadio type="radio" name="member" value="school" /> */}
+          <H2>학교명</H2>
           <MyInput type="text" />
-          <H2>이름/기업명</H2>
+          <H2>전화번호</H2>
           <MyInput type="text" />
-          <H2>비밀번호</H2>
-          <MyInput type="password" />
+          {/* <H2>비밀번호</H2>
+          <MyInput type="password" /> */}
           <SignupBtn onClick={GoHome}>
             회원가입
           </SignupBtn>
