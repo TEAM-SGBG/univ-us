@@ -13,6 +13,7 @@ import useMediaQuery from '../../Hooks/useMediaQuery';
 import CreateEventContainer from './CreateEvent';
 import AuthRoute from '../../Components/Auth/AuthRoute';
 import MyEventContainer from './MyEvent';
+import EventInfoContainer from './EventInfo/EventInfoContainer';
 
 const Layout = styled.div`
   display: flex;
@@ -50,8 +51,11 @@ function HostCenterContainer() {
         <AuthRoute authenticated={isLoggedIn} path={`${path}/:channelID/createevent`}>
           <CreateEventContainer />
         </AuthRoute>
-        <AuthRoute authenticated={isLoggedIn} path={`${path}/:channelID/event`}>
+        <AuthRoute authenticated={isLoggedIn} exact path={`${path}/:channelID/event`}>
           <MyEventContainer />
+        </AuthRoute>
+        <AuthRoute authenticated={isLoggedIn} path={`${path}/:channelID/event/:eventID`}>
+          <EventInfoContainer />
         </AuthRoute>
         <AuthRoute authenticated={isLoggedIn} path={`${path}/channel`}>
           <ChannelContainer />

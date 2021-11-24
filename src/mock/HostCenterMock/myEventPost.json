@@ -1,0 +1,19 @@
+{
+  "id": 7,
+  "title": "2022 건국대학교 정시 설명회",
+  "avatar": null,
+  "channel": {
+    "name": "건국대학교",
+    "id": "konkuk",
+    "subscribed": false
+  },
+  "view": 104,
+  "liked": false,
+  "date": "2021-11-11T13:00:00.000Z",
+  "description": "창조와 도전으로 걸어온 건국의 역사\n대학에서 세계의 중심으로",
+  "startDate": "2021-11-03T00:00:00.000Z",
+  "endDate": "2021-11-10T24:00:00.000Z",
+  "place": "online",
+  "applied": 0,
+  "canceled": 0
+}
