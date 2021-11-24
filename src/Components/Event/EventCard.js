@@ -59,7 +59,7 @@ const Wrapper = styled.div`
   padding: 15px;
 `;
 
-function EventCard({ eventPost, likeDisabled = false }) {
+function EventCard({ eventPost, likeDisabled = false, isMyEvent }) {
   const [liked, setLiked] = useState(eventPost.liked);
   const history = useHistory();
 
@@ -68,7 +68,7 @@ function EventCard({ eventPost, likeDisabled = false }) {
   }, [liked]);
 
   const goEventPage = useCallback(() => {
-    history.push(`/events/${eventPost.id}`);
+    history.push(isMyEvent ? `/hostcenter/${eventPost.channel.id}/event/${eventPost.id}` : `/events/${eventPost.id}`);
   }, []);
 
   return (

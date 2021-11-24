@@ -65,6 +65,7 @@ const MyEventPresenter = ({ eventPosts, pageNumber, onChangePageNumber }) => {
           onChangePageNumber={onChangePageNumber}
           maxPageSize={3}
           likeDisabled
+          isMyEvent
         />
       </MainSection>
     </Wrapper>
