@@ -7,7 +7,13 @@ const EventList = ({
   <>
     {events
       .slice((pageNumber - 1) * maxPageSize, Math.min(events.length, pageNumber * maxPageSize))
-      .map((event) => <EventCard key={event.event_id} eventPost={event} likeDisabled={likeDisabled} />)}
+      .map((event) => (
+        <EventCard
+          key={event.event_id}
+          eventPost={event}
+          likeDisabled={likeDisabled}
+        />
+      ))}
     <Pagination
       style={{ textAlign: 'center', marginBottom: '20px' }}
       total={events.length}
