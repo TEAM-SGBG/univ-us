@@ -1,13 +1,15 @@
 import { useState } from 'react';
 import { useHistory } from 'react-router';
+import { useDispatch, useSelector } from 'react-redux';
 import MyPagePresenter from './MyPagePresenter';
-import channel from '../../mock/HostCenterMock/channel.json';
 import eventPosts from '../../mock/HostCenterMock/eventPosts.json';
 import user from '../../mock/user.json';
+import { GET_SUBSCRIBE_CHANNELS_REQUEST } from '../../reducers/user';
 
 function MyPageContainer() {
   const history = useHistory();
-
+  const dispatch = useDispatch();
+  const { subscribeChannels } = useSelector((state) => state.user);
   const [myNum, setNum] = useState('1');
 
   function goOne() {
@@ -19,11 +21,11 @@ function MyPageContainer() {
   }
 
   function goThree() {
+    dispatch({ type: GET_SUBSCRIBE_CHANNELS_REQUEST });
     setNum('3');
   }
 
   function goUserinfo() {
-    console.log('go userinfo');
     history.push('/userinfo');
   }
 
@@ -35,7 +37,7 @@ function MyPageContainer() {
       goOne={goOne}
       goTwo={goTwo}
       goThree={goThree}
-      channel={channel}
+      channel={subscribeChannels}
       eventPosts={eventPosts}
       user={user}
     />
