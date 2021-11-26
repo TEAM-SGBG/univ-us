@@ -62,6 +62,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         subscribeChannels: [],
         loadSubscribeChannelsLoading: true,
+        loadSubscribeChannelsDone: false,
         loadSubscribeChannelsError: null,
       };
     case LOAD_SUBSCRIBE_CHANNELS_SUCCESS:

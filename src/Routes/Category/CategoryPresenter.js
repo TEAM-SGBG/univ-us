@@ -1,9 +1,9 @@
-import { Divider } from 'antd';
+import { Divider, message } from 'antd';
 import styled from 'styled-components';
+import { LoadingOutlined } from '@ant-design/icons';
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
 import EventList from '../../Components/Event/EventList';
-// import eventPosts from '../../mock/HostCenterMock/eventPosts.json';
 
 const EventTitle = styled.p`
   font-family: Roboto;
@@ -68,7 +68,7 @@ const DividerWrapper = styled(Divider)`
 `;
 
 function CategoryPresenter({
-  pageNumber, mappingType, onChangePageNumber, events,
+  pageNumber, mappingType, onChangePageNumber, events, loading, done, error,
 }) {
   return (
     <>
@@ -76,12 +76,16 @@ function CategoryPresenter({
       <Wrapper>
         <EventTitle>{mappingType()}</EventTitle>
         <DividerWrapper />
+        {loading && <LoadingOutlined />}
+        {done && (
         <EventList
           mainEvents={events}
           pageNumber={pageNumber}
           onChangePageNumber={onChangePageNumber}
           maxPageSize={5}
         />
+        )}
+        {error && message.error('행사 정보를 가져오는데 실패했습니다.')}
       </Wrapper>
       <Footer />
     </>

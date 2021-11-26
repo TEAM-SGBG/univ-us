@@ -1,27 +1,23 @@
 import { useLocation } from 'react-router-dom';
-import axios from 'axios';
 import { useCallback, useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import CategoryPresenter from './CategoryPresenter';
-// import eventPosts from '../../mock/HostCenterMock/eventPosts.json';
+import { LOAD_CATEGORY_EVENTS_REQUEST } from '../../reducers/post';
 
 function CategoryContainer() {
   const useQuery = () => new URLSearchParams(useLocation().search);
   const query = useQuery();
   const type = query.get('type');
-  const [events, setEvents] = useState([]);
+  const dispatch = useDispatch();
+
   const [pageNumber, setPageNumber] = useState(1);
 
-  useEffect(() => {
-    axios.get(`http://localhost:3001/api/events/category_event?category=${type}`).then((response) => {
-      if (response.data.success) {
-        console.log('all_event/success');
-        console.log(response.data.data);
-        setEvents(response.data.data);
-      } else {
-        setEvents(-1);
-      }
-    });
-  }, [type]);
+  const {
+    categoryEvents,
+    loadCategoryEventsLoading,
+    loadCategoryEventsDone,
+    loadCategoryEventsError,
+  } = useSelector(((state) => state.post));
 
   const mappingType = useCallback(() => {
     if (type === 'sushi') return '수시행사';
@@ -37,15 +33,19 @@ function CategoryContainer() {
   const initializePageNumber = useCallback(() => { setPageNumber(1); }, []);
 
   useEffect(() => {
+    dispatch({ type: LOAD_CATEGORY_EVENTS_REQUEST, categoryType: type });
     initializePageNumber();
   }, [type]);
 
   return (
     <CategoryPresenter
-      events={events}
+      events={categoryEvents}
       mappingType={mappingType}
       onChangePageNumber={onChangePageNumber}
       pageNumber={pageNumber}
+      loading={loadCategoryEventsLoading}
+      done={loadCategoryEventsDone}
+      error={loadCategoryEventsError}
     />
   );
 }
