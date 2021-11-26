@@ -100,7 +100,7 @@ function EventCard({ eventPost, likeDisabled = false }) {
           <ColWrapper span={12} style={{ textAlign: 'left' }}>
             <Space>
               <Avatar src={eventPost.avatar} />
-              {eventPost.channel_owner.id}
+              {eventPost.channel_owner_id}
             </Space>
           </ColWrapper>
           <ColWrapper span={12} style={{ textAlign: 'right' }}>
