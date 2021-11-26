@@ -1,10 +1,8 @@
 import styled from 'styled-components';
 import {
-  Button, Card, Space, Typography,
+  Button, Modal,
 } from 'antd';
 import { Link } from 'react-router-dom';
-
-const { Text, Title } = Typography;
 
 const Wrapper = styled.div`
   padding: 20px 5px;
@@ -12,56 +10,171 @@ const Wrapper = styled.div`
   width: 60vw;
 `;
 
-const EventInfoPresenter = ({ myEventPost }) => (
+const ImageBox = styled.div`
+  width: 238px;
+  height: 127px;
+  border-radius: 5px;
+  background: #FFFFFF;
+  border: 1px solid #EAEEEF;
+`;
+
+const DDayBox = styled.div`
+  width: 238px;
+  height: 123px;
+  border-radius: 5px;
+  background: #FFFFFF;
+  border: 1px solid #EAEEEF;
+`;
+
+const InfoContainer = styled.div`
+  width: 873px;
+  height: 270px;
+  background: #FFFFFF;
+  border: 1px solid #EAEEEF;
+  border-radius: 5px;
+  
+  padding-top: 66px;
+  padding-left: 36px;
+`;
+
+const Title = styled.p`
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 30px;
+  letter-spacing: 0.56px;
+  color: #333333;
+`;
+
+const ItemBox = styled.div`
+  margin-top: 16px;
+`;
+
+const Items = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 8px;
+`;
+
+const ItemTitle = styled.p`
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 21px;
+  letter-spacing: 0.56px;
+  color: #8D8D8D;
+`;
+
+const ItemsDetail = styled.p`
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 21px;
+  letter-spacing: 0.56px;
+  color: #333333;
+  margin-left: 10px;
+`;
+
+const MozipText = styled.p`
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 21px;
+  letter-spacing: 0.56px;
+  color: #444444;
+`;
+
+const BottomDiv = styled.div`
+  margin-top: 32px;
+`;
+
+const ApplyBox = styled.div`
+  width: 873px;
+  height: 250px;
+  background: #FFFFFF;
+  border: 1px solid #EAEEEF;
+  border-radius: 5px;
+`;
+
+const CancelBox = styled.div`
+  width: 238px;
+  height: 250px;
+  background: #FFFFFF;
+  border: 1px solid #EAEEEF;
+  border-radius: 5px;
+  margin-left: 16px;
+`;
+
+const StyledLink = styled(Link)`
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 21px;
+  margin-left: 10px;
+  color: #333333;
+`;
+
+const StyledButton = styled(Button)`
+
+`;
+
+const EventInfoPresenter = ({
+  myEventPost, showModal, isModalVisible, handleOk, handleCancel,
+}) => (
   <Wrapper>
-    <div style={{ display: 'flex', gap: '10px' }}>
+    <div style={{ display: 'flex', gap: '16px' }}>
       <div style={{
-        display: 'flex', flexDirection: 'column', gap: '10px', flexGrow: 1,
+        display: 'flex', flexDirection: 'column', gap: '20px', flexGrow: 1,
       }}
       >
-        <Card>아바타</Card>
-        <Card>
-          <div>
-            <Title>D-Day</Title>
-          </div>
-          <div>
-            <Text>멋진 행사가 될 거예요!</Text>
-          </div>
-          <div />
-        </Card>
+        <ImageBox />
+        <DDayBox />
       </div>
-      <Card style={{ flexGrow: 5 }} title="제목">
-        <div>
-          <Text>일시 </Text>
-          <Text>
-            <Space>
+      <InfoContainer>
+        <Title>
+          제목
+        </Title>
+        <ItemBox>
+          <Items>
+            <ItemTitle>일시</ItemTitle>
+            <ItemsDetail>
               {new Date(myEventPost.startDate).toLocaleDateString()}
+              {' '}
               -
+              {' '}
               {new Date(myEventPost.endDate).toLocaleDateString()}
-            </Space>
-          </Text>
-        </div>
-        <div>
-          <Text>장소 </Text>
-          <Text>
-            {myEventPost.place}
-          </Text>
-        </div>
-        <div>
-          <Text>링크 </Text>
-          <Link to={`/events/${myEventPost.id}`}>이벤트 링크</Link>
-        </div>
-      </Card>
+            </ItemsDetail>
+          </Items>
+          <Items>
+            <ItemTitle>장소</ItemTitle>
+            <ItemsDetail>{myEventPost.place}</ItemsDetail>
+          </Items>
+          <Items>
+            <ItemTitle>링크</ItemTitle>
+            <StyledLink to={`/events/${myEventPost.id}`}>이벤트 링크</StyledLink>
+          </Items>
+        </ItemBox>
+      </InfoContainer>
     </div>
-    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-      <Text style={{ alignSelf: 'center' }}>
+    <BottomDiv style={{ display: 'flex', justifyContent: 'space-between' }}>
+      <MozipText style={{ alignSelf: 'center' }}>
         모집
-      </Text>
-      <Button type="text">참가자 리스트 확인</Button>
-    </div>
+      </MozipText>
+      <StyledButton type="text" onClick={showModal}>참가자 리스트 확인</StyledButton>
+      <Modal title="참가자 리스트" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+      </Modal>
+    </BottomDiv>
     <div style={{ display: 'flex', gap: '10px' }}>
-      <Card style={{ flexGrow: 3 }} title="참가신청"><Card.Meta title={`${myEventPost.applied}명`} /></Card>
-      <Card style={{ flexGrow: 1 }} title="취소"><Card.Meta title={`${myEventPost.canceled}명`} /></Card>
+      <ApplyBox />
+      <CancelBox />
     </div>
   </Wrapper>
 );
