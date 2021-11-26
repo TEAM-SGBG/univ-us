@@ -3,7 +3,15 @@ const initialState = {
   isLoggedIn: false,
   loginError: null,
 
+  subscribeChannelsLoading: false,
+  subscribeChannels: [],
+  subscribeChannelsError: false,
+
 };
+
+export const GET_SUBSCRIBE_CHANNELS_REQUEST = 'GET_SUBSCRIBE_CHANNELS_REQUEST';
+export const GET_SUBSCRIBE_CHANNELS_SUCCESS = 'GET_SUBSCRIBE_CHANNELS_SUCCESS';
+export const GET_SUBSCRIBE_CHANNELS_FAILURE = 'GET_SUBSCRIBE_CHANNELS_FAILURE';
 
 export const AUTH_CHECK_REQUEST = 'AUTH_CHECK_REQUEST';
 export const AUTH_CHECK_SUCCESS = 'AUTH_CHECK_SUCCESS';
@@ -47,6 +55,25 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         isLoggedIn: false,
+      };
+    case GET_SUBSCRIBE_CHANNELS_REQUEST:
+      return {
+        ...state,
+        subscribeChannelsLoading: true,
+        subscribeChannels: [],
+      };
+    case GET_SUBSCRIBE_CHANNELS_SUCCESS:
+      return {
+        ...state,
+        subscribeChannelsLoading: false,
+        subscribeChannels: [...action.data],
+      };
+    case GET_SUBSCRIBE_CHANNELS_FAILURE:
+      return {
+        ...state,
+        subscribeChannelsLoading: false,
+        subscribeChannels: [...state.subscribeChannels],
+        subscribeChannelsError: [...action.data],
       };
     default:
       return state;

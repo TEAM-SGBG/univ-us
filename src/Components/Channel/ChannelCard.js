@@ -50,7 +50,6 @@ const ChannelCard = ({ currentChannel }) => {
   };
 
   const handleCancel = () => {
-    console.log('Clicked cancel button');
     setVisible(false);
   };
 

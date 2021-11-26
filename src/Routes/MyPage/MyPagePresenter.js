@@ -1,6 +1,7 @@
 import Footer from 'Components/Footer';
 import MiniHeader from 'Components/MiniHeader';
 import styled from 'styled-components';
+import { Skeleton } from 'antd';
 import ChannelCard from '../../Components/Channel/ChannelCard';
 
 const Wrapper = styled.div`
@@ -99,7 +100,7 @@ const SubChannel = styled.div`
 `;
 
 function MyPagePresenter({
-  goUserinfo, myNum, goOne, goTwo, goThree, eventPosts, channel,
+  goUserinfo, myNum, goOne, goTwo, goThree, eventPosts, channel, loading,
 }) {
   return (
     <>
@@ -155,12 +156,22 @@ function MyPagePresenter({
           </LikedEvent>
         )}
         {(myNum === '3') && (
-          <SubChannel>
-            {channel.map((mychannel) => (
-              <ChannelCard currentChannel={mychannel} />
-            ))}
-          </SubChannel>
-        )}
+          () => {
+            if (loading) {
+              return <Skeleton />;
+            }
+            if (channel.length === 0) {
+              return <div>구독한 채널이 없습니다.</div>;
+            }
+            return (
+              <SubChannel>
+                {channel.map((mychannel) => (
+                  <ChannelCard currentChannel={mychannel} />
+                ))}
+              </SubChannel>
+            );
+          }
+        )()}
       </Wrapper>
       <Footer />
     </>

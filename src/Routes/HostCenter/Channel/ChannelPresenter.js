@@ -52,7 +52,8 @@ const ChannelPresenter = ({
         (() => {
           if (loadChannelLoading) {
             return <Skeleton />;
-          } if (mainChannels.length === 0) {
+          }
+          if (mainChannels.length === 0) {
             return <div>생성된 채널이 없습니다.</div>;
           }
           return mainChannels

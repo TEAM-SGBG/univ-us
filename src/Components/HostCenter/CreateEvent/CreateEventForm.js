@@ -5,7 +5,7 @@ import {
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import locale from 'antd/es/date-picker/locale/ko_KR';
-import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
+import ImgCrop from 'antd-img-crop';
 
 const InputWrapper = styled(Input)`
   // height: 48px;
@@ -61,7 +61,7 @@ const OFFLINE = 'OFFLINE';
 const ONOFFLINE = 'ONOFFLINE';
 
 const CreateEventForm = () => {
-  const [loading, setLoading] = useState(false);
+  const [imageFileList, setImageFileList] = useState([]);
 
   const [eventName, setEventName] = useState({ value: '' });
   const [eventType, setEventType] = useState({});
@@ -70,6 +70,25 @@ const CreateEventForm = () => {
 
   const [validate, setValidate] = useState(false);
   const [form] = Form.useForm();
+
+  const onUploadChange = ({ fileList }) => {
+    setImageFileList(fileList);
+  };
+
+  const onUploadPreview = async (file) => {
+    let src = file.url;
+    if (!src) {
+      src = await new Promise((resolve) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file.originFileObj);
+        reader.onload = () => resolve(reader.result);
+      });
+    }
+    const image = new Image();
+    image.src = src;
+    const imgWindow = window.open(src);
+    imgWindow.document.write(image.outerHTML);
+  };
 
   const onFinish = (values) => {
     // if (validate) {
@@ -153,18 +172,6 @@ const CreateEventForm = () => {
     setEventDescription({ ...validateDescription(e.target.value), value: e.target.value });
   };
 
-  const onUploadChange = (info) => {
-    console.log(info);
-    setLoading(true);
-  };
-
-  const uploadButton = (
-    <div>
-      {loading ? <LoadingOutlined /> : <PlusOutlined />}
-      <div style={{ marginTop: 8 }}>Upload</div>
-    </div>
-  );
-
   useEffect(() => {
     setValidate(eventType.value
         && eventTime.startDate && eventTime.endDate
@@ -182,14 +189,17 @@ const CreateEventForm = () => {
       onFinishFailed={onFinishFailed}
     >
       <Form.Item label="이미지">
-        <Upload
-          name="EventImage"
-          listType="picture-card"
-          showUploadList={false}
-          onChange={onUploadChange}
-        >
-          {uploadButton}
-        </Upload>
+        <ImgCrop rotate aspect={2}>
+          <Upload
+            action="http://localhost:3001/api/upload_image"
+            listType="picture-card"
+            fileList={imageFileList}
+            onChange={onUploadChange}
+            onPreview={onUploadPreview}
+          >
+            {imageFileList < 2 && '+ Upload'}
+          </Upload>
+        </ImgCrop>
       </Form.Item>
       <Form.Item
         label="행사 이름"
