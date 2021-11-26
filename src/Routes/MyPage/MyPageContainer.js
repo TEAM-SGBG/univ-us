@@ -9,7 +9,7 @@ import { GET_SUBSCRIBE_CHANNELS_REQUEST } from '../../reducers/user';
 function MyPageContainer() {
   const history = useHistory();
   const dispatch = useDispatch();
-  const { subscribeChannels } = useSelector((state) => state.user);
+  const { subscribeChannelsLoading, subscribeChannels } = useSelector((state) => state.user);
   const [myNum, setNum] = useState('1');
 
   function goOne() {
@@ -40,6 +40,7 @@ function MyPageContainer() {
       channel={subscribeChannels}
       eventPosts={eventPosts}
       user={user}
+      loading={subscribeChannelsLoading}
     />
   );
 }
