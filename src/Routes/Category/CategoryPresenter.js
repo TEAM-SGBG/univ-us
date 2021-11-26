@@ -77,7 +77,7 @@ function CategoryPresenter({
         <EventTitle>{mappingType()}</EventTitle>
         <DividerWrapper />
         <EventList
-          events={events}
+          mainEvents={events}
           pageNumber={pageNumber}
           onChangePageNumber={onChangePageNumber}
           maxPageSize={5}

@@ -2,16 +2,17 @@ import { Pagination } from 'antd';
 import EventCard from './EventCard';
 
 const EventList = ({
-  events, pageNumber, onChangePageNumber, maxPageSize, likeDisabled,
+  mainEvents, pageNumber, onChangePageNumber, maxPageSize, likeDisabled, isMyEvent = false,
 }) => (
   <>
-    {events
-      .slice((pageNumber - 1) * maxPageSize, Math.min(events.length, pageNumber * maxPageSize))
+    {mainEvents
+      .slice((pageNumber - 1) * maxPageSize, Math.min(mainEvents.length, pageNumber * maxPageSize))
       .map((event) => (
         <EventCard
-          key={event.event_id}
+          key={event.id}
           eventPost={event}
           likeDisabled={likeDisabled}
+          isMyEvent={isMyEvent}
         />
       ))}
     <Pagination
