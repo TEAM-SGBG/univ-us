@@ -6,14 +6,17 @@ import {
   AUTH_CHECK_FAILURE,
   AUTH_CHECK_REQUEST,
   AUTH_CHECK_SUCCESS,
-  GET_SUBSCRIBE_CHANNELS_FAILURE,
-  GET_SUBSCRIBE_CHANNELS_REQUEST,
-  GET_SUBSCRIBE_CHANNELS_SUCCESS,
+  LOAD_SUBSCRIBE_CHANNELS_FAILURE,
+  LOAD_SUBSCRIBE_CHANNELS_REQUEST,
+  LOAD_SUBSCRIBE_CHANNELS_SUCCESS,
 } from '../reducers/user';
 
 async function authCheckAPI() {
-  const response = await axios.get('http://localhost:3001/auth/', { withCredentials: true });
-  return !!response.data;
+  const user = await axios.get(
+    'http://localhost:3001/auth/',
+    { withCredentials: true },
+  );
+  return !!user.data;
 }
 
 function* authCheck() {
@@ -31,23 +34,26 @@ function* authCheck() {
   }
 }
 
-async function getSubscribeChannelsAPI() {
-  const response = await axios.get('http://localhost:3001/api/channel/subscribe', { withCredentials: true });
+async function loadSubscribeChannelsAPI() {
+  const subscribeChannels = await axios.get(
+    'http://localhost:3001/api/channel/subscribe',
+    { withCredentials: true },
+  );
 
-  return response.data.data;
+  return subscribeChannels.data.data;
 }
 
-function* getSubscribeChannels() {
+function* loadSubscribeChannels() {
   try {
-    const result = yield call(getSubscribeChannelsAPI);
+    const result = yield call(loadSubscribeChannelsAPI);
     yield put({
-      type: GET_SUBSCRIBE_CHANNELS_SUCCESS,
+      type: LOAD_SUBSCRIBE_CHANNELS_SUCCESS,
       data: result,
     });
   } catch (error) {
     yield put({
-      type: GET_SUBSCRIBE_CHANNELS_FAILURE,
-      data: error,
+      type: LOAD_SUBSCRIBE_CHANNELS_FAILURE,
+      error,
     });
   }
 }
@@ -55,13 +61,13 @@ function* watchAuthCheck() {
   yield takeLatest(AUTH_CHECK_REQUEST, authCheck);
 }
 
-function* watchGetSubscribeChannels() {
-  yield takeLatest(GET_SUBSCRIBE_CHANNELS_REQUEST, getSubscribeChannels);
+function* watchLoadSubscribeChannels() {
+  yield takeLatest(LOAD_SUBSCRIBE_CHANNELS_REQUEST, loadSubscribeChannels);
 }
 
 export default function* userSaga() {
   yield all([
     fork(watchAuthCheck),
-    fork(watchGetSubscribeChannels),
+    fork(watchLoadSubscribeChannels),
   ]);
 }

@@ -46,7 +46,6 @@ function CategoryContainer() {
       mappingType={mappingType}
       onChangePageNumber={onChangePageNumber}
       pageNumber={pageNumber}
-      initializePageNumber={initializePageNumber}
     />
   );
 }

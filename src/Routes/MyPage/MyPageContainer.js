@@ -4,12 +4,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import MyPagePresenter from './MyPagePresenter';
 import eventPosts from '../../mock/HostCenterMock/eventPosts.json';
 import user from '../../mock/user.json';
-import { GET_SUBSCRIBE_CHANNELS_REQUEST } from '../../reducers/user';
+import { LOAD_SUBSCRIBE_CHANNELS_REQUEST } from '../../reducers/user';
 
 function MyPageContainer() {
   const history = useHistory();
   const dispatch = useDispatch();
-  const { subscribeChannelsLoading, subscribeChannels } = useSelector((state) => state.user);
+  const {
+    loadSubscribeChannelsLoading,
+    loadSubscribeChannelsDone,
+    loadSubscribeChannelsError,
+    subscribeChannels,
+  } = useSelector((state) => state.user);
   const [myNum, setNum] = useState('1');
 
   function goOne() {
@@ -21,7 +26,7 @@ function MyPageContainer() {
   }
 
   function goThree() {
-    dispatch({ type: GET_SUBSCRIBE_CHANNELS_REQUEST });
+    dispatch({ type: LOAD_SUBSCRIBE_CHANNELS_REQUEST });
     setNum('3');
   }
 
@@ -40,7 +45,9 @@ function MyPageContainer() {
       channel={subscribeChannels}
       eventPosts={eventPosts}
       user={user}
-      loading={subscribeChannelsLoading}
+      loading={loadSubscribeChannelsLoading}
+      done={loadSubscribeChannelsDone}
+      error={loadSubscribeChannelsError}
     />
   );
 }

@@ -1,7 +1,7 @@
 import Footer from 'Components/Footer';
 import MiniHeader from 'Components/MiniHeader';
 import styled from 'styled-components';
-import { Skeleton } from 'antd';
+import { Skeleton, message } from 'antd';
 import ChannelCard from '../../Components/Channel/ChannelCard';
 
 const Wrapper = styled.div`
@@ -100,7 +100,7 @@ const SubChannel = styled.div`
 `;
 
 function MyPagePresenter({
-  goUserinfo, myNum, goOne, goTwo, goThree, eventPosts, channel, loading,
+  goUserinfo, myNum, goOne, goTwo, goThree, eventPosts, channel, loading, done, error,
 }) {
   return (
     <>
@@ -160,13 +160,20 @@ function MyPagePresenter({
             if (loading) {
               return <Skeleton />;
             }
-            if (channel.length === 0) {
+            if (error) {
+              return message.error('구독 채널 불러오기 실패');
+            }
+            if (done && channel.length === 0) {
               return <div>구독한 채널이 없습니다.</div>;
             }
+
             return (
               <SubChannel>
-                {channel.map((mychannel) => (
-                  <ChannelCard currentChannel={mychannel} />
+                {channel.map((subscribedChannel) => (
+                  <ChannelCard
+                    key={channel.id}
+                    currentChannel={subscribedChannel}
+                  />
                 ))}
               </SubChannel>
             );

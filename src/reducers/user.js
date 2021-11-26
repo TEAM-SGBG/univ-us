@@ -3,15 +3,16 @@ const initialState = {
   isLoggedIn: false,
   loginError: null,
 
-  subscribeChannelsLoading: false,
   subscribeChannels: [],
-  subscribeChannelsError: false,
+  loadSubscribeChannelsLoading: false,
+  loadSubscribeChannelsDone: false,
+  loadSubscribeChannelsError: null,
 
 };
 
-export const GET_SUBSCRIBE_CHANNELS_REQUEST = 'GET_SUBSCRIBE_CHANNELS_REQUEST';
-export const GET_SUBSCRIBE_CHANNELS_SUCCESS = 'GET_SUBSCRIBE_CHANNELS_SUCCESS';
-export const GET_SUBSCRIBE_CHANNELS_FAILURE = 'GET_SUBSCRIBE_CHANNELS_FAILURE';
+export const LOAD_SUBSCRIBE_CHANNELS_REQUEST = 'LOAD_SUBSCRIBE_CHANNELS_REQUEST';
+export const LOAD_SUBSCRIBE_CHANNELS_SUCCESS = 'LOAD_SUBSCRIBE_CHANNELS_SUCCESS';
+export const LOAD_SUBSCRIBE_CHANNELS_FAILURE = 'LOAD_SUBSCRIBE_CHANNELS_FAILURE';
 
 export const AUTH_CHECK_REQUEST = 'AUTH_CHECK_REQUEST';
 export const AUTH_CHECK_SUCCESS = 'AUTH_CHECK_SUCCESS';
@@ -56,24 +57,27 @@ const reducer = (state = initialState, action) => {
         ...state,
         isLoggedIn: false,
       };
-    case GET_SUBSCRIBE_CHANNELS_REQUEST:
+    case LOAD_SUBSCRIBE_CHANNELS_REQUEST:
       return {
         ...state,
-        subscribeChannelsLoading: true,
         subscribeChannels: [],
+        loadSubscribeChannelsLoading: true,
+        loadSubscribeChannelsError: null,
       };
-    case GET_SUBSCRIBE_CHANNELS_SUCCESS:
+    case LOAD_SUBSCRIBE_CHANNELS_SUCCESS:
       return {
         ...state,
-        subscribeChannelsLoading: false,
         subscribeChannels: [...action.data],
+        loadSubscribeChannelsLoading: false,
+        loadSubscribeChannelsDone: true,
       };
-    case GET_SUBSCRIBE_CHANNELS_FAILURE:
+    case LOAD_SUBSCRIBE_CHANNELS_FAILURE:
       return {
         ...state,
-        subscribeChannelsLoading: false,
         subscribeChannels: [...state.subscribeChannels],
-        subscribeChannelsError: [...action.data],
+        loadSubscribeChannelsLoading: false,
+        loadSubscribeChannelsDone: false,
+        loadSubscribeChannelsError: [...action.error],
       };
     default:
       return state;
