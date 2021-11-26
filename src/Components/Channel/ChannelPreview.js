@@ -64,7 +64,7 @@ const ChannelPreview = ({ channel }) => (
       <ChannelImage>
         <img alt="items" src="img/건국대.png" width="72px" height="72px" />
       </ChannelImage>
-      <ChannelItemTitle>{channel.title}</ChannelItemTitle>
+      <ChannelItemTitle>{channel.channel_name}</ChannelItemTitle>
       <ChannelItemCount>
         {channel.events}
         {' '}

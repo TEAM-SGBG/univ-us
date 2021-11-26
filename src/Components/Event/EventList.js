@@ -17,7 +17,7 @@ const EventList = ({
       ))}
     <Pagination
       style={{ textAlign: 'center', marginBottom: '20px' }}
-      total={mainEvents.length}
+      total={events.length}
       current={pageNumber}
       onChange={onChangePageNumber}
       defaultPageSize={maxPageSize}

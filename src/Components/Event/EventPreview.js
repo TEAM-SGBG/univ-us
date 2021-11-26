@@ -43,7 +43,7 @@ function EventPreview({ eventPost }) {
   const history = useHistory();
 
   const goEventPage = useCallback(() => {
-    history.push(`/events/${eventPost.id}`);
+    history.push(`/events/${eventPost.event_id}`);
   }, []);
 
   return (
@@ -51,7 +51,7 @@ function EventPreview({ eventPost }) {
       <PreviewItems onClick={goEventPage}>
         <PreviewItemsImage src={eventPost.img} />
         <PreviewItemsDate>{new Date(eventPost.date).toLocaleDateString()}</PreviewItemsDate>
-        <PreviewItemsName>{eventPost.title}</PreviewItemsName>
+        <PreviewItemsName>{eventPost.name}</PreviewItemsName>
       </PreviewItems>
     </>
   );

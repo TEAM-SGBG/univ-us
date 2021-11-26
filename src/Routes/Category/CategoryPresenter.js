@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
 import EventList from '../../Components/Event/EventList';
-import eventPosts from '../../mock/HostCenterMock/eventPosts.json';
+// import eventPosts from '../../mock/HostCenterMock/eventPosts.json';
 
 const EventTitle = styled.p`
   font-family: Roboto;
@@ -67,7 +67,9 @@ const DividerWrapper = styled(Divider)`
   }
 `;
 
-function CategoryPresenter({ pageNumber, mappingType, onChangePageNumber }) {
+function CategoryPresenter({
+  pageNumber, mappingType, onChangePageNumber, events,
+}) {
   return (
     <>
       <Header />
@@ -75,7 +77,7 @@ function CategoryPresenter({ pageNumber, mappingType, onChangePageNumber }) {
         <EventTitle>{mappingType()}</EventTitle>
         <DividerWrapper />
         <EventList
-          mainEvents={eventPosts}
+          mainEvents={events}
           pageNumber={pageNumber}
           onChangePageNumber={onChangePageNumber}
           maxPageSize={5}
