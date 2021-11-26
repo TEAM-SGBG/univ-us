@@ -26,7 +26,7 @@ function HomeContainer() {
       }
     });
 
-    axios.get('http://localhost:3001/api/events/all_event').then((response) => {
+    axios.get('http://localhost:3001/api/events/get_popular_events').then((response) => {
       if (response.data.success) {
         console.log('all_event/success');
         console.log(response.data.data);
@@ -36,7 +36,7 @@ function HomeContainer() {
       }
     });
 
-    axios.get('http://localhost:3001/api/events/all_event').then((response) => {
+    axios.get('http://localhost:3001/api/events/get_new_events').then((response) => {
       if (response.data.success) {
         console.log('all_event/success');
         console.log(response.data.data);

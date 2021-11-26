@@ -68,7 +68,7 @@ function EventCard({ eventPost, likeDisabled = false, isMyEvent }) {
   }, [liked]);
 
   const goEventPage = useCallback(() => {
-    history.push(isMyEvent ? `/hostcenter/${eventPost.channel.id}/event/${eventPost.id}` : `/events/${eventPost.id}`);
+    history.push(isMyEvent ? `/hostcenter/${eventPost.channel.id}/event/${eventPost.event_id}` : `/events/${eventPost.event_id}`);
   }, []);
 
   return (
@@ -85,7 +85,7 @@ function EventCard({ eventPost, likeDisabled = false, isMyEvent }) {
       <Wrapper>
         <RowWrapper align="middle">
           <ColWrapper span={12} style={{ textAlign: 'left' }}>
-            {new Date(eventPost.date).toLocaleDateString()}
+            {new Date(eventPost.created_at).toLocaleDateString()}
           </ColWrapper>
           <ColWrapper span={12} style={{ textAlign: 'right' }} />
         </RowWrapper>

@@ -2,10 +2,10 @@ import Footer from 'Components/Footer';
 import Header from 'Components/Header';
 import styled from 'styled-components';
 import { Divider, Row } from 'antd';
-import { useCallback, useState } from 'react';
-import { HeartOutlined, HeartTwoTone } from '@ant-design/icons';
+// import { useCallback } from 'react';
+// import { HeartOutlined, HeartTwoTone } from '@ant-design/icons';
 import EventForm from '../../Components/Event/EventForm';
-import ChannelCard from '../../Components/Channel/ChannelCard';
+// import ChannelCard from '../../Components/Channel/ChannelCard';
 
 const Wrapper = styled.div`
   display: flex;
@@ -38,19 +38,25 @@ const EventDescription = styled.p`
 `;
 
 function EventPresenter({ currentPost }) {
-  const [liked, setLiked] = useState(currentPost.liked);
+  // const [liked, setLiked] = useState(currentPost.liked);
 
-  const onToggleLike = useCallback(() => {
-    setLiked(((prevState) => !prevState));
-  }, []);
+  // const onToggleLike = useCallback(() => {
+  //   setLiked(((prevState) => !prevState));
+  // }, []);
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column' }}>
       <Header />
       <Wrapper>
         <EventTitle>
-          {`${currentPost.title} `}
-          {liked ? <HeartTwoTone onClick={onToggleLike} twoToneColor="#eb2f96" /> : <HeartOutlined onClick={onToggleLike} />}
+          {`${currentPost.name} `}
+          {/* {liked ?
+          <HeartTwoTone
+          onClick={onToggleLike}
+          twoToneColor="#eb2f96" />
+          :
+          <HeartOutlined
+          onClick={onToggleLike} />} */}
         </EventTitle>
         <Row><img src="https://dummyimage.com/1100x400/000/fff" alt="example" style={{ width: '100%' }} /></Row>
         <Row style={{
@@ -72,7 +78,7 @@ function EventPresenter({ currentPost }) {
         </Row>
         <EventTitle>채널 정보</EventTitle>
         <Divider style={{ borderTop: '3px solid rgba(0, 0, 0, 0.06)' }} />
-        <ChannelCard currentChannel={currentPost.channel} />
+        {/* <ChannelCard currentChannel={currentPost.channel} /> */}
       </Wrapper>
       <Footer />
     </div>

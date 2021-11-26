@@ -12,7 +12,7 @@ function CategoryContainer() {
   const [pageNumber, setPageNumber] = useState(1);
 
   useEffect(() => {
-    axios.get('http://localhost:3001/api/events/all_event').then((response) => {
+    axios.get(`http://localhost:3001/api/events/category_event?category=${type}`).then((response) => {
       if (response.data.success) {
         console.log('all_event/success');
         console.log(response.data.data);
@@ -21,7 +21,7 @@ function CategoryContainer() {
         setEvents(-1);
       }
     });
-  }, []);
+  }, [type]);
 
   const mappingType = useCallback(() => {
     if (type === 'sushi') return '수시행사';

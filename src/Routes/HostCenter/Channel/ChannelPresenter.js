@@ -19,6 +19,7 @@ const CreateChannelButton = styled(Button)`
   border: 0;
   color: #5C3FBF;
   height: 67px;
+  margin-bottom: 10px;
 
   :hover{
     background: #F1F5F5;

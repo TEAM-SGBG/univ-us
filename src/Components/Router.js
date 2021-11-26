@@ -44,7 +44,7 @@ export default () => {
         <Route exact path="/category">
           <Category />
         </Route>
-        <Route path="/events">
+        <Route path="/events/:event_id">
           <Event />
         </Route>
         <Route path="/hostcenter">
