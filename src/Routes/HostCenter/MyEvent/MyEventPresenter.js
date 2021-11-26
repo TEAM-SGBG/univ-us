@@ -57,7 +57,7 @@ const MyEventPresenter = ({ eventPosts, pageNumber, onChangePageNumber }) => {
           />
         ))}
       </TopSection>
-      <MenuWrapper>채널 리스트</MenuWrapper>
+      <MenuWrapper>행사 리스트</MenuWrapper>
       <MainSection>
         <EventList
           mainEvents={eventPosts}
