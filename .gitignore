@@ -25,3 +25,5 @@ yarn.lock
 
 # Webstorm IDE
 .idea/
+
+package-lock.json
