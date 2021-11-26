@@ -63,7 +63,7 @@ const ChannelCard = ({ currentChannel }) => {
       <div style={{ display: 'flex', flexDirection: 'column', paddingLeft: '10px' }}>
         <div style={{ display: 'flex', paddingBottom: '10px' }}>
           <ChannelName>
-            {currentChannel.name}
+            {currentChannel.channel_name}
             님의 채널
           </ChannelName>
           <Popconfirm
