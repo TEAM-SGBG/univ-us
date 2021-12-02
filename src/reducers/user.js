@@ -8,7 +8,63 @@ const initialState = {
   loadSubscribeChannelsDone: false,
   loadSubscribeChannelsError: null,
 
+  loadMyChannelsLoading: false,
+  loadMyChannelsDone: false,
+  loadMyChannelsError: null,
+
+  loadLoadMyEventsLoading: false,
+  loadLoadMyEventsDone: false,
+  loadLoadMyEventsError: null,
+
+  loadCreateMyChannelLoading: false,
+  loadCreateMyChannelDone: false,
+  loadCreateMyChannelError: null,
+
+  loadCreateMyEventLoading: false,
+  loadCreateMyEventDone: false,
+  loadCreateMyEventError: null,
+
+  loadChangeMyChannelLoading: false,
+  loadChangeMyChannelDone: false,
+  loadChangeMyChannelError: null,
+
+  loadDeleteMyChannelLoading: false,
+  loadDeleteMyChannelDone: false,
+  loadDeleteMyChannelError: null,
+
+  loadDeleteMyEventLoading: false,
+  loadDeleteMyEventDone: false,
+  loadDeleteMyEventError: null,
+
 };
+
+export const LOAD_MY_CHANNELS_REQUEST = 'LOAD_MY_CHANNELS_REQUEST';
+export const LOAD_MY_CHANNELS_SUCCESS = 'LOAD_MY_CHANNELS_SUCCESS';
+export const LOAD_MY_CHANNELS_FAILURE = 'LOAD_MY_CHANNELS_FAILURE';
+
+export const LOAD_MY_EVENTS_REQUEST = 'LOAD_MY_EVENTS_REQUEST';
+export const LOAD_MY_EVENTS_SUCCESS = 'LOAD_MY_EVENTS_SUCCESS';
+export const LOAD_MY_EVENTS_FAILURE = 'LOAD_MY_EVENTS_FAILURE';
+
+export const CREATE_MY_CHANNEL_REQUEST = 'CREATE_MY_CHANNEL_REQUEST';
+export const CREATE_MY_CHANNEL_SUCCESS = 'CREATE_MY_CHANNEL_SUCCESS';
+export const CREATE_MY_CHANNEL_FAILURE = 'CREATE_MY_CHANNEL_FAILURE';
+
+export const CREATE_MY_EVENT_REQUEST = 'CREATE_MY_EVENT_REQUEST';
+export const CREATE_MY_EVENT_SUCCESS = 'CREATE_MY_EVENT_SUCCESS';
+export const CREATE_MY_EVENT_FAILURE = 'CREATE_MY_EVENT_FAILURE';
+
+export const CHANGE_MY_CHANNEL_REQUEST = 'CHANGE_MY_CHANNEL_REQUEST';
+export const CHANGE_MY_CHANNEL_SUCCESS = 'CHANGE_MY_CHANNEL_SUCCESS';
+export const CHANGE_MY_CHANNEL_FAILURE = 'CHANGE_MY_CHANNEL_FAILURE';
+
+export const DELETE_MY_CHANNEL_REQUEST = 'DELETE_MY_CHANNEL_REQUEST';
+export const DELETE_MY_CHANNEL_SUCCESS = 'DELETE_MY_CHANNEL_SUCCESS';
+export const DELETE_MY_CHANNEL_FAILURE = 'DELETE_MY_CHANNEL_FAILURE';
+
+export const DELETE_MY_EVENT_REQUEST = 'DELETE_MY_EVENT_REQUEST';
+export const DELETE_MY_EVENT_SUCCESS = 'DELETE_MY_EVENT_SUCCESS';
+export const DELETE_MY_EVENT_FAILURE = 'DELETE_MY_EVENT_FAILURE';
 
 export const LOAD_SUBSCRIBE_CHANNELS_REQUEST = 'LOAD_SUBSCRIBE_CHANNELS_REQUEST';
 export const LOAD_SUBSCRIBE_CHANNELS_SUCCESS = 'LOAD_SUBSCRIBE_CHANNELS_SUCCESS';
