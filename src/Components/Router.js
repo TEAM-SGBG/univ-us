@@ -13,6 +13,7 @@ import Category from '../Routes/Category';
 import Event from '../Routes/Event';
 import HostCenter from '../Routes/HostCenter';
 import AuthRoute from './Auth/AuthRoute';
+import Admin from '../Routes/Admin';
 
 export default () => {
   const { isLoggedIn, loginLoading } = useSelector((state) => state.user);
@@ -22,6 +23,9 @@ export default () => {
   return (
     <BrowserRouter>
       <Switch>
+        <Route exact path="/admin">
+          <Admin />
+        </Route>
         <Route exact path="/home">
           <Home />
         </Route>

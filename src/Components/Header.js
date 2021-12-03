@@ -87,6 +87,11 @@ const Header = () => {
   const { isLoggedIn } = useSelector((state) => state.user);
   const history = useHistory();
 
+  const GoAdmin = () => {
+    console.log('go admin');
+    history.push('/admin');
+  };
+
   const GoHostCenter = () => {
     history.push('/hostcenter');
   };
@@ -119,6 +124,9 @@ const Header = () => {
           </HomeButton>
         </div>
         <div>
+          <ButtonWrapper onClick={GoAdmin}>
+            관리자
+          </ButtonWrapper>
           <ButtonWrapper onClick={GoMypage}>
             MyPage
           </ButtonWrapper>

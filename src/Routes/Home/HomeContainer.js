@@ -16,7 +16,7 @@ function HomeContainer() {
   const [popularChannel, setpopularChannel] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:3001/api/events/all_event').then((response) => {
+    axios.get('http://localhost:3001/api/events/get_recommanded_events').then((response) => {
       if (response.data.success) {
         console.log('all_event/success');
         console.log(response.data.data);
