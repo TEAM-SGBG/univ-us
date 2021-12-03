@@ -17,5 +17,8 @@ module.exports = {
     'import/no-unresolved': [0],
     'react/jsx-no-bind': [0],
     'react/jsx-props-no-spreading': 'warn',
+    'max-len': ['warn', { code: 140 }],
+    'no-param-reassign': 0,
+    'consistent-return': 0,
   },
 };

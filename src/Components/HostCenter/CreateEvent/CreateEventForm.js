@@ -1,6 +1,7 @@
 import {
   Button, DatePicker,
   Form, Input, Select, Upload,
+  message,
 } from 'antd';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
@@ -61,7 +62,7 @@ const OFFLINE = 'OFFLINE';
 const ONOFFLINE = 'ONOFFLINE';
 
 const CreateEventForm = () => {
-  const [imageFileList, setImageFileList] = useState([]);
+  const [imageFile, setImageFile] = useState(null);
 
   const [eventName, setEventName] = useState({ value: '' });
   const [eventType, setEventType] = useState({});
@@ -72,7 +73,8 @@ const CreateEventForm = () => {
   const [form] = Form.useForm();
 
   const onUploadChange = ({ fileList }) => {
-    setImageFileList(fileList);
+    const file = fileList[0];
+    setImageFile(file);
   };
 
   const onUploadPreview = async (file) => {
@@ -90,11 +92,20 @@ const CreateEventForm = () => {
     imgWindow.document.write(image.outerHTML);
   };
 
+  const uploadRequest = ({ onSuccess }) => {
+    onSuccess('ok');
+  };
+
   const onFinish = (values) => {
     // if (validate) {
     //   setIsModalVisible(true);
     // }
     console.log(values);
+    if (imageFile.type !== 'image/png') {
+      message.error('이미지 파일을 업로드해주세요.');
+      return;
+    }
+    console.log(imageFile.originFileObj);
   };
 
   const onFinishFailed = () => {
@@ -176,8 +187,9 @@ const CreateEventForm = () => {
     setValidate(eventType.value
         && eventTime.startDate && eventTime.endDate
         && eventName.validateStatus === 'success'
-        && eventDescription.validateStatus === 'success');
-  }, [eventName, eventType, eventTime, eventDescription]);
+        && eventDescription.validateStatus === 'success'
+        && imageFile);
+  }, [eventName, eventType, eventTime, eventDescription, imageFile]);
 
   return (
     <Form
@@ -189,15 +201,18 @@ const CreateEventForm = () => {
       onFinishFailed={onFinishFailed}
     >
       <Form.Item label="이미지">
-        <ImgCrop rotate aspect={2}>
+        <ImgCrop
+          rotate
+          aspect={2}
+          beforeCrop={(file) => (file.type === 'image/png')}
+        >
           <Upload
-            action="http://localhost:3001/api/upload_image"
+            customRequest={uploadRequest}
             listType="picture-card"
-            fileList={imageFileList}
             onChange={onUploadChange}
             onPreview={onUploadPreview}
           >
-            {imageFileList < 2 && '+ Upload'}
+            {!imageFile && '+ Upload'}
           </Upload>
         </ImgCrop>
       </Form.Item>

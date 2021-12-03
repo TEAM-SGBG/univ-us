@@ -4,8 +4,7 @@ import {
 import { DownOutlined, UserOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
 import { useHistory } from 'react-router';
-import { useDispatch, useSelector } from 'react-redux';
-import { LOGOUT_REQUEST } from '../../reducers/user';
+import { useSelector } from 'react-redux';
 
 const LogoutMenuItem = styled(Menu.Item)`
     color: red
@@ -28,7 +27,6 @@ const TextWrapper = styled.p`
 
 const UserMenu = () => {
   const history = useHistory();
-  const dispatch = useDispatch();
 
   const { isLoggedIn } = useSelector((state) => state.user);
 
@@ -44,9 +42,6 @@ const UserMenu = () => {
     } else if (key === 'MyPage') {
       history.push('/mypage');
     } else if (key === 'Logout') {
-      dispatch({
-        type: LOGOUT_REQUEST,
-      });
       history.push('/hostcenter');
     }
   };

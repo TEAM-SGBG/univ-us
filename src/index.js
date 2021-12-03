@@ -11,6 +11,7 @@ const store = ConfigureStore(rootReducer);
 ReactDOM.render(
   <Provider store={store}>
     <App />
+
   </Provider>,
   document.getElementById('root'),
 );

@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import user from './user';
-import eventPosts from './eventPosts';
+import post from './post';
 import channel from './channel';
 
 const initialState = {
@@ -38,7 +38,7 @@ const rootReducer = combineReducers({
     }
   },
   user,
-  eventPosts,
+  post,
   channel,
 });
 
