@@ -1,7 +1,11 @@
+import produce from 'immer';
+
 const initialState = {
-  loginLoading: false,
+  me: {},
+
+  authCheckLoading: false,
   isLoggedIn: false,
-  loginError: null,
+  authCheckError: false,
 
   subscribeChannels: [],
   loadSubscribeChannelsLoading: false,
@@ -36,7 +40,22 @@ const initialState = {
   loadDeleteMyEventDone: false,
   loadDeleteMyEventError: null,
 
+  loadMyEventInfoLoading: false,
+  loadMyEventInfoDone: false,
+  loadMyEventInfoError: null,
+
+  loadEventParticipantLoading: false,
+  loadEventParticipantDone: false,
+  loadEventParticipantError: null,
 };
+
+export const LOAD_EVENT_PARTICIPANT_REQUEST = 'LOAD_EVENT_PARTICIPANT_REQUEST';
+export const LOAD_EVENT_PARTICIPANT_SUCCESS = 'LOAD_EVENT_PARTICIPANT_SUCCESS';
+export const LOAD_EVENT_PARTICIPANT_FAILURE = 'LOAD_EVENT_PARTICIPANT_FAILURE';
+
+export const LOAD_MY_EVENT_INFO_REQUEST = 'LOAD_MY_EVENT_INFO_REQUEST';
+export const LOAD_MY_EVENT_INFO_SUCCESS = 'LOAD_MY_EVENT_INFO_SUCCESS';
+export const LOAD_MY_EVENT_INFO_FAILURE = 'LOAD_MY_EVENT_INFO_FAILURE';
 
 export const LOAD_MY_CHANNELS_REQUEST = 'LOAD_MY_CHANNELS_REQUEST';
 export const LOAD_MY_CHANNELS_SUCCESS = 'LOAD_MY_CHANNELS_SUCCESS';
@@ -74,45 +93,26 @@ export const AUTH_CHECK_REQUEST = 'AUTH_CHECK_REQUEST';
 export const AUTH_CHECK_SUCCESS = 'AUTH_CHECK_SUCCESS';
 export const AUTH_CHECK_FAILURE = 'AUTH_CHECK_FAILURE';
 
-export const LOGIN_REQUEST = 'LOGIN_REQUEST';
-export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
-export const LOGIN_FAILURE = 'LOGIN_FAILURE';
-
 export const LOGOUT_REQUEST = 'LOGOUT_REQUEST';
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 export const LOGOUT_FAILURE = 'LOGOUT_FAILURE';
 
-const reducer = (state = initialState, action) => {
+const reducer = (state = initialState, action) => produce(state, (draft) => {
   switch (action.type) {
     case AUTH_CHECK_REQUEST:
-      return {
-        ...state,
-        loginLoading: true,
-        isLoggedIn: false,
-      };
+      draft.authCheckLoading = true;
+      draft.isLoggedIn = false;
+      break;
     case AUTH_CHECK_SUCCESS:
-      return {
-        ...state,
-        loginLoading: false,
-        isLoggedIn: action.data,
-      };
+      draft.authCheckLoading = false;
+      draft.isLoggedIn = action.data;
+      draft.me = action.data;
+      break;
     case AUTH_CHECK_FAILURE:
-      return {
-        ...state,
-        loginLoading: false,
-        isLoggedIn: false,
-        loginError: action.data,
-      };
-    case LOGIN_REQUEST:
-      return {
-        ...state,
-        isLoggedIn: true,
-      };
-    case LOGOUT_REQUEST:
-      return {
-        ...state,
-        isLoggedIn: false,
-      };
+      draft.authCheckLoading = false;
+      draft.isLoggedIn = false;
+      draft.authCheckError = action.data;
+      break;
     case LOAD_SUBSCRIBE_CHANNELS_REQUEST:
       return {
         ...state,
@@ -139,6 +139,6 @@ const reducer = (state = initialState, action) => {
     default:
       return state;
   }
-};
+});
 
 export default reducer;

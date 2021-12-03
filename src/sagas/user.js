@@ -3,15 +3,36 @@ import {
 } from 'redux-saga/effects';
 import axios from 'axios';
 import {
-  AUTH_CHECK_FAILURE, AUTH_CHECK_REQUEST, AUTH_CHECK_SUCCESS,
-  CHANGE_MY_CHANNEL_FAILURE, CHANGE_MY_CHANNEL_REQUEST, CHANGE_MY_CHANNEL_SUCCESS,
-  CREATE_MY_CHANNEL_FAILURE, CREATE_MY_CHANNEL_REQUEST, CREATE_MY_CHANNEL_SUCCESS,
-  CREATE_MY_EVENT_FAILURE, CREATE_MY_EVENT_REQUEST, CREATE_MY_EVENT_SUCCESS,
-  DELETE_MY_CHANNEL_FAILURE, DELETE_MY_CHANNEL_REQUEST, DELETE_MY_CHANNEL_SUCCESS,
-  DELETE_MY_EVENT_FAILURE, DELETE_MY_EVENT_REQUEST, DELETE_MY_EVENT_SUCCESS,
-  LOAD_MY_CHANNELS_FAILURE, LOAD_MY_CHANNELS_REQUEST, LOAD_MY_CHANNELS_SUCCESS,
-  LOAD_MY_EVENTS_FAILURE, LOAD_MY_EVENTS_REQUEST, LOAD_MY_EVENTS_SUCCESS,
-  LOAD_SUBSCRIBE_CHANNELS_FAILURE, LOAD_SUBSCRIBE_CHANNELS_REQUEST, LOAD_SUBSCRIBE_CHANNELS_SUCCESS,
+  AUTH_CHECK_FAILURE,
+  AUTH_CHECK_REQUEST,
+  AUTH_CHECK_SUCCESS,
+  CHANGE_MY_CHANNEL_FAILURE,
+  CHANGE_MY_CHANNEL_REQUEST,
+  CHANGE_MY_CHANNEL_SUCCESS,
+  CREATE_MY_CHANNEL_FAILURE,
+  CREATE_MY_CHANNEL_REQUEST,
+  CREATE_MY_CHANNEL_SUCCESS,
+  CREATE_MY_EVENT_FAILURE,
+  CREATE_MY_EVENT_REQUEST,
+  CREATE_MY_EVENT_SUCCESS,
+  DELETE_MY_CHANNEL_FAILURE,
+  DELETE_MY_CHANNEL_REQUEST,
+  DELETE_MY_CHANNEL_SUCCESS,
+  DELETE_MY_EVENT_FAILURE,
+  DELETE_MY_EVENT_REQUEST,
+  DELETE_MY_EVENT_SUCCESS, LOAD_EVENT_PARTICIPANT_FAILURE,
+  LOAD_EVENT_PARTICIPANT_REQUEST,
+  LOAD_EVENT_PARTICIPANT_SUCCESS,
+  LOAD_MY_CHANNELS_FAILURE,
+  LOAD_MY_CHANNELS_REQUEST,
+  LOAD_MY_CHANNELS_SUCCESS, LOAD_MY_EVENT_INFO_FAILURE,
+  LOAD_MY_EVENT_INFO_REQUEST, LOAD_MY_EVENT_INFO_SUCCESS,
+  LOAD_MY_EVENTS_FAILURE,
+  LOAD_MY_EVENTS_REQUEST,
+  LOAD_MY_EVENTS_SUCCESS,
+  LOAD_SUBSCRIBE_CHANNELS_FAILURE,
+  LOAD_SUBSCRIBE_CHANNELS_REQUEST,
+  LOAD_SUBSCRIBE_CHANNELS_SUCCESS,
 } from '../reducers/user';
 
 async function authCheckAPI() {
@@ -202,6 +223,48 @@ function* deleteMyEvent() {
   }
 }
 
+async function loadEventParticipantAPI() {
+  const result = await axios.get('http://localhost:3001/');
+
+  return result;
+}
+
+function* loadEventParticipant() {
+  try {
+    const result = yield call(loadEventParticipantAPI);
+    yield put({
+      type: LOAD_EVENT_PARTICIPANT_SUCCESS,
+      data: result,
+    });
+  } catch (error) {
+    yield put({
+      type: LOAD_EVENT_PARTICIPANT_FAILURE,
+      error,
+    });
+  }
+}
+
+async function loadMyEventInfoAPI() {
+  const result = await axios.get('http://localhost:3001/');
+
+  return result;
+}
+
+function* loadMyEventInfo() {
+  try {
+    const result = yield call(loadMyEventInfoAPI);
+    yield put({
+      type: LOAD_MY_EVENT_INFO_SUCCESS,
+      data: result,
+    });
+  } catch (error) {
+    yield put({
+      type: LOAD_MY_EVENT_INFO_FAILURE,
+      error,
+    });
+  }
+}
+
 function* watchAuthCheck() {
   yield takeLatest(AUTH_CHECK_REQUEST, authCheck);
 }
@@ -238,6 +301,14 @@ function* watchLoadSubscribeChannels() {
   yield takeLatest(LOAD_SUBSCRIBE_CHANNELS_REQUEST, loadSubscribeChannels);
 }
 
+function* watchLoadEventParticipant() {
+  yield takeLatest(LOAD_EVENT_PARTICIPANT_REQUEST, loadEventParticipant);
+}
+
+function* watchLoadMyEventInfo() {
+  yield takeLatest(LOAD_MY_EVENT_INFO_REQUEST, loadMyEventInfo);
+}
+
 export default function* userSaga() {
   yield all([
     fork(watchAuthCheck),
@@ -249,5 +320,7 @@ export default function* userSaga() {
     fork(watchChangeMyChannel),
     fork(watchDeleteMyChannel),
     fork(watchDeleteMyEvent),
+    fork(watchLoadEventParticipant),
+    fork(watchLoadMyEventInfo),
   ]);
 }
