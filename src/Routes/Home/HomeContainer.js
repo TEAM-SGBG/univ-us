@@ -16,10 +16,9 @@ function HomeContainer() {
   const [popularChannel, setpopularChannel] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:3001/api/events/all_event').then((response) => {
+    axios.get('http://localhost:3001/api/events/get_recommanded_events').then((response) => {
       if (response.data.success) {
-        console.log('all_event/success');
-        console.log(response.data.data);
+        // console.log(response.data.data);
         setrecommendationEvents(response.data.data);
       } else {
         setrecommendationEvents(-1);
@@ -28,8 +27,7 @@ function HomeContainer() {
 
     axios.get('http://localhost:3001/api/events/get_popular_events').then((response) => {
       if (response.data.success) {
-        console.log('all_event/success');
-        console.log(response.data.data);
+        // console.log(response.data.data);
         setpopularEvents(response.data.data);
       } else {
         setpopularEvents(-1);
@@ -38,8 +36,7 @@ function HomeContainer() {
 
     axios.get('http://localhost:3001/api/events/get_new_events').then((response) => {
       if (response.data.success) {
-        console.log('all_event/success');
-        console.log(response.data.data);
+        // console.log(response.data.data);
         setnewEvents(response.data.data);
       } else {
         setnewEvents(-1);
