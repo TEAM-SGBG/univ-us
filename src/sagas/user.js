@@ -37,7 +37,7 @@ import {
 
 async function authCheckAPI() {
   const user = await axios.get('http://localhost:3001/auth/');
-  return !!user.data;
+  return user.data;
 }
 
 function* authCheck() {
