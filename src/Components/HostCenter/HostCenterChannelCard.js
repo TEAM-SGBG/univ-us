@@ -123,7 +123,6 @@ const HostCenterChannelCard = ({ channel }) => {
           <MoreOutlined className="ant-dropdown-link" />
         </Dropdown>
       </RightSection>
-
     </CardWrapper>
   );
 };

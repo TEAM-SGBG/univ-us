@@ -1,16 +1,17 @@
 import { useState, useEffect } from 'react';
 import {
-  Form, Input, Button, Modal, Space,
+  Form, Input, Button, Modal, Space, message,
 } from 'antd';
 import styled from 'styled-components';
 import { useHistory } from 'react-router';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { CREATE_MY_CHANNEL_REQUEST, URL_DUPLICATE_CHECK_REQUEST } from '../../../reducers/hostcenter';
 
 const InputWrapper = styled(Input)`
-  :hover{
+  :hover {
     border-color: #5C3FBF;
   }
-  
+
   :focus {
     border-color: #5C3FBF;
     outline: 0;
@@ -25,18 +26,18 @@ const ButtonWrapper = styled(Button)`
   border: 0;
   cursor: 'pointer';
   color: #5C3FBF;
-  
-  :hover{
-    background: #FAF8FF;
-    color: #5C3FBF;
-  }
-  
-  :active{
+
+  :hover {
     background: #FAF8FF;
     color: #5C3FBF;
   }
 
-  :focus{
+  :active {
+    background: #FAF8FF;
+    color: #5C3FBF;
+  }
+
+  :focus {
     background: #FAF8FF;
     color: #5C3FBF;
   }
@@ -46,25 +47,30 @@ const CreateChannelForm = () => {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const [channelName, setChannelName] = useState({ value: '' });
-  const [channelID, setChannelID] = useState({ value: '' });
+  const {
+    urlDuplicateCheckLoading,
+    urlDuplicateCheckDone,
+    urlDuplicateCheckError,
+  } = useSelector((state) => state.hostcenter);
 
   const [form] = Form.useForm();
 
+  const [channelName, setChannelName] = useState({ value: '' });
+  const [channelID, setChannelID] = useState({ value: '' });
   const [validate, setValidate] = useState(false);
-  const [duplicateCheck, setDuplicateCheck] = useState(false);
-  const [duplicateCheckLoading, setDuplicateCheckLoading] = useState(false);
-
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [duplicateChecked, setDuplicateChecked] = useState(false);
 
   const handleOk = () => {
     setIsModalVisible(false);
     dispatch({
-      type: 'CREATE_CHANNEL_REQUEST',
+      type: CREATE_MY_CHANNEL_REQUEST,
       data: {
-        channelID: channelID.value,
+        channel_id: channelID.value,
+        channel_name: channelName.value,
       },
     });
+
     history.push(`/hostcenter/${channelID.value}/event`);
   };
 
@@ -115,6 +121,7 @@ const CreateChannelForm = () => {
   const onFinish = () => {
     if (validate) {
       setIsModalVisible(true);
+      console.log('channel name: ', channelName.value);
     }
   };
 
@@ -123,29 +130,37 @@ const CreateChannelForm = () => {
   };
 
   const isValidate = () => {
-    if (duplicateCheck) return;
-    setDuplicateCheckLoading(true);
+    if (duplicateChecked) return;
     dispatch({
-      type: 'URL_DUPLICATE_CHECK_REQUEST',
+      type: URL_DUPLICATE_CHECK_REQUEST,
       data: {
-        channel_id: channelID,
+        channel_id: channelID.value,
       },
     });
-    setTimeout(() => {
-      setDuplicateCheck(true);
-      setDuplicateCheckLoading(false);
-    }, 500);
+    setDuplicateChecked(true);
   };
 
   useEffect(() => {
-    setDuplicateCheck(false);
+    setDuplicateChecked(false);
   }, [channelID]);
 
   useEffect(() => {
     setValidate(channelName.validateStatus === 'success'
-        && channelID.validateStatus === 'success'
-        && duplicateCheck);
-  }, [channelName, channelID, duplicateCheck]);
+            && channelID.validateStatus === 'success'
+            && duplicateChecked
+            && urlDuplicateCheckDone);
+  }, [channelName, channelID, duplicateChecked, urlDuplicateCheckDone]);
+
+  useEffect(() => {
+    if (duplicateChecked) message.error(urlDuplicateCheckError);
+  }, [urlDuplicateCheckError]);
+
+  useEffect(() => {
+    if (duplicateChecked) {
+      if (urlDuplicateCheckDone) return message.info('가능한 URL입니다.');
+      return message.info('중복된 URL입니다.');
+    }
+  }, [urlDuplicateCheckDone, duplicateChecked]);
 
   return (
     <Form
@@ -195,10 +210,10 @@ const CreateChannelForm = () => {
         >
           <ButtonWrapper
             onClick={isValidate}
-            loading={duplicateCheckLoading}
-            disabled={channelID.validateStatus !== 'success' || duplicateCheck}
+            loading={urlDuplicateCheckLoading}
+            disabled={channelID.validateStatus !== 'success' || duplicateChecked}
           >
-            {duplicateCheck ? '✓' : '중복 확인'}
+            {duplicateChecked && urlDuplicateCheckDone ? '✓' : '중복 확인'}
           </ButtonWrapper>
         </div>
       </Form.Item>
