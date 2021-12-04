@@ -100,7 +100,7 @@ const SubChannel = styled.div`
 `;
 
 function MyPagePresenter({
-  goUserinfo, myNum, goOne, goTwo, goThree, eventPosts, channel, loading, done, error,
+  goUserinfo, myNum, goOne, goTwo, goThree, applied, liked, channel, loading, done, error,
 }) {
   return (
     <>
@@ -127,7 +127,7 @@ function MyPagePresenter({
               <ReservedTh2>신청행사</ReservedTh2>
               <ReservedTh3>상세내용</ReservedTh3>
             </ReservedTr>
-            {eventPosts.map((event) => (
+            {applied.map((event) => (
               <ReservedTr key={1}>
                 <ReservedTd1>{event.id}</ReservedTd1>
                 <ReservedTd2>{event.title}</ReservedTd2>
@@ -145,7 +145,7 @@ function MyPagePresenter({
                 <ReservedTh2>신청행사</ReservedTh2>
                 <ReservedTh3>상세내용</ReservedTh3>
               </ReservedTr>
-              {eventPosts.map((event) => (
+              {liked.map((event) => (
                 <ReservedTr key={1}>
                   <ReservedTd1>{event.id}</ReservedTd1>
                   <ReservedTd2>{event.title}</ReservedTd2>
