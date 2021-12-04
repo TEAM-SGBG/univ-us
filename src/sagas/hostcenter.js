@@ -99,15 +99,15 @@ function* createMyChannel(action) {
   }
 }
 
-async function createMyEventAPI() {
-  const result = await axios.get('http://localhost:3001/');
+async function createMyEventAPI(data) {
+  const result = await axios.get('http://localhost:3001/api/events/create', data);
 
-  return result;
+  return result.data;
 }
 
-function* createMyEvent() {
+function* createMyEvent(action) {
   try {
-    const result = yield call(createMyEventAPI);
+    const result = yield call(createMyEventAPI, action.data);
     yield put({
       type: CREATE_MY_EVENT_SUCCESS,
       data: result,
@@ -120,19 +120,26 @@ function* createMyEvent() {
   }
 }
 
-async function changeMyChannelAPI() {
-  const result = await axios.get('http://localhost:3001/');
-
-  return result;
+async function changeMyChannelAPI(data) {
+  const result = await axios.patch(`http://localhost:3001/api/channel/${data.channelID}/${data.newChannelName}`);
+  console.log('saga: ', result.data);
+  return result.data.success;
 }
 
-function* changeMyChannel() {
+function* changeMyChannel(action) {
   try {
-    const result = yield call(changeMyChannelAPI);
-    yield put({
-      type: CHANGE_MY_CHANNEL_SUCCESS,
-      data: result,
-    });
+    const result = yield call(changeMyChannelAPI, action.data);
+    if (result) {
+      yield put({
+        type: CHANGE_MY_CHANNEL_SUCCESS,
+        data: { success: result, channelName: action.data.newChannelName, channelID: action.data.channelID },
+      });
+    } else {
+      yield put({
+        type: CHANGE_MY_CHANNEL_FAILURE,
+        data: { success: result, channelName: action.data.channelName },
+      });
+    }
   } catch (error) {
     yield put({
       type: CHANGE_MY_CHANNEL_FAILURE,

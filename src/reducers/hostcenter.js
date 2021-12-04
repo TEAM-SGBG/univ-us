@@ -6,29 +6,29 @@ const initialState = {
   loadMyChannelsDone: false,
   loadMyChannelsError: null,
 
-  loadLoadMyEventsLoading: false,
-  loadLoadMyEventsDone: false,
-  loadLoadMyEventsError: null,
+  loadMyEventsLoading: false,
+  loadMyEventsDone: false,
+  loadMyEventsError: null,
 
-  loadCreateMyChannelLoading: false,
-  loadCreateMyChannelDone: false,
-  loadCreateMyChannelError: null,
+  createMyChannelLoading: false,
+  createMyChannelDone: false,
+  createMyChannelError: null,
 
-  loadCreateMyEventLoading: false,
-  loadCreateMyEventDone: false,
-  loadCreateMyEventError: null,
+  createMyEventLoading: false,
+  createMyEventDone: false,
+  createMyEventError: null,
 
-  loadChangeMyChannelLoading: false,
-  loadChangeMyChannelDone: false,
-  loadChangeMyChannelError: null,
+  changeMyChannelLoading: false,
+  changeMyChannelDone: false,
+  changeMyChannelError: null,
 
-  loadDeleteMyChannelLoading: false,
-  loadDeleteMyChannelDone: false,
-  loadDeleteMyChannelError: null,
+  deleteMyChannelLoading: false,
+  deleteMyChannelDone: false,
+  deleteMyChannelError: null,
 
-  loadDeleteMyEventLoading: false,
-  loadDeleteMyEventDone: false,
-  loadDeleteMyEventError: null,
+  deleteMyEventLoading: false,
+  deleteMyEventDone: false,
+  deleteMyEventError: null,
 
   loadMyEventInfoLoading: false,
   loadMyEventInfoDone: false,
@@ -120,8 +120,6 @@ const reducer = (state = initialState, action) => produce(state, (draft) => {
       draft.urlDuplicateCheckDone = false;
       break;
     case URL_DUPLICATE_CHECK_SUCCESS:
-      // 채널의 행사 정보로
-      console.log(action);
       draft.urlDuplicateCheckLoading = false;
       draft.urlDuplicateCheckDone = action.data;
       break;
@@ -129,6 +127,22 @@ const reducer = (state = initialState, action) => produce(state, (draft) => {
       draft.urlDuplicateCheckLoading = false;
       draft.urlDuplicateCheckDone = action.data;
       draft.urlDuplicateCheckError = action.error;
+      break;
+    case CHANGE_MY_CHANNEL_REQUEST:
+      draft.changeMyChannelLoading = true;
+      draft.changeMyChannelDone = false;
+      break;
+    case CHANGE_MY_CHANNEL_SUCCESS: {
+      draft.changeMyChannelLoading = false;
+      draft.changeMyChannelDone = action.data.success;
+      const channel = draft.myChannels.find((myChannel) => myChannel.channel_id === action.data.channelID);
+      if (channel) channel.channel_name = action.data.channelName;
+      break;
+    }
+    case CHANGE_MY_CHANNEL_FAILURE:
+      draft.changeMyChannelLoading = false;
+      draft.changeMyChannelDone = false;
+      draft.changeMyChannelError = action.error;
       break;
     default:
       break;
