@@ -1,21 +1,46 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
+// import { useDispatch } from 'react-redux';
+import axios from 'axios';
 import MyPagePresenter from './MyPagePresenter';
-import eventPosts from '../../mock/HostCenterMock/eventPosts.json';
 import user from '../../mock/user.json';
-import { LOAD_SUBSCRIBE_CHANNELS_REQUEST } from '../../reducers/user';
+// import { LOAD_SUBSCRIBE_CHANNELS_REQUEST } from '../../reducers/user';
 
 function MyPageContainer() {
   const history = useHistory();
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const {
     loadSubscribeChannelsLoading,
     loadSubscribeChannelsDone,
     loadSubscribeChannelsError,
-    subscribeChannels,
+    // subscribeChannels,
   } = useSelector((state) => state.user);
   const [myNum, setNum] = useState('1');
+  const [applied, setApplied] = useState([]);
+  const [liked, setLiked] = useState([]);
+  const [subscribed, setSubscribed] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:3001/api/mypage/applied_event', { withCredential: 'true' })
+      .then((response) => {
+        setApplied(response.data.data);
+      });
+  }, []);
+
+  useEffect(() => {
+    axios.post('http://localhost:3001/api/events/user_like_event_list', { withCredential: 'true' })
+      .then((response) => {
+        setLiked(response.data.data);
+      });
+  }, []);
+
+  useEffect(() => {
+    axios.get('http://localhost:3001/api/mypage/subscribe_info', { withCredential: 'true' })
+      .then((response) => {
+        setSubscribed(response.data.data);
+      });
+  }, []);
 
   function goOne() {
     setNum('1');
@@ -26,7 +51,7 @@ function MyPageContainer() {
   }
 
   function goThree() {
-    dispatch({ type: LOAD_SUBSCRIBE_CHANNELS_REQUEST });
+    // dispatch({ type: LOAD_SUBSCRIBE_CHANNELS_REQUEST });
     setNum('3');
   }
 
@@ -42,8 +67,10 @@ function MyPageContainer() {
       goOne={goOne}
       goTwo={goTwo}
       goThree={goThree}
-      channel={subscribeChannels}
-      eventPosts={eventPosts}
+      // channel={subscribeChannels}
+      applied={applied}
+      liked={liked}
+      subscribed={subscribed}
       user={user}
       loading={loadSubscribeChannelsLoading}
       done={loadSubscribeChannelsDone}

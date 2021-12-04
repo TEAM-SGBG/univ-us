@@ -26,6 +26,30 @@ const DDayBox = styled.div`
   border: 1px solid #EAEEEF;
 `;
 
+const DDayText = styled.p`
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 40px;
+  line-height: 40px;
+  letter-spacing: 0.56px;
+  color: #8D71DD;
+  margin-top: 24px;
+  margin-left: 25px;
+`;
+
+const DDayText2 = styled.p`
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 18px;
+  letter-spacing: 0.56px;
+  color: #444444;
+  margin-top: 13px;
+  margin-left: 25px;
+`;
+
 const InfoContainer = styled.div`
   width: 873px;
   height: 270px;
@@ -133,7 +157,10 @@ const EventInfoPresenter = ({
       }}
       >
         <ImageBox />
-        <DDayBox />
+        <DDayBox>
+          <DDayText>D-Day</DDayText>
+          <DDayText2>멋진 행사가 될거예요!</DDayText2>
+        </DDayBox>
       </div>
       <InfoContainer>
         <Title>
