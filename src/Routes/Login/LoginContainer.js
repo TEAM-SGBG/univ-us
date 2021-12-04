@@ -4,13 +4,16 @@ import LoginPresenter from './LoginPresenter';
 function LoginContainer() {
   const history = useHistory();
 
-  function GoHome() {
-    alert('환영합니다!');
-    console.log('Go Home');
-  }
+  // function GoHome() {
+  //   alert('환영합니다!');
+  //   console.log('Go Home');
+  // }
 
   return (
-    <LoginPresenter GoHome={GoHome} redirectURL={history.location.state?.from.pathname ?? '/home'} />
+    <LoginPresenter
+      // GoHome={GoHome}
+      redirectURL={history.location.state?.from.pathname ?? '/home'}
+    />
   );
 }
 

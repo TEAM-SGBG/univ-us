@@ -100,7 +100,7 @@ const SubChannel = styled.div`
 `;
 
 function MyPagePresenter({
-  goUserinfo, myNum, goOne, goTwo, goThree, applied, liked, channel, loading, done, error,
+  goUserinfo, myNum, goOne, goTwo, goThree, applied, liked, subscribed, channel, loading, done, error,
 }) {
   return (
     <>
@@ -166,16 +166,25 @@ function MyPagePresenter({
             if (done && channel.length === 0) {
               return <div>구독한 채널이 없습니다.</div>;
             }
-
             return (
-              <SubChannel>
-                {channel.map((subscribedChannel) => (
-                  <ChannelCard
-                    key={channel.id}
-                    currentChannel={subscribedChannel}
-                  />
-                ))}
-              </SubChannel>
+              <>
+                {/* <SubChannel>
+                  {channel.map((subscribedChannel) => (
+                    <ChannelCard
+                      key={channel.id}
+                      currentChannel={subscribedChannel}
+                    />
+                  ))}
+                </SubChannel> */}
+                <SubChannel>
+                  {subscribed.map((subscribedChannel) => (
+                    <ChannelCard
+                      key={channel.id}
+                      currentChannel={subscribedChannel}
+                    />
+                  ))}
+                </SubChannel>
+              </>
             );
           }
         )()}
