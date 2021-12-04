@@ -179,7 +179,7 @@ function MyPagePresenter({
                 <SubChannel>
                   {subscribed.map((subscribedChannel) => (
                     <ChannelCard
-                      key={channel.id}
+                      key={subscribedChannel.id}
                       currentChannel={subscribedChannel}
                     />
                   ))}
