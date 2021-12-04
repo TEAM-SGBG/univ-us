@@ -31,7 +31,7 @@ function UserInfoContainer() {
   function Save() {
     console.log(myPh);
     axios.put('http://localhost:3001/api/mypage/modify_info', {
-      new_phone_num: myPh, // myPh가 입력창에 입력한 새 전화번호
+      phone_num: myPh, // myPh가 입력창에 입력한 새 전화번호
     }, { withCredential: 'true' }).then((response) => {
       if (response.status === 200) {
         alert('저장되었습니다.');
