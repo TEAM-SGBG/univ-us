@@ -27,7 +27,6 @@ function HomeContainer() {
 
     axios.get('http://localhost:3001/api/events/get_popular_events').then((response) => {
       if (response.data.success) {
-        // console.log(response.data.data);
         setpopularEvents(response.data.data);
       } else {
         setpopularEvents(-1);
@@ -36,7 +35,6 @@ function HomeContainer() {
 
     axios.get('http://localhost:3001/api/events/get_new_events').then((response) => {
       if (response.data.success) {
-        // console.log(response.data.data);
         setnewEvents(response.data.data);
       } else {
         setnewEvents(-1);
@@ -45,10 +43,7 @@ function HomeContainer() {
 
     axios.get('http://localhost:3001/api/channel/all').then((response) => {
       if (response.data.success) {
-        console.log('all_channel/success');
-        console.log(response.data.data);
         setpopularChannel(response.data.data);
-        console.log(popularChannel);
       } else {
         setpopularChannel(-1);
       }

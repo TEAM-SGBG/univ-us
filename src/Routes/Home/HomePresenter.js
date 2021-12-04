@@ -132,7 +132,6 @@ function HomePresenter({
   // eslint-disable-next-line no-unused-vars
   type,
 }) {
-  console.log(recommendationEvents);
   return (
     <>
       <Header />
