@@ -36,13 +36,13 @@ const MyInput = styled.input`
   background-color: white;
 `;
 
-const ConfirmBtn = styled.button`
-  width: 50px;
-  height: 30px;
-  border-radius: 5px;
-  background-color: #5C3FBF;
-  color:white;
-`;
+// const ConfirmBtn = styled.button`
+//   width: 50px;
+//   height: 30px;
+//   border-radius: 5px;
+//   background-color: #5C3FBF;
+//   color:white;
+// `;
 
 const SaveBtn = styled.button`
   width: 225px;
@@ -63,7 +63,13 @@ const Dontgo = styled.div`
 `;
 
 function UserInfoPresenter({
-  Save, ChangeName, ChangePw, DontGo, onChangeName, onChangePw, user,
+  Save,
+  // ChangeName,
+  // ChangePh,
+  DontGo,
+  onChangeName,
+  onChangePh,
+  user,
 }) {
   return (
     <>
@@ -85,17 +91,35 @@ function UserInfoPresenter({
         <LoginH2>
           이름/기업명
         </LoginH2>
+        {user.name ? (user.name
+        ) : (
+          <div>
+            이름이 없습니다.
+            <br />
+          </div>
+        )}
         <MyInput type="email" onChange={onChangeName} />
-        <ConfirmBtn onClick={ChangeName}>
+        {/* <ConfirmBtn onClick={ChangeName}>
           변경
-        </ConfirmBtn>
+        </ConfirmBtn> */}
         <LoginH2>
-          비밀번호
+          전화번호
         </LoginH2>
-        <MyInput type="password" onChange={onChangePw} />
-        <ConfirmBtn onClick={ChangePw}>
+        {user.phone_num ? (
+          <>
+            {user.phone_num}
+            <br />
+          </>
+        ) : (
+          <div>
+            전화번호를 설정하세요.
+            <br />
+          </div>
+        )}
+        <MyInput type="number" onChange={onChangePh} />
+        {/* <ConfirmBtn onClick={ChangePh}>
           변경
-        </ConfirmBtn>
+        </ConfirmBtn> */}
         <Hline />
         <SaveBtn onClick={Save}>
           회원정보 저장하기

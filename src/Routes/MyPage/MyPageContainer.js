@@ -26,16 +26,12 @@ function MyPageContainer() {
       .then((response) => {
         setApplied(response.data.data);
       });
-  }, []);
 
-  useEffect(() => {
     axios.post('http://localhost:3001/api/events/user_like_event_list', { withCredential: 'true' })
       .then((response) => {
         setLiked(response.data.data);
       });
-  }, []);
 
-  useEffect(() => {
     axios.get('http://localhost:3001/api/mypage/subscribe_info', { withCredential: 'true' })
       .then((response) => {
         setSubscribed(response.data.data);
