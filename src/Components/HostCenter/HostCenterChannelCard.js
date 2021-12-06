@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 import {
-  Button, Dropdown, Menu, Space, Typography,
+  Button, Dropdown, Input, Menu, Modal, Space, Typography, message, Form,
 } from 'antd';
-import { useCallback } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { MoreOutlined } from '@ant-design/icons';
 import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { DELETE_CHANNEL_REQUEST } from '../../reducers/channel';
+import { useDispatch, useSelector } from 'react-redux';
+import { CHANGE_MY_CHANNEL_REQUEST, DELETE_MY_CHANNEL_REQUEST } from '../../reducers/hostcenter';
 
 const MODIFY = 'Modify';
 const DELETE = 'Delete';
@@ -67,17 +67,73 @@ const HostCenterChannelCard = ({ channel }) => {
   const history = useHistory();
   const dispatch = useDispatch();
 
+  const [modalVisible, setModalVisible] = useState(false);
+  const [newChannelName, setNewChannelName] = useState({ value: '' });
+  const [modalText, setModalText] = useState('바꿀 채널명을 입력해주세요.');
+  const [inputVisible, setInputVisible] = useState(false);
+  const { changeMyChannelLoading, changeMyChannelDone } = useSelector((state) => state.hostcenter);
+
+  const showModal = () => {
+    setModalVisible(true);
+    setInputVisible(true);
+    setNewChannelName({ ...newChannelName, value: '' });
+  };
+
+  const modalHandleOk = useCallback(() => {
+    if (newChannelName.validateStatus === 'success'
+    && newChannelName.value !== '') {
+      return dispatch({
+        type: CHANGE_MY_CHANNEL_REQUEST,
+        data: {
+          channelID: channel.channel_id,
+          newChannelName: newChannelName.value,
+        },
+      });
+    }
+    return message.error('채널명을 다시 확인해주세요');
+  }, [newChannelName.value, newChannelName.errMsg]);
+
+  const modalHandleCancel = useCallback(() => {
+    setModalVisible(false);
+    setInputVisible(false);
+  }, []);
+
+  const validateName = (name) => {
+    const nameRegex = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9| ]{1,20}$/;
+
+    if (nameRegex.test(name)) {
+      return {
+        validateStatus: 'success',
+        errorMsg: null,
+      };
+    }
+
+    return {
+      validateStatus: 'error',
+      errorMsg: '한글/영어/숫자만 입력할 수 있습니다.',
+    };
+  };
+
+  const onChangeNewChannelName = (e) => {
+    setNewChannelName({
+      ...validateName(e.target.value),
+      value: e.target.value,
+    });
+  };
+
   const goEventCreate = useCallback(() => {
     history.push(`/hostcenter/${channel.channelID}/createevent`);
   }, []);
 
-  const handleClick = ({ key }) => {
-    if (key === MODIFY) {
-      history.push(`/hostcenter/${channel.channelID}/modifychannel`);
-    } else if (key === DELETE) {
+  const handleClick = (e) => {
+    if (e.key === MODIFY) {
+      showModal();
+    } else if (e.key === DELETE) {
       dispatch({
-        type: DELETE_CHANNEL_REQUEST,
-        data: channel.channelID,
+        type: DELETE_MY_CHANNEL_REQUEST,
+        data: {
+          channel_id: channel.channel_id,
+        },
       });
     }
   };
@@ -93,23 +149,40 @@ const HostCenterChannelCard = ({ channel }) => {
     </Menu>
   );
 
+  useEffect(() => {
+    if (changeMyChannelLoading) {
+      return setModalText('채널명을 바꾸는 중입니다.');
+    }
+    setModalText('바꿀 채널명을 입력해주세요.');
+  }, [changeMyChannelLoading]);
+
+  useEffect(() => {
+    if (newChannelName.value !== '') {
+      if (changeMyChannelDone) {
+        setModalVisible(false);
+        return message.info('채널명을 수정했습니다.');
+      }
+      return message.error('채널명을 바꾸지 못했습니다.');
+    }
+  }, [changeMyChannelDone]);
+
   return (
     <CardWrapper>
       <LeftSection>
         <Space>
-          <img src={channel.avatar} alt="channel_avatar" />
+          <img src={channel.channel_img} alt="channel_avatar" />
           <Typography.Text
-            style={{ width: 100 }}
+            style={{ width: 150 }}
             ellipsis
           >
-            {channel.name}
+            {channel.channel_name}
           </Typography.Text>
           <Link
             style={{
               fontSize: '11px',
               color: '#A9AFB3',
             }}
-            to={`${channel.channelID}/event`}
+            to={`${channel.channel_id}/event`}
           >
             {'채널바로 가기 >'}
           </Link>
@@ -123,7 +196,30 @@ const HostCenterChannelCard = ({ channel }) => {
           <MoreOutlined className="ant-dropdown-link" />
         </Dropdown>
       </RightSection>
-
+      <Modal
+        title="채널명 변경"
+        visible={modalVisible}
+        onOk={modalHandleOk}
+        confirmLoading={changeMyChannelLoading}
+        onCancel={modalHandleCancel}
+      >
+        <p>{modalText}</p>
+        {inputVisible && (
+        <Form>
+          <Form.Item
+            validateStatus={newChannelName.validateStatus}
+            help={newChannelName.errorMsg}
+          >
+            <Input
+              value={newChannelName.value}
+              onChange={onChangeNewChannelName}
+              placeholder="20자 이내 (한글/영문/숫자)"
+              maxLength={20}
+            />
+          </Form.Item>
+        </Form>
+        ) }
+      </Modal>
     </CardWrapper>
   );
 };

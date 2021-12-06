@@ -58,7 +58,7 @@ const ChannelPresenter = ({
           }
           return mainChannels
             .slice((pageNumber - 1) * 3, Math.min(mainChannels.length, pageNumber * 3))
-            .map((channel) => <HostCenterChannelCard channel={channel} key={channel.id} />);
+            .map((channel) => <HostCenterChannelCard channel={channel} key={channel.channel_id} />);
         })()
 }
     <CreateChannelButton onClick={goChannelCreate}>

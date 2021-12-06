@@ -2,15 +2,14 @@ import { useHistory } from 'react-router';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ChannelPresenter from './ChannelPresenter';
-import user from '../../../mock/user.json';
-import { LOAD_CHANNELS_REQUEST } from '../../../reducers/channel';
+import { LOAD_MY_CHANNELS_REQUEST } from '../../../reducers/hostcenter';
 
 function ChannelContainer() {
   const history = useHistory();
   const dispatch = useDispatch();
 
   const [pageNumber, setPageNumber] = useState(1);
-  const { loadChannelLoading, mainChannels } = useSelector((state) => state.channel);
+  const { loadMyChannelsLoading, myChannels } = useSelector((state) => state.hostcenter);
 
   const onChangePageNumber = (v) => {
     setPageNumber(v);
@@ -22,16 +21,15 @@ function ChannelContainer() {
 
   useEffect(() => {
     dispatch({
-      type: LOAD_CHANNELS_REQUEST,
-      owner_id: user.id,
+      type: LOAD_MY_CHANNELS_REQUEST,
     });
   }, []);
 
   return (
     <ChannelPresenter
       pageNumber={pageNumber}
-      loadChannelLoading={loadChannelLoading}
-      mainChannels={mainChannels}
+      loadChannelLoading={loadMyChannelsLoading}
+      mainChannels={myChannels}
       goChannelCreate={goChannelCreate}
       onChangePageNumber={onChangePageNumber}
     />

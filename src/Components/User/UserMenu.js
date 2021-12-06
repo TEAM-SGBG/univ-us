@@ -28,7 +28,7 @@ const TextWrapper = styled.p`
 const UserMenu = () => {
   const history = useHistory();
 
-  const { isLoggedIn } = useSelector((state) => state.user);
+  const { isLoggedIn, me } = useSelector((state) => state.user);
 
   const handleClick = ({ key }) => {
     if (key === 'Login') {
@@ -50,8 +50,8 @@ const UserMenu = () => {
     <Menu onClick={handleClick}>
       {isLoggedIn ? (
         <UserWrapper>
-          <TextWrapper>원영님</TextWrapper>
-          <TextWrapper>원영@konkuk.ac.kr</TextWrapper>
+          {me.name && <TextWrapper>{`${me.name}님`}</TextWrapper>}
+          <TextWrapper>{me.email}</TextWrapper>
         </UserWrapper>
       ) : (
         <Menu.Item key="Login">
@@ -82,6 +82,7 @@ const UserMenu = () => {
       )}
     </Menu>
   );
+
   return (
     <Space>
       <Avatar icon={<UserOutlined />} />
