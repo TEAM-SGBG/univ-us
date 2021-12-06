@@ -2,6 +2,7 @@ import produce from 'immer';
 
 const initialState = {
   myChannels: [],
+  myEvents: [],
   loadMyChannelsLoading: false,
   loadMyChannelsDone: false,
   loadMyChannelsError: null,
@@ -158,6 +159,21 @@ const reducer = (state = initialState, action) => produce(state, (draft) => {
       draft.deleteMyChannelLoading = false;
       draft.deleteMyChannelDone = false;
       draft.deleteMyChannelError = action.error;
+      break;
+    case LOAD_MY_EVENTS_REQUEST:
+      draft.loadMyEventsLoading = true;
+      draft.loadMyEventsDone = false;
+      break;
+    case LOAD_MY_EVENTS_SUCCESS: {
+      draft.loadMyEventsLoading = false;
+      draft.loadMyEventsDone = action.data.success;
+      draft.myEvents = action.data;
+      break;
+    }
+    case LOAD_MY_EVENTS_FAILURE:
+      draft.loadMyEventsLoading = false;
+      draft.loadMyEventsDone = false;
+      draft.loadMyEventsError = action.error;
       break;
     default:
       break;

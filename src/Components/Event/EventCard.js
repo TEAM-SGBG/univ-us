@@ -68,7 +68,7 @@ function EventCard({ eventPost, likeDisabled = false, isMyEvent }) {
   }, [liked]);
 
   const goEventPage = useCallback(() => {
-    history.push(isMyEvent ? `/hostcenter/${eventPost.channel.id}/event/${eventPost.event_id}` : `/events/${eventPost.event_id}`);
+    history.push(isMyEvent ? `/hostcenter/${eventPost.channel_owner_id}/event/${eventPost.event_id}` : `/events/${eventPost.event_id}`);
   }, []);
 
   return (
@@ -106,7 +106,7 @@ function EventCard({ eventPost, likeDisabled = false, isMyEvent }) {
           <ColWrapper span={12} style={{ textAlign: 'right' }}>
             <EyeOutlined />
             <Space>
-              {eventPost.view}
+              {eventPost.views}
               {!likeDisabled && (liked ? <HeartTwoTone onClick={onToggleLike} twoToneColor="#eb2f96" /> : <HeartOutlined onClick={onToggleLike} />)}
             </Space>
           </ColWrapper>

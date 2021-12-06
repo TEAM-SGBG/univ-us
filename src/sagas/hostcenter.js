@@ -50,18 +50,18 @@ function* loadMyChannels() {
   }
 }
 
-async function loadMyEventsAPI() {
-  const result = await axios.get('http://localhost:3001/');
+async function loadMyEventsAPI(data) {
+  const result = await axios.get(`http://localhost:3001/api/hostCenter/${data.channel_id}/events`);
 
-  return result;
+  return result.data;
 }
 
-function* loadMyEvents() {
+function* loadMyEvents(action) {
   try {
-    const result = yield call(loadMyEventsAPI);
+    const result = yield call(loadMyEventsAPI, action.data);
     yield put({
       type: LOAD_MY_EVENTS_SUCCESS,
-      data: result,
+      data: result.data,
     });
   } catch (error) {
     yield put({

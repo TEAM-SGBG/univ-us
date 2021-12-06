@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Skeleton } from 'antd';
 import EventList from '../../../Components/Event/EventList';
 import InsightCard from '../../../Components/HostCenter/InsightCard';
 
@@ -26,7 +27,9 @@ const MenuWrapper = styled.p`
   color: #333333;
 `;
 
-const MyEventPresenter = ({ eventPosts, pageNumber, onChangePageNumber }) => {
+const MyEventPresenter = ({
+  eventPosts, pageNumber, onChangePageNumber, loading,
+}) => {
   const menu = [
     {
       name: '구독',
@@ -59,6 +62,7 @@ const MyEventPresenter = ({ eventPosts, pageNumber, onChangePageNumber }) => {
       </TopSection>
       <MenuWrapper>행사 리스트</MenuWrapper>
       <MainSection>
+        {loading && <Skeleton />}
         <EventList
           mainEvents={eventPosts}
           pageNumber={pageNumber}

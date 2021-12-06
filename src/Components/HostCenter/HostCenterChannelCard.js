@@ -99,7 +99,7 @@ const HostCenterChannelCard = ({ channel }) => {
   }, []);
 
   const validateName = (name) => {
-    const nameRegex = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|]{1,20}$/;
+    const nameRegex = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9| ]{1,20}$/;
 
     if (nameRegex.test(name)) {
       return {
@@ -172,7 +172,7 @@ const HostCenterChannelCard = ({ channel }) => {
         <Space>
           <img src={channel.channel_img} alt="channel_avatar" />
           <Typography.Text
-            style={{ width: 100 }}
+            style={{ width: 150 }}
             ellipsis
           >
             {channel.channel_name}
