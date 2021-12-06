@@ -122,7 +122,7 @@ function* createMyEvent(action) {
 
 async function changeMyChannelAPI(data) {
   const result = await axios.patch(`http://localhost:3001/api/channel/${data.channelID}/${data.newChannelName}`);
-  console.log('saga: ', result.data);
+
   return result.data.success;
 }
 
@@ -148,19 +148,30 @@ function* changeMyChannel(action) {
   }
 }
 
-async function deleteMyChannelAPI() {
-  const result = await axios.get('http://localhost:3001/');
+async function deleteMyChannelAPI(data) {
+  const result = await axios.delete(`http://localhost:3001/api/channel/${data.channel_id}`);
 
-  return result;
+  return result.data;
 }
 
-function* deleteMyChannel() {
+function* deleteMyChannel(action) {
   try {
-    const result = yield call(deleteMyChannelAPI);
-    yield put({
-      type: DELETE_MY_CHANNEL_SUCCESS,
-      data: result,
-    });
+    const result = yield call(deleteMyChannelAPI, action.data);
+
+    if (result.success) {
+      yield put({
+        type: DELETE_MY_CHANNEL_SUCCESS,
+        data: {
+          success: result.success,
+          channel_id: action.data.channel_id,
+        },
+      });
+    } else {
+      yield put({
+        type: DELETE_MY_CHANNEL_FAILURE,
+        error: result.message,
+      });
+    }
   } catch (error) {
     yield put({
       type: DELETE_MY_CHANNEL_FAILURE,

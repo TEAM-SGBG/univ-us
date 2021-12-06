@@ -7,8 +7,7 @@ import { MoreOutlined } from '@ant-design/icons';
 import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { DELETE_CHANNEL_REQUEST } from '../../reducers/channel';
-import { CHANGE_MY_CHANNEL_REQUEST } from '../../reducers/hostcenter';
+import { CHANGE_MY_CHANNEL_REQUEST, DELETE_MY_CHANNEL_REQUEST } from '../../reducers/hostcenter';
 
 const MODIFY = 'Modify';
 const DELETE = 'Delete';
@@ -126,20 +125,22 @@ const HostCenterChannelCard = ({ channel }) => {
     history.push(`/hostcenter/${channel.channelID}/createevent`);
   }, []);
 
-  const handleClick = ({ key }) => {
-    if (key === MODIFY) {
-      setModalVisible(true);
-    } else if (key === DELETE) {
+  const handleClick = (e) => {
+    if (e.key === MODIFY) {
+      showModal();
+    } else if (e.key === DELETE) {
       dispatch({
-        type: DELETE_CHANNEL_REQUEST,
-        data: channel.channelID,
+        type: DELETE_MY_CHANNEL_REQUEST,
+        data: {
+          channel_id: channel.channel_id,
+        },
       });
     }
   };
 
   const menu = (
     <Menu onClick={handleClick}>
-      <Menu.Item key="Modify" onClick={showModal}>
+      <Menu.Item key="Modify">
         수정
       </Menu.Item>
       <Menu.Item key="Delete">

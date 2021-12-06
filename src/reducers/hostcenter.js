@@ -144,6 +144,21 @@ const reducer = (state = initialState, action) => produce(state, (draft) => {
       draft.changeMyChannelDone = false;
       draft.changeMyChannelError = action.error;
       break;
+    case DELETE_MY_CHANNEL_REQUEST:
+      draft.deleteMyChannelLoading = true;
+      draft.deleteMyChannelDone = false;
+      break;
+    case DELETE_MY_CHANNEL_SUCCESS: {
+      draft.deleteMyChannelLoading = false;
+      draft.deleteMyChannelDone = action.data.success;
+      draft.myChannels = draft.myChannels.filter((myChannel) => myChannel.channel_id !== action.data.channel_id);
+      break;
+    }
+    case DELETE_MY_CHANNEL_FAILURE:
+      draft.deleteMyChannelLoading = false;
+      draft.deleteMyChannelDone = false;
+      draft.deleteMyChannelError = action.error;
+      break;
     default:
       break;
   }
