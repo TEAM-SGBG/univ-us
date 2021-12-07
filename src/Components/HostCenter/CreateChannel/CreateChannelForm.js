@@ -156,11 +156,11 @@ const CreateChannelForm = () => {
   }, [urlDuplicateCheckError]);
 
   useEffect(() => {
-    if (duplicateChecked) {
+    if (duplicateChecked && !urlDuplicateCheckLoading) {
       if (urlDuplicateCheckDone) return message.info('가능한 URL입니다.');
       return message.info('중복된 URL입니다.');
     }
-  }, [urlDuplicateCheckDone, duplicateChecked]);
+  }, [urlDuplicateCheckDone, duplicateChecked, urlDuplicateCheckLoading]);
 
   return (
     <Form

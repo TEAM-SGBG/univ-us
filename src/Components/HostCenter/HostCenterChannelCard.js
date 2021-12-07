@@ -71,7 +71,9 @@ const HostCenterChannelCard = ({ channel }) => {
   const [newChannelName, setNewChannelName] = useState({ value: '' });
   const [modalText, setModalText] = useState('바꿀 채널명을 입력해주세요.');
   const [inputVisible, setInputVisible] = useState(false);
-  const { changeMyChannelLoading, changeMyChannelDone } = useSelector((state) => state.hostcenter);
+  const {
+    changeMyChannelLoading, changeMyChannelDone, deleteMyChannelError,
+  } = useSelector((state) => state.hostcenter);
 
   const showModal = () => {
     setModalVisible(true);
@@ -122,10 +124,10 @@ const HostCenterChannelCard = ({ channel }) => {
   };
 
   const goEventCreate = useCallback(() => {
-    history.push(`/hostcenter/${channel.channelID}/createevent`);
+    history.push(`/hostcenter/${channel.channel_id}/createevent`);
   }, []);
 
-  const handleClick = (e) => {
+  const handleClick = useCallback((e) => {
     if (e.key === MODIFY) {
       showModal();
     } else if (e.key === DELETE) {
@@ -136,7 +138,7 @@ const HostCenterChannelCard = ({ channel }) => {
         },
       });
     }
-  };
+  }, [channel.channel_id]);
 
   const menu = (
     <Menu onClick={handleClick}>
@@ -165,6 +167,12 @@ const HostCenterChannelCard = ({ channel }) => {
       return message.error('채널명을 바꾸지 못했습니다.');
     }
   }, [changeMyChannelDone]);
+
+  useEffect(() => {
+    if (deleteMyChannelError) {
+      message.error(deleteMyChannelError);
+    }
+  }, [deleteMyChannelError]);
 
   return (
     <CardWrapper>

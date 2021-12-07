@@ -7,6 +7,9 @@ import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import locale from 'antd/es/date-picker/locale/ko_KR';
 import ImgCrop from 'antd-img-crop';
+import { useDispatch } from 'react-redux';
+import { useParams } from 'react-router';
+import { CREATE_MY_EVENT_REQUEST } from '../../../reducers/hostcenter';
 
 const InputWrapper = styled(Input)`
   // height: 48px;
@@ -57,11 +60,14 @@ const rangeConfig = {
   ],
 };
 
-const ONLINE = 'ONLINE';
-const OFFLINE = 'OFFLINE';
-const ONOFFLINE = 'ONOFFLINE';
+const EARLY = 1;
+const REGULAR = 2;
+const FAIR = 3;
 
 const CreateEventForm = () => {
+  const dispatch = useDispatch();
+  const params = useParams();
+
   const [imageFile, setImageFile] = useState(null);
 
   const [eventName, setEventName] = useState({ value: '' });
@@ -96,15 +102,27 @@ const CreateEventForm = () => {
     onSuccess('ok');
   };
 
-  const onFinish = (values) => {
+  const onFinish = () => {
     // if (validate) {
     //   setIsModalVisible(true);
     // }
-    console.log(values);
     if (imageFile.type !== 'image/png') {
       message.error('이미지 파일을 업로드해주세요.');
       return;
     }
+
+    dispatch({
+      type: CREATE_MY_EVENT_REQUEST,
+      data: {
+        event_name: eventName.value,
+        channel_id: params.channelID,
+        category: eventType.valueOf(),
+        description: eventDescription.value,
+        created_at: eventTime.startDate,
+        expired_at: eventTime.endDate,
+        img_url: '',
+      },
+    });
     console.log(imageFile.originFileObj);
   };
 
@@ -150,14 +168,14 @@ const CreateEventForm = () => {
 
   const onChangeEventType = (value) => {
     switch (value) {
-      case ONLINE:
-        setEventType({ value: ONLINE });
+      case EARLY:
+        setEventType({ value: EARLY });
         break;
-      case OFFLINE:
-        setEventType({ value: OFFLINE });
+      case REGULAR:
+        setEventType({ value: REGULAR });
         break;
-      case ONOFFLINE:
-        setEventType({ value: ONOFFLINE });
+      case FAIR:
+        setEventType({ value: FAIR });
         break;
       default:
         break;
@@ -244,9 +262,9 @@ const CreateEventForm = () => {
           onClear={onClearEventType}
           onChange={onChangeEventType}
         >
-          <Select.Option value={ONLINE}>온라인 행사</Select.Option>
-          <Select.Option value={OFFLINE}>오프라인 행사</Select.Option>
-          <Select.Option value={ONOFFLINE}>온오프라인 동시행사</Select.Option>
+          <Select.Option value={EARLY}>수시 행사</Select.Option>
+          <Select.Option value={REGULAR}>정시 행사</Select.Option>
+          <Select.Option value={FAIR}>박람회</Select.Option>
         </Select>
       </Form.Item>
       <Form.Item name="EventTime" label="행사시간" {...rangeConfig}>

@@ -100,7 +100,7 @@ function* createMyChannel(action) {
 }
 
 async function createMyEventAPI(data) {
-  const result = await axios.get('http://localhost:3001/api/events/create', data);
+  const result = await axios.post('http://localhost:3001/api/hostCenter/create', data);
 
   return result.data;
 }
@@ -110,7 +110,7 @@ function* createMyEvent(action) {
     const result = yield call(createMyEventAPI, action.data);
     yield put({
       type: CREATE_MY_EVENT_SUCCESS,
-      data: result,
+      data: result.success,
     });
   } catch (error) {
     yield put({

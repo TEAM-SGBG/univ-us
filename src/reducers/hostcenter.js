@@ -97,6 +97,7 @@ const reducer = (state = initialState, action) => produce(state, (draft) => {
       draft.loadMyChannelsDone = true;
       break;
     case LOAD_MY_CHANNELS_FAILURE:
+      draft.myChannels = [];
       draft.loadMyChannelsLoading = false;
       draft.loadMyChannelsDone = false;
       draft.loadMyChannelsError = action.error;
@@ -157,7 +158,6 @@ const reducer = (state = initialState, action) => produce(state, (draft) => {
     }
     case DELETE_MY_CHANNEL_FAILURE:
       draft.deleteMyChannelLoading = false;
-      draft.deleteMyChannelDone = false;
       draft.deleteMyChannelError = action.error;
       break;
     case LOAD_MY_EVENTS_REQUEST:
@@ -171,9 +171,24 @@ const reducer = (state = initialState, action) => produce(state, (draft) => {
       break;
     }
     case LOAD_MY_EVENTS_FAILURE:
+      draft.myEvents = [];
       draft.loadMyEventsLoading = false;
       draft.loadMyEventsDone = false;
       draft.loadMyEventsError = action.error;
+      break;
+    case CREATE_MY_EVENT_REQUEST:
+      draft.createMyEventLoading = true;
+      draft.createMyEventDone = false;
+      draft.createMyEventError = null;
+      break;
+    case CREATE_MY_EVENT_SUCCESS:
+      draft.createMyEventLoading = false;
+      draft.createMyEventDone = true;
+      break;
+    case CREATE_MY_EVENT_FAILURE:
+      draft.createMyEventLoading = false;
+      draft.createMyEventDone = false;
+      draft.createMyEventError = action.error;
       break;
     default:
       break;
