@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import {
-  Button, Modal,
+  Button, Modal, Space,
 } from 'antd';
 import { Link } from 'react-router-dom';
 
@@ -170,20 +170,20 @@ const EventInfoPresenter = ({
           <Items>
             <ItemTitle>일시</ItemTitle>
             <ItemsDetail>
-              {new Date(myEventPost.startDate).toLocaleDateString()}
-              {' '}
-              -
-              {' '}
-              {new Date(myEventPost.endDate).toLocaleDateString()}
+              <Space>
+                {new Date(myEventPost?.created_at).toLocaleDateString()}
+                -
+                {new Date(myEventPost?.expired_at).toLocaleDateString()}
+              </Space>
             </ItemsDetail>
           </Items>
           <Items>
             <ItemTitle>장소</ItemTitle>
-            <ItemsDetail>{myEventPost.place}</ItemsDetail>
+            <ItemsDetail>{myEventPost?.place || '미정'}</ItemsDetail>
           </Items>
           <Items>
             <ItemTitle>링크</ItemTitle>
-            <StyledLink to={`/events/${myEventPost.id}`}>이벤트 링크</StyledLink>
+            <StyledLink to={`/events/${myEventPost?.event_id}`}>이벤트 링크</StyledLink>
           </Items>
         </ItemBox>
       </InfoContainer>
