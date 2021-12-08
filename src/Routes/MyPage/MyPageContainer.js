@@ -22,17 +22,17 @@ function MyPageContainer() {
   const [subscribed, setSubscribed] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:3001/api/mypage/applied_event', { withCredential: 'true' })
+    axios.get('https://univ-us-server.herokuapp.com/api/mypage/applied_event', { withCredential: 'true' })
       .then((response) => {
         setApplied(response.data.data);
       });
 
-    axios.post('http://localhost:3001/api/events/user_like_event_list', { withCredential: 'true' })
+    axios.post('https://univ-us-server.herokuapp.com/api/events/user_like_event_list', { withCredential: 'true' })
       .then((response) => {
         setLiked(response.data.data);
       });
 
-    axios.get('http://localhost:3001/api/mypage/subscribe_info', { withCredential: 'true' })
+    axios.get('https://univ-us-server.herokuapp.com/api/mypage/subscribe_info', { withCredential: 'true' })
       .then((response) => {
         setSubscribed(response.data.data);
       });

@@ -101,10 +101,10 @@ function LoginPresenter({ redirectURL }) {
             <SigninGo to="/signup">이메일로 회원가입</SigninGo>
           </LoginH3>
           <KakaoLoginBtn>
-            <a href={`http://localhost:3001/auth/kakao?redirectUrl=${redirectURL}`} rel="noreferrer">카카오 로그인</a>
+            <a href={`https://univ-us-server.herokuapp.com/auth/kakao?redirectUrl=${redirectURL}`} rel="noreferrer">카카오 로그인</a>
           </KakaoLoginBtn>
           <KakaoLoginBtn>
-            <a href={`http://localhost:3001/auth/google?redirectUrl=${redirectURL}`} rel="noreferrer">구글 로그인</a>
+            <a href={`https://univ-us-server.herokuapp.com/auth/google?redirectUrl=${redirectURL}`} rel="noreferrer">구글 로그인</a>
           </KakaoLoginBtn>
           <Hline />
           {/* <LoginH2>
