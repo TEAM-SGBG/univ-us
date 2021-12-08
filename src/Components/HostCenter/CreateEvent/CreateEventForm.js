@@ -8,7 +8,7 @@ import styled from 'styled-components';
 import locale from 'antd/es/date-picker/locale/ko_KR';
 import ImgCrop from 'antd-img-crop';
 import { useDispatch } from 'react-redux';
-import { useParams } from 'react-router';
+import { useHistory, useParams } from 'react-router';
 import { CREATE_MY_EVENT_REQUEST } from '../../../reducers/hostcenter';
 
 const InputWrapper = styled(Input)`
@@ -65,6 +65,7 @@ const REGULAR = 2;
 const FAIR = 3;
 
 const CreateEventForm = () => {
+  const history = useHistory();
   const dispatch = useDispatch();
   const params = useParams();
 
@@ -123,7 +124,7 @@ const CreateEventForm = () => {
         img_url: '',
       },
     });
-    console.log(imageFile.originFileObj);
+    history.push('/hostcenter');
   };
 
   const onFinishFailed = () => {

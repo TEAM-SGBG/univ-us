@@ -2,7 +2,7 @@ import { Pagination } from 'antd';
 import EventCard from './EventCard';
 
 const EventList = ({
-  mainEvents, pageNumber, onChangePageNumber, maxPageSize, likeDisabled, isMyEvent = false,
+  mainEvents, pageNumber, onChangePageNumber, maxPageSize, likeDisabled, isMyEvent = false, visibleDropdownMenu = null,
 }) => (
   <>
     {mainEvents
@@ -13,6 +13,7 @@ const EventList = ({
           eventPost={event}
           likeDisabled={likeDisabled}
           isMyEvent={isMyEvent}
+          visibleDropdownMenu={visibleDropdownMenu}
         />
       ))}
     <Pagination

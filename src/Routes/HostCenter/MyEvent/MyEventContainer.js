@@ -2,8 +2,8 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import MyEventPresenter from './MyEventPresenter';
-// import eventPosts from '../../../mock/HostCenterMock/eventPosts.json';
 import { LOAD_MY_EVENTS_REQUEST } from '../../../reducers/hostcenter';
+// import eventPosts from '../../../mock/HostCenterMock/eventPosts.json';
 
 const MyEventContainer = () => {
   const params = useParams();
@@ -31,6 +31,7 @@ const MyEventContainer = () => {
       pageNumber={pageNumber}
       onChangePageNumber={onChangePageNumber}
       loading={loadMyEventsLoading}
+      visibleDropdownMenu
     />
   );
 };

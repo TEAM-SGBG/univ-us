@@ -29,7 +29,7 @@ const MenuWrapper = styled.p`
 `;
 
 const MyEventPresenter = ({
-  eventPosts, pageNumber, onChangePageNumber, loading,
+  eventPosts, pageNumber, onChangePageNumber, loading, visibleDropdownMenu = null,
 }) => {
   const menu = [
     {
@@ -75,12 +75,10 @@ const MyEventPresenter = ({
               maxPageSize={3}
               likeDisabled
               isMyEvent
+              visibleDropdownMenu={visibleDropdownMenu}
             />
           )
-          : (
-            <CreateEventModal loading={loading} />
-          )}
-
+          : (!loading && <CreateEventModal loading={loading} />)}
       </MainSection>
     </Wrapper>
   );

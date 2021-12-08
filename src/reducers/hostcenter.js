@@ -190,6 +190,20 @@ const reducer = (state = initialState, action) => produce(state, (draft) => {
       draft.createMyEventDone = false;
       draft.createMyEventError = action.error;
       break;
+    case DELETE_MY_EVENT_REQUEST:
+      draft.deleteMyEventLoading = true;
+      draft.deleteMyEventDone = false;
+      break;
+    case DELETE_MY_EVENT_SUCCESS: {
+      draft.deleteMyEventLoading = false;
+      draft.deleteMyEventDone = action.data.success;
+      draft.myEvents = draft.myEvents.filter((myEvent) => myEvent.event_id !== action.data.event_id);
+      break;
+    }
+    case DELETE_MY_EVENT_FAILURE:
+      draft.deleteMyEventLoading = false;
+      draft.deleteMyEventError = action.error;
+      break;
     default:
       break;
   }

@@ -180,19 +180,30 @@ function* deleteMyChannel(action) {
   }
 }
 
-async function deleteMyEventAPI() {
-  const result = await axios.get('http://localhost:3001/');
+async function deleteMyEventAPI(data) {
+  const result = await axios.delete(`http://localhost:3001/api/hostCenter/delete/${data.event_id}`);
 
-  return result;
+  return result.data;
 }
 
-function* deleteMyEvent() {
+function* deleteMyEvent(action) {
   try {
-    const result = yield call(deleteMyEventAPI);
-    yield put({
-      type: DELETE_MY_EVENT_SUCCESS,
-      data: result,
-    });
+    const result = yield call(deleteMyEventAPI, action.data);
+
+    if (result.success) {
+      yield put({
+        type: DELETE_MY_EVENT_SUCCESS,
+        data: {
+          success: result.success,
+          event_id: action.data.event_id,
+        },
+      });
+    } else {
+      yield put({
+        type: DELETE_MY_EVENT_FAILURE,
+        error: result.message,
+      });
+    }
   } catch (error) {
     yield put({
       type: DELETE_MY_EVENT_FAILURE,
