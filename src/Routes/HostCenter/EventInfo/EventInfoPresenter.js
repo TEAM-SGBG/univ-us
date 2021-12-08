@@ -3,6 +3,7 @@ import {
   Button, Modal, Space,
 } from 'antd';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
 
 const Wrapper = styled.div`
   padding: 20px 5px;
@@ -148,7 +149,7 @@ const StyledButton = styled(Button)`
 `;
 
 const EventInfoPresenter = ({
-  myEventPost, showModal, isModalVisible, handleOk, handleCancel,
+  myEventPost, showModal, isModalVisible, handleOk, handleCancel, eventParticipants,
 }) => (
   <Wrapper>
     <div style={{ display: 'flex', gap: '16px' }}>
@@ -158,7 +159,12 @@ const EventInfoPresenter = ({
       >
         <ImageBox />
         <DDayBox>
-          <DDayText>D-Day</DDayText>
+          <DDayText>
+            <Space>
+              D-Day
+              {moment(myEventPost?.created_at).diff(moment(), 'days')}
+            </Space>
+          </DDayText>
           <DDayText2>멋진 행사가 될거예요!</DDayText2>
         </DDayBox>
       </div>
@@ -194,9 +200,8 @@ const EventInfoPresenter = ({
       </MozipText>
       <StyledButton type="text" onClick={showModal}>참가자 리스트 확인</StyledButton>
       <Modal title="참가자 리스트" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
+        {eventParticipants.length > 0 ? eventParticipants.map((participant) => <p>{participant.id}</p>)
+          : <p>참가자가 없습니다.</p>}
       </Modal>
     </BottomDiv>
     <div style={{ display: 'flex', gap: '10px' }}>

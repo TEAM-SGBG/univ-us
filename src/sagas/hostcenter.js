@@ -212,18 +212,22 @@ function* deleteMyEvent(action) {
   }
 }
 
-async function loadEventParticipantAPI() {
-  const result = await axios.get('http://localhost:3001/');
+async function loadEventParticipantAPI(data) {
+  console.log('here', data);
+  const result = await axios.post('http://localhost:3001/api/hostCenter/get_participants', {
+    event_id: data.event_id,
+  });
 
-  return result;
+  return result.data;
 }
 
-function* loadEventParticipant() {
+function* loadEventParticipant(action) {
   try {
-    const result = yield call(loadEventParticipantAPI);
+    console.log(action);
+    const result = yield call(loadEventParticipantAPI, action.data);
     yield put({
       type: LOAD_EVENT_PARTICIPANT_SUCCESS,
-      data: result,
+      data: result.data,
     });
   } catch (error) {
     yield put({
