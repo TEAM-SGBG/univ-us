@@ -66,5 +66,5 @@
     "prettier": "2.4.1",
     "redux-devtools-extension": "^2.13.9"
   },
-  "proxy": "https://univ-us.netlify.app"
+  "proxy": "https://univ-us.herokuapp.com"
 }
