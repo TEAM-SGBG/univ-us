@@ -30,7 +30,7 @@ import {
 } from '../reducers/hostcenter';
 
 async function loadMyChannelsAPI() {
-  const result = await axios.get('https://univ-us-server.herokuapp.com/api/hostCenter/mychannel');
+  const result = await axios.get('/api/hostCenter/mychannel');
 
   return result.data;
 }
@@ -51,7 +51,7 @@ function* loadMyChannels() {
 }
 
 async function loadMyEventsAPI(data) {
-  const result = await axios.get(`https://univ-us-server.herokuapp.com/api/hostCenter/${data.channel_id}/events`);
+  const result = await axios.get(`/api/hostCenter/${data.channel_id}/events`);
 
   return result.data;
 }
@@ -78,7 +78,7 @@ async function createMyChannelAPI(data) {
   channel_name: asd
   }
    */
-  const result = await axios.post('https://univ-us-server.herokuapp.com/api/channel/create', data);
+  const result = await axios.post('/api/channel/create', data);
 
   return result;
 }
@@ -100,7 +100,7 @@ function* createMyChannel(action) {
 }
 
 async function createMyEventAPI(data) {
-  const result = await axios.get('https://univ-us-server.herokuapp.com/api/events/create', data);
+  const result = await axios.get('/api/events/create', data);
 
   return result.data;
 }
@@ -121,7 +121,7 @@ function* createMyEvent(action) {
 }
 
 async function changeMyChannelAPI(data) {
-  const result = await axios.patch(`https://univ-us-server.herokuapp.com/api/channel/${data.channelID}/${data.newChannelName}`);
+  const result = await axios.patch(`/api/channel/${data.channelID}/${data.newChannelName}`);
 
   return result.data.success;
 }
@@ -149,7 +149,7 @@ function* changeMyChannel(action) {
 }
 
 async function deleteMyChannelAPI(data) {
-  const result = await axios.delete(`https://univ-us-server.herokuapp.com/api/channel/${data.channel_id}`);
+  const result = await axios.delete(`/api/channel/${data.channel_id}`);
 
   return result.data;
 }
@@ -181,7 +181,7 @@ function* deleteMyChannel(action) {
 }
 
 async function deleteMyEventAPI() {
-  const result = await axios.get('https://univ-us-server.herokuapp.com/');
+  const result = await axios.get('/');
 
   return result;
 }
@@ -202,7 +202,7 @@ function* deleteMyEvent() {
 }
 
 async function loadEventParticipantAPI() {
-  const result = await axios.get('https://univ-us-server.herokuapp.com/');
+  const result = await axios.get('/');
 
   return result;
 }
@@ -223,7 +223,7 @@ function* loadEventParticipant() {
 }
 
 async function loadMyEventInfoAPI() {
-  const result = await axios.get('https://univ-us-server.herokuapp.com/');
+  const result = await axios.get('/');
 
   return result;
 }
@@ -244,7 +244,7 @@ function* loadMyEventInfo() {
 }
 
 async function urlDuplicateCheckAPI(data) {
-  const result = await axios.post('https://univ-us-server.herokuapp.com/api/channel/duplicate', data);
+  const result = await axios.post('/api/channel/duplicate', data);
   console.log(result.data);
   return result.data.data;
 }

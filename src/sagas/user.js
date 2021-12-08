@@ -12,7 +12,7 @@ import {
 } from '../reducers/user';
 
 async function authCheckAPI() {
-  const user = await axios.get('https://univ-us-server.herokuapp.com/auth/');
+  const user = await axios.get('/auth');
   return user.data;
 }
 
@@ -32,7 +32,7 @@ function* authCheck() {
 }
 
 async function loadSubscribeChannelsAPI() {
-  const subscribeChannels = await axios.get('https://univ-us-server.herokuapp.com/api/channel/subscribe');
+  const subscribeChannels = await axios.get('/api/channel/subscribe');
 
   return subscribeChannels.data.data;
 }

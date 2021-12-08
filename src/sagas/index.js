@@ -6,6 +6,7 @@ import postSaga from './post';
 import hostcenterSaga from './hostcenter';
 
 axios.defaults.withCredentials = true;
+axios.defaults.baseURL = 'https://univ-us-server.herokuapp.com';
 
 export default function* rootSaga() {
   yield all([
