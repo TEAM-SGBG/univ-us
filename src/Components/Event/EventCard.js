@@ -5,9 +5,10 @@ import {
 import {
   EyeOutlined, HeartOutlined, HeartTwoTone, MoreOutlined,
 } from '@ant-design/icons';
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { useHistory } from 'react-router';
 import { useDispatch } from 'react-redux';
+import axios from 'axios';
 import { DELETE_MY_EVENT_REQUEST } from '../../reducers/hostcenter';
 
 const CardStyle = styled.div`
@@ -66,14 +67,33 @@ const Wrapper = styled.div`
 function EventCard({
   eventPost, likeDisabled = false, isMyEvent, visibleDropdownMenu = null,
 }) {
-  const dispatch = useDispatch();
-
   const [liked, setLiked] = useState(eventPost.liked);
   const history = useHistory();
   const imgURL = `http://localhost:3001/${eventPost.img_url}`;
+  const dispatch = useDispatch();
 
+  useEffect(() => {
+    // 초기 카드 로딩 시 체크하는 부분
+    axios.post('http://localhost:3001/api/events/check_event_like', { event_id: eventPost.event_id }).then((response) => {
+      if (response.data.success) {
+        if (response.data.liked) { // 좋아요를 누른 상태라면
+          setLiked(true);
+        }
+      }
+    });
+  }, []);
+
+  // 버튼 클릭 시 작동
   const onToggleLike = useCallback(() => {
-    setLiked(((prevState) => !prevState));
+    axios.post('http://localhost:3001/api/events/event_like', { event_id: eventPost.event_id }).then((response) => {
+      if (response.data.success) {
+        if (response.data.liked) { // 좋아요를 누른 상태라면
+          setLiked(true);
+        } else {
+          setLiked(false);
+        }
+      }
+    });
   }, [liked]);
 
   const goEventPage = useCallback(() => {
@@ -149,7 +169,8 @@ function EventCard({
             <EyeOutlined />
             <Space>
               {eventPost.views}
-              {!likeDisabled && (liked ? <HeartTwoTone onClick={onToggleLike} twoToneColor="#eb2f96" /> : <HeartOutlined onClick={onToggleLike} />)}
+              {!likeDisabled
+              && (liked ? <HeartTwoTone onClick={onToggleLike} twoToneColor="#eb2f96" /> : <HeartOutlined onClick={onToggleLike} />)}
             </Space>
           </ColWrapper>
         </RowWrapper>
