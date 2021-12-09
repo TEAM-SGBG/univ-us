@@ -22,7 +22,6 @@ import EventPreview from '../../Components/Event/EventPreview'; // *
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Autoplay]); // *
 
 const Wrapper = styled.div`
-  margin: 0 auto;
   overflow-x: hidden;
 `;
 
@@ -60,7 +59,7 @@ const RecommendationDetail = styled.p`
 `;
 
 const RecommendationContainer = styled.div`
-  margin-top: 34px;
+  padding-top: 34px;
   display: flex;
   overflow:visible;
 `;
@@ -72,7 +71,7 @@ const PopularTitle = styled.p`
   font-size: 18px;
   line-height: 30px;
   color: #333333;
-  margin-top: 24px;
+  padding-top: 24px;
 `;
 
 const PopularDetail = styled.p`
@@ -85,7 +84,7 @@ const PopularDetail = styled.p`
 `;
 
 const PopularContainer = styled.div`
-  margin-top: 34px;
+  padding-top: 34px;
   display: flex;
 `;
 
@@ -114,10 +113,25 @@ const ChannelContainerDetail = styled.p`
 `;
 
 const ChannelItemsContainer = styled.div`
-  margin-top: 24px;
+  padding-top: 24px;
   display: flex;
 `;
 
+<<<<<<< Updated upstream
+=======
+const BorderBox = styled.div`
+  padding: 20px;
+  width: 100%;
+  height: 181px;
+  background-color: #ebecff;
+`;
+
+const NoteImage = styled.div`
+  margin-top: -200px;
+  margin-left: 1000px;
+`;
+
+>>>>>>> Stashed changes
 const SlideImages = [
   require('img/건국대.png'),
   require('img/건국대2.jpeg'),

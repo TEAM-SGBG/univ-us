@@ -5,11 +5,8 @@ import { useHistory } from 'react-router';
 
 const HeaderBackground = styled.div`
   margin: 0 auto;
-  padding: 30px 60px;
-  padding-bottom: 0px;
-  margin-bottom: 20px;
-  height: 162px;
   width: 1200px;
+  padding: 20px 80px;
   background-color: white;
 `;
 

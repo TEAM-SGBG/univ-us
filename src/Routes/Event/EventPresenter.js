@@ -12,7 +12,6 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  max-width: 1200px;
   align-self: center;
 `;
 
