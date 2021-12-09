@@ -13,7 +13,6 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  max-width: 1200px;
   align-self: center;
 `;
 
@@ -60,7 +59,15 @@ function EventPresenter({ currentPost, currentChannel }) {
           <HeartOutlined
           onClick={onToggleLike} />} */}
         </EventTitle>
-        <Row><img src={imgURL} alt="example" style={{ objectFit: 'none', width: '1100px', maxHeight: '400px' }} /></Row>
+        <Row>
+          <img
+            src={imgURL}
+            alt="example"
+            style={{
+              scale: 'true', width: '1000px',
+            }}
+          />
+        </Row>
         <Row style={{
           background: '#FAF8FF',
           paddingTop: '20px',

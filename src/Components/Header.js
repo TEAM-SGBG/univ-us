@@ -8,7 +8,6 @@ const HeaderBackground = styled.div`
   padding: 30px 60px;
   padding-bottom: 0px;
   margin-bottom: 20px;
-  height: 162px;
   width: 1200px;
   background-color: white;
 `;
