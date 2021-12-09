@@ -5,6 +5,7 @@ import { Divider, Row } from 'antd';
 // import { useCallback } from 'react';
 // import { HeartOutlined, HeartTwoTone } from '@ant-design/icons';
 import EventForm from '../../Components/Event/EventForm';
+import ChannelCard from '../../Components/Channel/ChannelCard';
 // import ChannelCard from '../../Components/Channel/ChannelCard';
 
 const Wrapper = styled.div`
@@ -79,7 +80,7 @@ function EventPresenter({ currentPost }) {
         </Row>
         <EventTitle>채널 정보</EventTitle>
         <Divider style={{ borderTop: '3px solid rgba(0, 0, 0, 0.06)' }} />
-        {/* <ChannelCard currentChannel={currentPost.channel} /> */}
+        <ChannelCard currentChannel={currentPost.channel} />
       </Wrapper>
       <Footer />
     </div>
