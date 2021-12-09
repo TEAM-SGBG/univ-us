@@ -15,7 +15,6 @@ function AdminContainer() {
     loadSubscribeChannelsDone,
     loadSubscribeChannelsError,
     // suby
-    scribeChannels,
   } = useSelector((state) => state.user);
   const [myNum, setNum] = useState('1');
   const [channels, setChannels] = useState([]);
