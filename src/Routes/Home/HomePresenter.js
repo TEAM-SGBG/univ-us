@@ -179,7 +179,7 @@ function HomePresenter({
         </MainTopContainer>
         <BorderBox />
         <NoteImage>
-          <img alt="blabla" src="img/note.jpg" />
+          <img alt="blabla" src="img/note.png" />
         </NoteImage>
         <MainBottomContainer>
           <PopularTitle>이번 주, 모두가 주목한 행사 🖐🏻</PopularTitle>

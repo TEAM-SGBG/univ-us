@@ -120,7 +120,7 @@ const Header = () => {
       <Wrapper>
         <div>
           <HomeButton onClick={GoHome}>
-            <img alt="logo" src="/img/logo.png" />
+            <img alt="logo" src="/img/mainlogo.png" />
           </HomeButton>
         </div>
         <div>
