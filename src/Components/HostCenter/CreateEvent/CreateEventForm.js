@@ -149,6 +149,7 @@ const CreateEventForm = () => {
         img_url: imagePath,
       },
     });
+    message.info('행사가 생성되었습니다.');
     history.push('/hostcenter');
   };
 
@@ -173,7 +174,7 @@ const CreateEventForm = () => {
   };
 
   const validateDescription = (description) => {
-    const descriptionRegex = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|]{1,50}$/;
+    const descriptionRegex = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9| ]{1,50}$/;
 
     if (descriptionRegex.test(description)) {
       return {
@@ -345,9 +346,9 @@ const CreateEventForm = () => {
           onClear={onClearEventType}
           onChange={onChangeEventType}
         >
-          <Select.Option value={ONLINE}>온라인 행사</Select.Option>
-          <Select.Option value={OFFLINE}>오프라인 행사</Select.Option>
-          <Select.Option value={ONOFFLINE}>온오프라인 동시행사</Select.Option>
+          <Select.Option value={ONLINE}>수시행사</Select.Option>
+          <Select.Option value={OFFLINE}>정시행사</Select.Option>
+          <Select.Option value={ONOFFLINE}>대학박람회</Select.Option>
         </Select>
       </Form.Item>
       <Form.Item name="EventTime" label="행사시간" {...rangeConfig}>

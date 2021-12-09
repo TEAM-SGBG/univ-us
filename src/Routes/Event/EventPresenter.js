@@ -5,6 +5,7 @@ import { Divider, Row } from 'antd';
 // import { useCallback } from 'react';
 // import { HeartOutlined, HeartTwoTone } from '@ant-design/icons';
 import EventForm from '../../Components/Event/EventForm';
+import ChannelCard from '../../Components/Channel/ChannelCard';
 // import ChannelCard from '../../Components/Channel/ChannelCard';
 
 const Wrapper = styled.div`
@@ -12,7 +13,6 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  max-width: 1200px;
   align-self: center;
 `;
 
@@ -59,7 +59,15 @@ function EventPresenter({ currentPost }) {
           <HeartOutlined
           onClick={onToggleLike} />} */}
         </EventTitle>
-        <Row><img src={imgURL} alt="example" style={{ objectFit: 'none', width: '1100px', maxHeight: '400px' }} /></Row>
+        <Row>
+          <img
+            src={imgURL}
+            alt="example"
+            style={{
+              scale: 'true', width: '1000px',
+            }}
+          />
+        </Row>
         <Row style={{
           background: '#FAF8FF',
           paddingTop: '20px',
@@ -79,7 +87,7 @@ function EventPresenter({ currentPost }) {
         </Row>
         <EventTitle>채널 정보</EventTitle>
         <Divider style={{ borderTop: '3px solid rgba(0, 0, 0, 0.06)' }} />
-        {/* <ChannelCard currentChannel={currentPost.channel} /> */}
+        <ChannelCard currentChannel={currentPost.channel} />
       </Wrapper>
       <Footer />
     </div>
