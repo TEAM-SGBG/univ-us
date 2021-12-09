@@ -33,7 +33,7 @@ const MiniHeader = () => {
   return (
     <HeaderBackground>
       <HomeButton onClick={GoHome}>
-        <MiniHeaderImg alt="logo" src="img/logo.png" />
+        <MiniHeaderImg alt="logo" src="img/mainlogo.png" />
       </HomeButton>
     </HeaderBackground>
   );
