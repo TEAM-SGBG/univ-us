@@ -1,6 +1,8 @@
 import styled from 'styled-components';
+import { Skeleton } from 'antd';
 import EventList from '../../../Components/Event/EventList';
 import InsightCard from '../../../Components/HostCenter/InsightCard';
+import CreateEventModal from '../../../Components/HostCenter/CreateEvent/CreateEventModal';
 
 const Wrapper = styled.div`
   display: flex;
@@ -26,12 +28,15 @@ const MenuWrapper = styled.p`
   color: #333333;
 `;
 
-const MyEventPresenter = ({ eventPosts, pageNumber, onChangePageNumber }) => {
+const MyEventPresenter = ({
+  eventPosts, pageNumber, onChangePageNumber, loading, visibleDropdownMenu = null,
+}) => {
   const menu = [
     {
       name: '구독',
       unit: '명',
-      number: 0,
+      number: eventPosts.reduce((prevPost, currPost) => prevPost.description?.length + currPost.description?.length, 0)
+        || 0,
     },
     {
       name: '모집 중',
@@ -44,6 +49,7 @@ const MyEventPresenter = ({ eventPosts, pageNumber, onChangePageNumber }) => {
       number: 0,
     },
   ];
+
   return (
     <Wrapper>
       <MenuWrapper>채널 인사이트</MenuWrapper>
@@ -59,14 +65,20 @@ const MyEventPresenter = ({ eventPosts, pageNumber, onChangePageNumber }) => {
       </TopSection>
       <MenuWrapper>행사 리스트</MenuWrapper>
       <MainSection>
-        <EventList
-          mainEvents={eventPosts}
-          pageNumber={pageNumber}
-          onChangePageNumber={onChangePageNumber}
-          maxPageSize={3}
-          likeDisabled
-          isMyEvent
-        />
+        {loading && <Skeleton />}
+        { eventPosts.length
+          ? (
+            <EventList
+              mainEvents={eventPosts}
+              pageNumber={pageNumber}
+              onChangePageNumber={onChangePageNumber}
+              maxPageSize={3}
+              likeDisabled
+              isMyEvent
+              visibleDropdownMenu={visibleDropdownMenu}
+            />
+          )
+          : (!loading && <CreateEventModal loading={loading} />)}
       </MainSection>
     </Wrapper>
   );

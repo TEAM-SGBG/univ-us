@@ -1,7 +1,7 @@
 import Footer from 'Components/Footer';
 import MiniHeader from 'Components/MiniHeader';
 import styled from 'styled-components';
-import { Skeleton } from 'antd';
+import { Skeleton, message } from 'antd';
 import ChannelCard from '../../Components/Channel/ChannelCard';
 
 const Wrapper = styled.div`
@@ -100,7 +100,7 @@ const SubChannel = styled.div`
 `;
 
 function MyPagePresenter({
-  goUserinfo, myNum, goOne, goTwo, goThree, eventPosts, channel, loading,
+  goUserinfo, myNum, goOne, goTwo, goThree, applied, liked, subscribed, channel, loading, done, error,
 }) {
   return (
     <>
@@ -127,7 +127,7 @@ function MyPagePresenter({
               <ReservedTh2>신청행사</ReservedTh2>
               <ReservedTh3>상세내용</ReservedTh3>
             </ReservedTr>
-            {eventPosts.map((event) => (
+            {applied.map((event) => (
               <ReservedTr key={1}>
                 <ReservedTd1>{event.id}</ReservedTd1>
                 <ReservedTd2>{event.title}</ReservedTd2>
@@ -145,7 +145,7 @@ function MyPagePresenter({
                 <ReservedTh2>신청행사</ReservedTh2>
                 <ReservedTh3>상세내용</ReservedTh3>
               </ReservedTr>
-              {eventPosts.map((event) => (
+              {liked.map((event) => (
                 <ReservedTr key={1}>
                   <ReservedTd1>{event.id}</ReservedTd1>
                   <ReservedTd2>{event.title}</ReservedTd2>
@@ -160,15 +160,31 @@ function MyPagePresenter({
             if (loading) {
               return <Skeleton />;
             }
-            if (channel.length === 0) {
+            if (error) {
+              return message.error('구독 채널 불러오기 실패');
+            }
+            if (done && channel.length === 0) {
               return <div>구독한 채널이 없습니다.</div>;
             }
             return (
-              <SubChannel>
-                {channel.map((mychannel) => (
-                  <ChannelCard currentChannel={mychannel} />
-                ))}
-              </SubChannel>
+              <>
+                {/* <SubChannel>
+                  {channel.map((subscribedChannel) => (
+                    <ChannelCard
+                      key={channel.id}
+                      currentChannel={subscribedChannel}
+                    />
+                  ))}
+                </SubChannel> */}
+                <SubChannel>
+                  {subscribed.map((subscribedChannel) => (
+                    <ChannelCard
+                      key={subscribedChannel.id}
+                      currentChannel={subscribedChannel}
+                    />
+                  ))}
+                </SubChannel>
+              </>
             );
           }
         )()}

@@ -1,14 +1,11 @@
 import { combineReducers } from 'redux';
 import user from './user';
-import eventPosts from './eventPosts';
+import post from './post';
 import channel from './channel';
+import hostcenter from './hostcenter';
 
 const initialState = {
   status: 'test',
-  hostcenter: {
-    isDuplicated: null,
-    currentChannel: null,
-  },
 };
 
 const rootReducer = combineReducers({
@@ -17,29 +14,14 @@ const rootReducer = combineReducers({
       case 'TEST':
         console.log('test');
         return state;
-      case 'URL_DUPLICATE_CHECK_REQUEST':
-        return {
-          ...state,
-          hostcenter: {
-            ...state.hostcenter,
-            isDuplicated: true,
-          },
-        };
-      case 'CREATE_CHANNEL_REQUEST':
-        return {
-          ...state,
-          hostcenter: {
-            ...state.hostcenter,
-            currentChannel: action.data.channelID,
-          },
-        };
       default:
         return state;
     }
   },
   user,
-  eventPosts,
+  post,
   channel,
+  hostcenter,
 });
 
 export default rootReducer;

@@ -1,27 +1,45 @@
-import { useState } from 'react';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import UserInfoPresenter from './UserInfoPresenter';
-import user from '../../mock/user.json';
+// import user from '../../mock/user.json';
 
 function UserInfoContainer() {
   const history = useHistory();
   const [myName, setName] = useState('');
-  const [myPw, setPw] = useState('');
+  const [myPh, setPh] = useState(''); // 전화번호
+  const [user, setUser] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:3001/api/mypage/my_info', { withCredential: 'true' })
+      .then((response) => {
+        setUser(response.data.data[0]);
+        console.log(response.data.data[0]);
+      });
+  }, []);
 
   const onChangeName = (e) => {
     setName(e.target.value);
     console.log(myName);
   };
 
-  const onChangePw = (e) => {
-    setPw(e.target.value);
-    console.log(myPw);
+  const onChangePh = (e) => {
+    setPh(e.target.value);
+    console.log(myPh);
   };
 
   function Save() {
-    alert('저장되었습니다.');
-    console.log('Saved');
-    history.push('/home');
+    console.log(myPh);
+    axios.put('http://localhost:3001/api/mypage/modify_info', {
+      phone_num: myPh, // myPh가 입력창에 입력한 새 전화번호
+    }, { withCredential: 'true' }).then((response) => {
+      if (response.status === 200) {
+        alert('저장되었습니다.');
+        history.push('/home');
+      } else {
+        alert('오류 발생');
+      }
+    });
   }
 
   function ChangeName() {
@@ -29,8 +47,8 @@ function UserInfoContainer() {
     alert('변경되었습니다.');
   }
 
-  function ChangePw() {
-    console.log(myPw);
+  function ChangePh() {
+    console.log(myPh);
     alert('변경되었습니다.');
   }
 
@@ -43,14 +61,14 @@ function UserInfoContainer() {
     <UserInfoPresenter
       Save={Save}
       ChangeName={ChangeName}
-      ChangePw={ChangePw}
+      ChangePh={ChangePh}
       DontGo={DontGo}
       myName={myName}
-      myPw={myPw}
+      myPh={myPh}
       setId={setName}
-      setPw={setPw}
+      setPh={setPh}
       onChangeName={onChangeName}
-      onChangePw={onChangePw}
+      onChangePh={onChangePh}
       user={user}
     />
   );

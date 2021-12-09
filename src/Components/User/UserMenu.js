@@ -4,8 +4,7 @@ import {
 import { DownOutlined, UserOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
 import { useHistory } from 'react-router';
-import { useDispatch, useSelector } from 'react-redux';
-import { LOGOUT_REQUEST } from '../../reducers/user';
+import { useSelector } from 'react-redux';
 
 const LogoutMenuItem = styled(Menu.Item)`
     color: red
@@ -28,9 +27,8 @@ const TextWrapper = styled.p`
 
 const UserMenu = () => {
   const history = useHistory();
-  const dispatch = useDispatch();
 
-  const { isLoggedIn } = useSelector((state) => state.user);
+  const { isLoggedIn, me } = useSelector((state) => state.user);
 
   const handleClick = ({ key }) => {
     if (key === 'Login') {
@@ -44,9 +42,6 @@ const UserMenu = () => {
     } else if (key === 'MyPage') {
       history.push('/mypage');
     } else if (key === 'Logout') {
-      dispatch({
-        type: LOGOUT_REQUEST,
-      });
       history.push('/hostcenter');
     }
   };
@@ -55,8 +50,8 @@ const UserMenu = () => {
     <Menu onClick={handleClick}>
       {isLoggedIn ? (
         <UserWrapper>
-          <TextWrapper>원영님</TextWrapper>
-          <TextWrapper>원영@konkuk.ac.kr</TextWrapper>
+          {me.name && <TextWrapper>{`${me.name}님`}</TextWrapper>}
+          <TextWrapper>{me.email}</TextWrapper>
         </UserWrapper>
       ) : (
         <Menu.Item key="Login">
@@ -87,6 +82,7 @@ const UserMenu = () => {
       )}
     </Menu>
   );
+
   return (
     <Space>
       <Avatar icon={<UserOutlined />} />

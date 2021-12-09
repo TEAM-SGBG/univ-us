@@ -35,12 +35,14 @@ const PreviewItemsName = styled.p`
 
 const PreviewItemsImage = styled.img`
   alt: "items";
+  objectFit: 'none';
   width: 260px;
   height: 146px;
 `;
 
 function EventPreview({ eventPost }) {
   const history = useHistory();
+  const imgURL = `http://localhost:3001/${eventPost.img_url}`;
 
   const goEventPage = useCallback(() => {
     history.push(`/events/${eventPost.event_id}`);
@@ -49,7 +51,7 @@ function EventPreview({ eventPost }) {
   return (
     <>
       <PreviewItems onClick={goEventPage}>
-        <PreviewItemsImage src={eventPost.img} />
+        <PreviewItemsImage src={imgURL} />
         <PreviewItemsDate>{new Date(eventPost.created_at).toLocaleDateString()}</PreviewItemsDate>
         <PreviewItemsName>{eventPost.name}</PreviewItemsName>
       </PreviewItems>

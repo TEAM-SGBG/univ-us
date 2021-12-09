@@ -5,6 +5,7 @@ import { Divider, Row } from 'antd';
 // import { useCallback } from 'react';
 // import { HeartOutlined, HeartTwoTone } from '@ant-design/icons';
 import EventForm from '../../Components/Event/EventForm';
+import ChannelCard from '../../Components/Channel/ChannelCard';
 // import ChannelCard from '../../Components/Channel/ChannelCard';
 
 const Wrapper = styled.div`
@@ -42,6 +43,7 @@ function EventPresenter({ currentPost }) {
   // const onToggleLike = useCallback(() => {
   //   setLiked(((prevState) => !prevState));
   // }, []);
+  const imgURL = `http://localhost:3001/${currentPost.img_url}`;
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column' }}>
@@ -57,7 +59,7 @@ function EventPresenter({ currentPost }) {
           <HeartOutlined
           onClick={onToggleLike} />} */}
         </EventTitle>
-        <Row><img src="https://dummyimage.com/1100x400/000/fff" alt="example" style={{ width: '100%' }} /></Row>
+        <Row><img src={imgURL} alt="example" style={{ objectFit: 'none', width: '1100px', maxHeight: '400px' }} /></Row>
         <Row style={{
           background: '#FAF8FF',
           paddingTop: '20px',
@@ -77,7 +79,7 @@ function EventPresenter({ currentPost }) {
         </Row>
         <EventTitle>채널 정보</EventTitle>
         <Divider style={{ borderTop: '3px solid rgba(0, 0, 0, 0.06)' }} />
-        {/* <ChannelCard currentChannel={currentPost.channel} /> */}
+        <ChannelCard currentChannel={currentPost.channel} />
       </Wrapper>
       <Footer />
     </div>

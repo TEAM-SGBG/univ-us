@@ -14,6 +14,7 @@ const Wrapper = styled.div`
 
 const Image = styled.div`
   width: 700px;
+  height: 700px;
   padding: 25px;
   background-image:url('img/HappyLogin.png');
   background-position:center center;
@@ -47,9 +48,9 @@ const SigninGo = styled(Link)`
 `;
 
 const KakaoLoginBtn = styled.button`
-  width: 225px;
-  height: 60px;
-  margin-top:25px;
+  width: 450px;
+  height: 100px;
+  margin-top:100px;
   border : 3px solid whitesmoke;
   border-radius: 15px;
   background-color: white;
@@ -63,26 +64,26 @@ const Hline = styled.hr`
   background-color:whitesmoke;
 `;
 
-const MyInput = styled.input`
-  width: 450px;
-  height: 60px;
-  margin: 15px 0;
-  border : 3px solid whitesmoke;
-  border-radius: 15px;
-  background-color: white;
-`;
+// const MyInput = styled.input`
+//   width: 450px;
+//   height: 60px;
+//   margin: 15px 0;
+//   border : 3px solid whitesmoke;
+//   border-radius: 15px;
+//   background-color: white;
+// `;
 
-const LoginBtn = styled.button`
-  width: 450px;
-  height: 60px;
-  margin-top:25px;
-  border-radius: 15px;
-  background-color: #5C3FBF;
-  font-weight: bold;
-  color:white;
-`;
+// const LoginBtn = styled.button`
+//   width: 450px;
+//   height: 60px;
+//   margin-top:25px;
+//   border-radius: 15px;
+//   background-color: #5C3FBF;
+//   font-weight: bold;
+//   color:white;
+// `;
 
-function LoginPresenter({ GoHome, redirectURL }) {
+function LoginPresenter({ redirectURL }) {
   return (
     <>
       <MiniHeader />
@@ -106,17 +107,17 @@ function LoginPresenter({ GoHome, redirectURL }) {
             <a href={`http://localhost:3001/auth/google?redirectUrl=${redirectURL}`} rel="noreferrer">구글 로그인</a>
           </KakaoLoginBtn>
           <Hline />
-          <LoginH2>
+          {/* <LoginH2>
             이메일(ID)
           </LoginH2>
           <MyInput type="email" />
           <LoginH2>
             비밀번호
           </LoginH2>
-          <MyInput type="password" />
-          <LoginBtn onClick={GoHome}>
+          <MyInput type="password" /> */}
+          {/* <LoginBtn onClick={GoHome}>
             로그인
-          </LoginBtn>
+          </LoginBtn> */}
         </LoginForm>
       </Wrapper>
       <MiniFooter />

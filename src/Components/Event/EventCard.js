@@ -1,10 +1,14 @@
 import styled from 'styled-components';
 import {
-  Col, Row, Avatar, Image, Typography, Space,
+  Col, Row, Avatar, Image, Typography, Space, Dropdown, Menu,
 } from 'antd';
-import { EyeOutlined, HeartOutlined, HeartTwoTone } from '@ant-design/icons';
+import {
+  EyeOutlined, HeartOutlined, HeartTwoTone, MoreOutlined,
+} from '@ant-design/icons';
 import { useState, useCallback } from 'react';
 import { useHistory } from 'react-router';
+import { useDispatch } from 'react-redux';
+import { DELETE_MY_EVENT_REQUEST } from '../../reducers/hostcenter';
 
 const CardStyle = styled.div`
   margin-top: 30px;
@@ -59,35 +63,73 @@ const Wrapper = styled.div`
   padding: 15px;
 `;
 
-function EventCard({ eventPost, likeDisabled = false, isMyEvent }) {
+function EventCard({
+  eventPost, likeDisabled = false, isMyEvent, visibleDropdownMenu = null,
+}) {
+  const dispatch = useDispatch();
+
   const [liked, setLiked] = useState(eventPost.liked);
   const history = useHistory();
+  const imgURL = `http://localhost:3001/${eventPost.img_url}`;
 
   const onToggleLike = useCallback(() => {
     setLiked(((prevState) => !prevState));
   }, [liked]);
 
   const goEventPage = useCallback(() => {
-    history.push(isMyEvent ? `/hostcenter/${eventPost.channel.id}/event/${eventPost.event_id}` : `/events/${eventPost.event_id}`);
+    history.push(isMyEvent ? `/hostcenter/${eventPost.channel_id}/event/${eventPost.event_id}` : `/events/${eventPost.event_id}`);
   }, []);
+
+  const handleClick = useCallback((e) => {
+    if (e.key === 'Modify') {
+      // showModal();
+    } else if (e.key === 'Delete') {
+      dispatch({
+        type: DELETE_MY_EVENT_REQUEST,
+        data: {
+          event_id: eventPost.event_id,
+        },
+      });
+    }
+  }, [eventPost.event_id]);
+
+  const menu = (
+    <Menu onClick={handleClick}>
+      <Menu.Item key="Modify">
+        수정
+      </Menu.Item>
+      <Menu.Item key="Delete">
+        삭제
+      </Menu.Item>
+    </Menu>
+  );
 
   return (
     <CardStyle>
       <Image
         alt="example"
-        src="https://dummyimage.com/360x200/000/fff"
+        src={imgURL}
+        style={{
+          objectFit: 'none', width: '360px', maxHeight: '200px', cursor: 'pointer',
+        }}
         onClick={goEventPage}
         preview={{
           mask: null,
         }}
-        style={{ cursor: 'pointer' }}
       />
       <Wrapper>
         <RowWrapper align="middle">
           <ColWrapper span={12} style={{ textAlign: 'left' }}>
             {new Date(eventPost.created_at).toLocaleDateString()}
           </ColWrapper>
-          <ColWrapper span={12} style={{ textAlign: 'right' }} />
+          <ColWrapper span={10} style={{ textAlign: 'right' }} />
+          <ColWrapper span={2}>
+            {visibleDropdownMenu && (
+            <Dropdown overlay={menu} trigger={['hover']}>
+              <MoreOutlined className="ant-dropdown-link" />
+            </Dropdown>
+            )}
+          </ColWrapper>
         </RowWrapper>
         <RowWrapper align="middle">
           <ColWrapper span={24} style={{ textAlign: 'left' }}>
@@ -100,13 +142,13 @@ function EventCard({ eventPost, likeDisabled = false, isMyEvent }) {
           <ColWrapper span={12} style={{ textAlign: 'left' }}>
             <Space>
               <Avatar src={eventPost.avatar} />
-              {eventPost.channel_owner_id}
+              {eventPost.channel_id}
             </Space>
           </ColWrapper>
           <ColWrapper span={12} style={{ textAlign: 'right' }}>
             <EyeOutlined />
             <Space>
-              {eventPost.view}
+              {eventPost.views}
               {!likeDisabled && (liked ? <HeartTwoTone onClick={onToggleLike} twoToneColor="#eb2f96" /> : <HeartOutlined onClick={onToggleLike} />)}
             </Space>
           </ColWrapper>
