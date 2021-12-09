@@ -29,9 +29,9 @@ const Hline = styled.hr`
 `;
 
 const MyInput = styled.input`
-  width: 150px;
+  width: 200px;
   height: 30px;
-  border : 3px solid whitesmoke;
+  border : 3px solid gray;
   border-radius: 5px;
   background-color: white;
 `;
@@ -67,7 +67,7 @@ function UserInfoPresenter({
   // ChangeName,
   // ChangePh,
   DontGo,
-  onChangeName,
+  // onChangeName,
   onChangePh,
   user,
 }) {
@@ -88,7 +88,7 @@ function UserInfoPresenter({
         <LoginH2>
           {user.email}
         </LoginH2>
-        <LoginH2>
+        {/* <LoginH2>
           이름/기업명
         </LoginH2>
         {user.name ? (user.name
@@ -98,14 +98,14 @@ function UserInfoPresenter({
             <br />
           </div>
         )}
-        <MyInput type="email" onChange={onChangeName} />
+        <MyInput type="email" onChange={onChangeName} /> */}
         {/* <ConfirmBtn onClick={ChangeName}>
           변경
         </ConfirmBtn> */}
         <LoginH2>
           전화번호
         </LoginH2>
-        {user.phone_num ? (
+        {user.phone_num !== 'null' ? (
           <>
             {user.phone_num}
             <br />
@@ -113,6 +113,7 @@ function UserInfoPresenter({
         ) : (
           <div>
             전화번호를 설정하세요.
+            <br />
             <br />
           </div>
         )}
