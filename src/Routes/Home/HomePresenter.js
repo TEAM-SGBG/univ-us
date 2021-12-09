@@ -26,7 +26,11 @@ const Wrapper = styled.div`
   overflow-x: hidden;
 `;
 
-const MainContainer = styled.div`
+const MainTopContainer = styled.div`
+  padding: 48px 180px;
+`;
+
+const MainBottomContainer = styled.div`
   padding: 48px 180px;
 `;
 
@@ -118,10 +122,21 @@ const ChannelItemsContainer = styled.div`
   display: flex;
 `;
 
+const BorderBox = styled.div`
+  padding: 20px;
+  width: 100%;
+  height: 181px;
+  background-color: #ebecff;
+`;
+
+const NoteImage = styled.div`
+
+`;
+
 const SlideImages = [
-  require('img/건국대.png'),
-  require('img/건국대2.jpeg'),
-  require('img/건국대3.jpeg'),
+  require('img/메인배너.png'),
+  require('img/메인배너2.png'),
+  require('img/메인배너3.png'),
 ];
 
 function HomePresenter({
@@ -151,7 +166,7 @@ function HomePresenter({
             </SwiperSlide>
           ))}
         </StyledSwiper>
-        <MainContainer>
+        <MainTopContainer>
           <RecommendationTitle>지금, 이 행사 어때요? ✨</RecommendationTitle>
           <RecommendationDetail>에디터가 추천하는 놓쳐서 안 될 행사</RecommendationDetail>
           <RecommendationContainer>
@@ -161,6 +176,12 @@ function HomePresenter({
               />
             ))}
           </RecommendationContainer>
+        </MainTopContainer>
+        <BorderBox />
+        <NoteImage>
+          <img alt="blabla" src="img/note.jpg" />
+        </NoteImage>
+        <MainBottomContainer>
           <PopularTitle>이번 주, 모두가 주목한 행사 🖐🏻</PopularTitle>
           <PopularDetail>지금 가장 인기 있는 행사만 모았어요</PopularDetail>
           <PopularContainer>
@@ -178,7 +199,8 @@ function HomePresenter({
               {popularChannel.map((channel) => (<ChannelPreview channel={channel} />))}
             </ChannelItemsContainer>
           </ChannelContainer>
-        </MainContainer>
+        </MainBottomContainer>
+
       </Wrapper>
       <Footer />
     </>

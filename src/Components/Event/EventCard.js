@@ -70,6 +70,7 @@ function EventCard({
 
   const [liked, setLiked] = useState(eventPost.liked);
   const history = useHistory();
+  const imgURL = `http://localhost:3001/${eventPost.img_url}`;
 
   const onToggleLike = useCallback(() => {
     setLiked(((prevState) => !prevState));
@@ -107,12 +108,14 @@ function EventCard({
     <CardStyle>
       <Image
         alt="example"
-        src="https://dummyimage.com/360x200/000/fff"
+        src={imgURL}
+        style={{
+          objectFit: 'none', width: '360px', maxHeight: '200px', cursor: 'pointer',
+        }}
         onClick={goEventPage}
         preview={{
           mask: null,
         }}
-        style={{ cursor: 'pointer' }}
       />
       <Wrapper>
         <RowWrapper align="middle">

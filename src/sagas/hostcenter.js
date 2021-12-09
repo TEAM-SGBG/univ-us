@@ -100,7 +100,7 @@ function* createMyChannel(action) {
 }
 
 async function createMyEventAPI(data) {
-  const result = await axios.post('http://localhost:3001/api/hostCenter/create', data);
+  const result = await axios.post('http://localhost:3001/api/hostCenter/create_event', data);
 
   return result.data;
 }
