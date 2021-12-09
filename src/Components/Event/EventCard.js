@@ -73,20 +73,24 @@ function EventCard({
   const dispatch = useDispatch();
 
   useEffect(() => {
+    // 초기 카드 로딩 시 체크하는 부분
     axios.post('http://localhost:3001/api/events/check_event_like', { event_id: eventPost.event_id }).then((response) => {
       if (response.data.success) {
-        if (response.data.liked) {
+        if (response.data.liked) { // 좋아요를 누른 상태라면
           setLiked(true);
         }
       }
     });
   }, []);
 
+  // 버튼 클릭 시 작동
   const onToggleLike = useCallback(() => {
     axios.post('http://localhost:3001/api/events/event_like', { event_id: eventPost.event_id }).then((response) => {
       if (response.data.success) {
-        if (!response.data.liked) {
-          setLiked(((prevState) => !prevState));
+        if (response.data.liked) { // 좋아요를 누른 상태라면
+          setLiked(true);
+        } else {
+          setLiked(false);
         }
       }
     });
