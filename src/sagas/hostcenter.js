@@ -59,9 +59,14 @@ async function loadMyEventsAPI(data) {
 function* loadMyEvents(action) {
   try {
     const result = yield call(loadMyEventsAPI, action.data);
+
     yield put({
       type: LOAD_MY_EVENTS_SUCCESS,
-      data: result.data,
+      data: result.data.map((data) => (
+        {
+          ...data,
+          img_url: `uploads/${data.img_url.substring(7)}`,
+        })),
     });
   } catch (error) {
     yield put({

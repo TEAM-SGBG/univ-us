@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import {
-  Button, Dropdown, Input, Menu, Modal, Space, Typography, message, Form,
+  Button, Dropdown, Input, Menu, Modal, Space, Typography, message, Form, Avatar,
 } from 'antd';
 import { useCallback, useEffect, useState } from 'react';
 import { MoreOutlined } from '@ant-design/icons';
@@ -178,7 +178,7 @@ const HostCenterChannelCard = ({ channel }) => {
     <CardWrapper>
       <LeftSection>
         <Space>
-          <img src={channel.channel_img} alt="channel_avatar" />
+          {channel && <Avatar>{channel.channel_name.substring(0, 1)}</Avatar>}
           <Typography.Text
             style={{ width: 150 }}
             ellipsis
