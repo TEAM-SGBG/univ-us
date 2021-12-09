@@ -14,7 +14,8 @@ function AdminContainer() {
     loadSubscribeChannelsLoading,
     loadSubscribeChannelsDone,
     loadSubscribeChannelsError,
-    // subscribeChannels,
+    // suby
+    scribeChannels,
   } = useSelector((state) => state.user);
   const [myNum, setNum] = useState('1');
   const [channels, setChannels] = useState([]);
@@ -63,7 +64,6 @@ function AdminContainer() {
       goOne={goOne}
       goTwo={goTwo}
       goThree={goThree}
-      // channel={subscribeChannels}
       channels={channels}
       events={events}
       users={users}
