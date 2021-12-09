@@ -45,21 +45,21 @@ const ReservedTable = styled.table`
 
 const ReservedTh1 = styled.th`
   text-align:center;
-  width: 150px;
+  width: 380px;
   background-color: whitesmoke;
   color:#5C3FBF;
 `;
 
 const ReservedTh2 = styled.th`
   text-align:center;
-  width: 300px;
+  width: 380px;
   background-color: whitesmoke;
   color:#5C3FBF;
 `;
 
 const ReservedTh3 = styled.th`
   text-align:center;
-  width: 700px;
+  width: 380px;
   background-color: whitesmoke;
   color:#5C3FBF;
 `;
@@ -69,30 +69,34 @@ const ReservedTr = styled.tr`
 `;
 
 const ReservedTd1 = styled.td`
-  width: 150px;
+  width: 380px;
   height:50px;
   line-height:50px;
 `;
 const ReservedTd2 = styled.td`
-   width: 300px;
+   width: 380px;
 `;
 const ReservedTd3 = styled.td`
-   width: 700px;
+   width: 380px;
 `;
 
 const LikedEvent = styled.div`
   margin:25px;
 `;
 
+const DeleteButton = styled.button`
+  float:right;
+`;
+
 function AdminPresenter({
-  myNum, goOne, goTwo, goThree, channels, events, users,
+  myNum, goOne, goTwo, goThree, channels, events, users, deleteChannel, deleteEvent, deleteUser,
 }) {
   return (
     <>
       <MiniHeader />
       <Wrapper>
         <MyPageH1>
-          마이페이지
+          관리자 페이지
         </MyPageH1>
         <MyPageList>
           <MyPageItem index="1" onClick={goOne}>채널 관리</MyPageItem>
@@ -103,15 +107,18 @@ function AdminPresenter({
         <ReservedEvent>
           <ReservedTable>
             <ReservedTr>
-              <ReservedTh1>신청일</ReservedTh1>
-              <ReservedTh2>신청행사</ReservedTh2>
-              <ReservedTh3>상세내용</ReservedTh3>
+              <ReservedTh1>채널ID</ReservedTh1>
+              <ReservedTh2>이름</ReservedTh2>
+              <ReservedTh3>호스트ID</ReservedTh3>
             </ReservedTr>
             {channels.map((channel) => (
-              <ReservedTr key={1}>
-                <ReservedTd1>{channel.id}</ReservedTd1>
-                <ReservedTd2>{channel.title}</ReservedTd2>
-                <ReservedTd3>{channel.name}</ReservedTd3>
+              <ReservedTr>
+                <ReservedTd1>{channel.channel_id}</ReservedTd1>
+                <ReservedTd2>{channel.channel_name}</ReservedTd2>
+                <ReservedTd3>
+                  {channel.host_id}
+                  <DeleteButton type="button" onClick={deleteChannel}>삭제</DeleteButton>
+                </ReservedTd3>
               </ReservedTr>
             ))}
           </ReservedTable>
@@ -121,15 +128,18 @@ function AdminPresenter({
           <LikedEvent>
             <ReservedTable>
               <ReservedTr>
-                <ReservedTh1>신청일</ReservedTh1>
-                <ReservedTh2>신청행사</ReservedTh2>
-                <ReservedTh3>상세내용</ReservedTh3>
+                <ReservedTh1>행사ID</ReservedTh1>
+                <ReservedTh2>행사이름</ReservedTh2>
+                <ReservedTh3>카테고리</ReservedTh3>
               </ReservedTr>
               {events.map((event) => (
-                <ReservedTr key={1}>
-                  <ReservedTd1>{event.id}</ReservedTd1>
-                  <ReservedTd2>{event.title}</ReservedTd2>
-                  <ReservedTd3>{event.date}</ReservedTd3>
+                <ReservedTr>
+                  <ReservedTd1>{event.event_id}</ReservedTd1>
+                  <ReservedTd2>{event.name}</ReservedTd2>
+                  <ReservedTd3>
+                    {event.category}
+                    <DeleteButton type="button" onClick={deleteEvent}>삭제</DeleteButton>
+                  </ReservedTd3>
                 </ReservedTr>
               ))}
             </ReservedTable>
@@ -139,15 +149,18 @@ function AdminPresenter({
           <LikedEvent>
             <ReservedTable>
               <ReservedTr>
-                <ReservedTh1>신청일</ReservedTh1>
-                <ReservedTh2>신청행사</ReservedTh2>
-                <ReservedTh3>상세내용</ReservedTh3>
+                <ReservedTh1>회원ID</ReservedTh1>
+                <ReservedTh2>생성일</ReservedTh2>
+                <ReservedTh3>이메일</ReservedTh3>
               </ReservedTr>
               {users.map((user) => (
-                <ReservedTr key={1}>
-                  <ReservedTd1>{user.id}</ReservedTd1>
-                  <ReservedTd2>{user.title}</ReservedTd2>
-                  <ReservedTd3>{user.date}</ReservedTd3>
+                <ReservedTr>
+                  <ReservedTd1>{user.id_token}</ReservedTd1>
+                  <ReservedTd2>{user.created_at}</ReservedTd2>
+                  <ReservedTd3>
+                    {user.email}
+                    <DeleteButton type="button" onClick={deleteUser}>삭제</DeleteButton>
+                  </ReservedTd3>
                 </ReservedTr>
               ))}
             </ReservedTable>
