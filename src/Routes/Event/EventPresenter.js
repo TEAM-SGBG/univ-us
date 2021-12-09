@@ -38,7 +38,7 @@ const EventDescription = styled.p`
   color: #5C3FBF;
 `;
 
-function EventPresenter({ currentPost }) {
+function EventPresenter({ currentPost, currentChannel }) {
   // const [liked, setLiked] = useState(currentPost.liked);
 
   // const onToggleLike = useCallback(() => {
@@ -80,7 +80,7 @@ function EventPresenter({ currentPost }) {
         </Row>
         <EventTitle>채널 정보</EventTitle>
         <Divider style={{ borderTop: '3px solid rgba(0, 0, 0, 0.06)' }} />
-        <ChannelCard currentChannel={currentPost.channel} />
+        <ChannelCard currentChannel={currentChannel} />
       </Wrapper>
       <Footer />
     </div>
