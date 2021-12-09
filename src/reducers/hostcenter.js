@@ -175,6 +175,50 @@ const reducer = (state = initialState, action) => produce(state, (draft) => {
       draft.loadMyEventsDone = false;
       draft.loadMyEventsError = action.error;
       break;
+    case CREATE_MY_EVENT_REQUEST:
+      draft.createMyEventLoading = true;
+      draft.createMyEventDone = false;
+      draft.createMyEventError = null;
+      break;
+    case CREATE_MY_EVENT_SUCCESS:
+      draft.createMyEventLoading = false;
+      draft.createMyEventDone = true;
+      break;
+    case CREATE_MY_EVENT_FAILURE:
+      draft.createMyEventLoading = false;
+      draft.createMyEventDone = false;
+      draft.createMyEventError = action.error;
+      break;
+    case DELETE_MY_EVENT_REQUEST:
+      draft.deleteMyEventLoading = true;
+      draft.deleteMyEventDone = false;
+      break;
+    case DELETE_MY_EVENT_SUCCESS: {
+      draft.deleteMyEventLoading = false;
+      draft.deleteMyEventDone = action.data.success;
+      draft.myEvents = draft.myEvents.filter((myEvent) => myEvent.event_id !== action.data.event_id);
+      break;
+    }
+    case DELETE_MY_EVENT_FAILURE:
+      draft.deleteMyEventLoading = false;
+      draft.deleteMyEventError = action.error;
+      break;
+    case LOAD_EVENT_PARTICIPANT_REQUEST:
+      draft.loadEventParticipantLoading = true;
+      draft.loadEventParticipantDone = false;
+      break;
+    case LOAD_EVENT_PARTICIPANT_SUCCESS: {
+      draft.loadEventParticipantLoading = false;
+      draft.loadEventParticipantDone = action.data.success;
+      draft.eventParticipants = action.data;
+      break;
+    }
+    case LOAD_EVENT_PARTICIPANT_FAILURE:
+      draft.eventParticipants = [];
+      draft.loadEventParticipantLoading = false;
+      draft.loadEventParticipantDone = false;
+      draft.loadEventParticipantError = action.error;
+      break;
     default:
       break;
   }

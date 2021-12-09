@@ -1,12 +1,15 @@
 import {
   Button, DatePicker,
-  Form, Input, Select, Upload,
-  message,
+  Form, Input, Select, message,
 } from 'antd';
+import Dropzone from 'react-dropzone';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import locale from 'antd/es/date-picker/locale/ko_KR';
-import ImgCrop from 'antd-img-crop';
+import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { useHistory, useParams } from 'react-router';
+import { CREATE_MY_EVENT_REQUEST } from '../../../reducers/hostcenter';
 
 const InputWrapper = styled(Input)`
   // height: 48px;
@@ -47,6 +50,18 @@ const ButtonWrapper = styled(Button)`
   }
 `;
 
+const thumb = {
+  display: 'inline-flex',
+  borderRadius: 2,
+  border: '1px solid #eaeaea',
+  marginBottom: 8,
+  marginRight: 8,
+  width: 1100,
+  height: 400,
+  padding: 4,
+  boxSizing: 'border-box',
+};
+
 const rangeConfig = {
   rules: [
     {
@@ -62,7 +77,11 @@ const OFFLINE = 'OFFLINE';
 const ONOFFLINE = 'ONOFFLINE';
 
 const CreateEventForm = () => {
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const params = useParams();
   const [imageFile, setImageFile] = useState(null);
+  const [imagePath, setImagePath] = useState('');
 
   const [eventName, setEventName] = useState({ value: '' });
   const [eventType, setEventType] = useState({});
@@ -72,13 +91,14 @@ const CreateEventForm = () => {
   const [validate, setValidate] = useState(false);
   const [form] = Form.useForm();
 
-  const onUploadChange = ({ fileList }) => {
-    const file = fileList[0];
-    setImageFile(file);
-  };
+  // const onUploadChange = ({ fileList }) => {
+  //   const file = fileList[0];
+  //   setImageFile(file);
+  // };
 
   const onUploadPreview = async (file) => {
     let src = file.url;
+    console.log(src);
     if (!src) {
       src = await new Promise((resolve) => {
         const reader = new FileReader();
@@ -92,20 +112,44 @@ const CreateEventForm = () => {
     imgWindow.document.write(image.outerHTML);
   };
 
-  const uploadRequest = ({ onSuccess }) => {
-    onSuccess('ok');
+  const onDrop = (files) => {
+    setImageFile(files[0]);
+    const formData = new FormData();
+    const config = {
+      header: { 'content-type': 'multipart/form-data' },
+    };
+    formData.append('file', files[0]);
+    axios.post('http://localhost:3001/api/images/uploadfiles', formData, config)
+      .then((res) => {
+        if (res.data.success) {
+          console.log(res.data);
+          setImagePath(res.data.url);
+        }
+      });
   };
 
-  const onFinish = (values) => {
+  const onFinish = () => {
     // if (validate) {
     //   setIsModalVisible(true);
     // }
-    console.log(values);
     if (imageFile.type !== 'image/png') {
       message.error('이미지 파일을 업로드해주세요.');
       return;
     }
-    console.log(imageFile.originFileObj);
+
+    dispatch({
+      type: CREATE_MY_EVENT_REQUEST,
+      data: {
+        event_name: eventName.value,
+        channel_id: params.channelID,
+        category: eventType.valueOf(),
+        description: eventDescription.value,
+        created_at: eventTime.startDate,
+        expired_at: eventTime.endDate,
+        img_url: imagePath,
+      },
+    });
+    history.push('/hostcenter');
   };
 
   const onFinishFailed = () => {
@@ -201,20 +245,77 @@ const CreateEventForm = () => {
       onFinishFailed={onFinishFailed}
     >
       <Form.Item label="이미지">
-        <ImgCrop
-          rotate
-          aspect={2}
-          beforeCrop={(file) => (file.type === 'image/png')}
-        >
-          <Upload
-            customRequest={uploadRequest}
+
+        {/* <Upload
+            // customRequest={uploadRequest}
             listType="picture-card"
             onChange={onUploadChange}
             onPreview={onUploadPreview}
           >
             {!imageFile && '+ Upload'}
-          </Upload>
-        </ImgCrop>
+          </Upload> */}
+        {!imagePath // 이렇게 하면 이미지가 업로드 되는 순간 표시가 됨
+          && (
+            <Dropzone
+              onDrop={onDrop}
+              onPreview={onUploadPreview}
+              multiple={false}
+              maxSize={1000000000}
+            >
+              {({ getRootProps, getInputProps }) => (
+                <div
+                  style={{
+                    width: '1100px',
+                    height: '400px',
+                    border: '1px solid lightgray',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                  {...getRootProps()}
+                >
+                  <input {...getInputProps()} />
+                  <h1 style={{ color: 'grey', fontSize: '70px' }}>
+                    +
+                  </h1>
+                </div>
+              )}
+            </Dropzone>
+          )}
+        {imagePath // 이렇게 하면 이미지가 업로드 되는 순간 표시가 됨
+          && (
+            <Dropzone
+              onDrop={onDrop}
+              onPreview={onUploadPreview}
+              multiple={false}
+              maxSize={1000000000}
+            >
+              {({ getRootProps, getInputProps }) => (
+                <div
+                  style={{
+                    width: '100px',
+                    height: '100px',
+                    border: '1px solid lightgray',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                  {...getRootProps()}
+                >
+                  <input {...getInputProps()} />
+                  <h1 style={{ color: 'grey', fontSize: '70px' }}>
+                    +
+                  </h1>
+                </div>
+              )}
+            </Dropzone>
+          )}
+        {imagePath // 이렇게 하면 이미지가 업로드 되는 순간 표시가 됨
+          && (
+          <div>
+            <img src={`http://localhost:3001/${imagePath}`} style={thumb} alt="thumbnail" />
+          </div>
+          )}
       </Form.Item>
       <Form.Item
         label="행사 이름"

@@ -122,7 +122,7 @@ const HostCenterChannelCard = ({ channel }) => {
   };
 
   const goEventCreate = useCallback(() => {
-    history.push(`/hostcenter/${channel.channelID}/createevent`);
+    history.push(`/hostcenter/${channel.channel_id}/createevent`);
   }, []);
 
   const handleClick = (e) => {

@@ -43,6 +43,7 @@ function EventPresenter({ currentPost }) {
   // const onToggleLike = useCallback(() => {
   //   setLiked(((prevState) => !prevState));
   // }, []);
+  const imgURL = `http://localhost:3001/${currentPost.img_url}`;
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column' }}>
@@ -58,7 +59,7 @@ function EventPresenter({ currentPost }) {
           <HeartOutlined
           onClick={onToggleLike} />} */}
         </EventTitle>
-        <Row><img src="https://dummyimage.com/1100x400/000/fff" alt="example" style={{ width: '100%' }} /></Row>
+        <Row><img src={imgURL} alt="example" style={{ objectFit: 'none', width: '1100px', maxHeight: '400px' }} /></Row>
         <Row style={{
           background: '#FAF8FF',
           paddingTop: '20px',
