@@ -89,7 +89,7 @@ const DeleteButton = styled.button`
 `;
 
 function AdminPresenter({
-  myNum, goOne, goTwo, goThree, channels, events, users, deleteChannel, deleteEvent, deleteUser,
+  myNum, goOne, goTwo, goThree, channels, events, users, channelDelete, eventDelete, userDelete,
 }) {
   return (
     <>
@@ -117,7 +117,7 @@ function AdminPresenter({
                 <ReservedTd2>{channel.channel_name}</ReservedTd2>
                 <ReservedTd3>
                   {channel.host_id}
-                  <DeleteButton type="button" onClick={deleteChannel}>삭제</DeleteButton>
+                  <DeleteButton type="button" onClick={(e) => { channelDelete(channel.channel_id, e); }}>삭제</DeleteButton>
                 </ReservedTd3>
               </ReservedTr>
             ))}
@@ -138,7 +138,7 @@ function AdminPresenter({
                   <ReservedTd2>{event.name}</ReservedTd2>
                   <ReservedTd3>
                     {event.category}
-                    <DeleteButton type="button" onClick={deleteEvent}>삭제</DeleteButton>
+                    <DeleteButton type="button" onClick={(e) => { eventDelete(event.event_id, e); }}>삭제</DeleteButton>
                   </ReservedTd3>
                 </ReservedTr>
               ))}
@@ -159,7 +159,7 @@ function AdminPresenter({
                   <ReservedTd2>{user.created_at}</ReservedTd2>
                   <ReservedTd3>
                     {user.email}
-                    <DeleteButton type="button" onClick={deleteUser}>삭제</DeleteButton>
+                    <DeleteButton type="button" onClick={(e) => { userDelete(user.id_token, e); }}>삭제</DeleteButton>
                   </ReservedTd3>
                 </ReservedTr>
               ))}
