@@ -19,6 +19,47 @@ function AdminContainer() {
   const [events, setEvents] = useState([]);
   const [users, setUsers] = useState([]);
 
+  const channelDelete = (id, e) => {
+    e.preventDefault();
+    console.log(id);
+    axios.delete(`http://localhost:3001/api/channel/${id}`, { withCredential: 'true' })
+      .then((response) => {
+        if (response.status === 200) {
+          window.location.replace('/admin');
+        } else {
+          window.alert('오류 발생');
+        }
+      });
+  };
+
+  const eventDelete = (id, e) => {
+    e.preventDefault();
+    console.log(id);
+    axios.delete(`http://localhost:3001/api/hostCenter/${id}`, { withCredential: 'true' })
+      .then((response) => {
+        if (response.status === 200) {
+          window.location.replace('/admin');
+        } else {
+          window.alert('오류 발생');
+        }
+      });
+  };
+
+  const userDelete = (id, e) => {
+    e.preventDefault();
+    console.log(id);
+    axios.post('http://localhost:3001/api/user/delete_user', {
+      id_token: id,
+    }, { withCredential: 'true' })
+      .then((response) => {
+        if (response.status === 200) {
+          window.location.replace('/admin');
+        } else {
+          window.alert('오류 발생');
+        }
+      });
+  };
+
   useEffect(() => {
     axios.get('http://localhost:3001/api/channel/all', { withCredential: 'true' })
       .then((response) => {
@@ -34,10 +75,6 @@ function AdminContainer() {
       .then((response) => {
         setUsers(response.data.data);
       });
-
-    console.log(channels);
-    console.log(events);
-    console.log(users);
   }, []);
 
   function goOne() {
@@ -52,18 +89,6 @@ function AdminContainer() {
     setNum('3');
   }
 
-  function deleteChannel() {
-
-  }
-
-  function deleteEvent() {
-
-  }
-
-  function deleteUSer() {
-
-  }
-
   return (
     <AdminPresenter
       myNum={myNum}
@@ -71,9 +96,9 @@ function AdminContainer() {
       goOne={goOne}
       goTwo={goTwo}
       goThree={goThree}
-      deleteChannel={deleteChannel}
-      deleteEvent={deleteEvent}
-      deleteUSer={deleteUSer}
+      channelDelete={channelDelete}
+      eventDelete={eventDelete}
+      userDelete={userDelete}
       channels={channels}
       events={events}
       users={users}
