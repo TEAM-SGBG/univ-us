@@ -123,15 +123,15 @@ function MyPagePresenter({
         <ReservedEvent>
           <ReservedTable>
             <ReservedTr>
-              <ReservedTh1>신청일</ReservedTh1>
+              <ReservedTh1>주최명</ReservedTh1>
               <ReservedTh2>신청행사</ReservedTh2>
               <ReservedTh3>상세내용</ReservedTh3>
             </ReservedTr>
             {applied.map((event) => (
               <ReservedTr key={1}>
-                <ReservedTd1>{event.id}</ReservedTd1>
-                <ReservedTd2>{event.title}</ReservedTd2>
-                <ReservedTd3>{event.channel.name}</ReservedTd3>
+                <ReservedTd1>{event.channel_id}</ReservedTd1>
+                <ReservedTd2>{event.name}</ReservedTd2>
+                <ReservedTd3>{event.description}</ReservedTd3>
               </ReservedTr>
             ))}
           </ReservedTable>
@@ -141,15 +141,15 @@ function MyPagePresenter({
           <LikedEvent>
             <ReservedTable>
               <ReservedTr>
-                <ReservedTh1>신청일</ReservedTh1>
+                <ReservedTh1>주최명</ReservedTh1>
                 <ReservedTh2>신청행사</ReservedTh2>
                 <ReservedTh3>상세내용</ReservedTh3>
               </ReservedTr>
               {liked.map((event) => (
                 <ReservedTr key={1}>
-                  <ReservedTd1>{event.id}</ReservedTd1>
-                  <ReservedTd2>{event.title}</ReservedTd2>
-                  <ReservedTd3>{event.date}</ReservedTd3>
+                  <ReservedTd1>{event.channel_id}</ReservedTd1>
+                  <ReservedTd2>{event.name}</ReservedTd2>
+                  <ReservedTd3>{event.description}</ReservedTd3>
                 </ReservedTr>
               ))}
             </ReservedTable>
