@@ -15,7 +15,7 @@ const EventForm = ({ currentPost }) => {
   useEffect(() => {
     // setEventID(event[0].event_id);
     if (currentPost.event_id) {
-      axios.get(`http://localhost:3001/api/events/is_applied/${currentPost.event_id}`).then((res) => {
+      axios.get(`https://univ-us-server.herokuapp.com/api/events/is_applied/${currentPost.event_id}`).then((res) => {
         if (res.data.success) {
           // console.log('success');
           setSubscribed(res.data.applied);
@@ -33,7 +33,7 @@ const EventForm = ({ currentPost }) => {
   const onToggleDescribe = useCallback(() => {
     setSubscribed(((prevState) => {
       if (prevState === true) {
-        axios.post('http://localhost:3001/api/events/cancel', { event_id: currentPost.event_id }).then((res) => {
+        axios.post('https://univ-us-server.herokuapp.com/api/events/cancel', { event_id: currentPost.event_id }).then((res) => {
           if (!res.data.success) {
             console.log(res.data.err);
             return prevState;
@@ -44,7 +44,7 @@ const EventForm = ({ currentPost }) => {
         return !prevState;
       }
       // console.log(currentPost.event_id);
-      axios.post('http://localhost:3001/api/events/apply', { event_id: currentPost.event_id }).then((res) => {
+      axios.post('https://univ-us-server.herokuapp.com/api/events/apply', { event_id: currentPost.event_id }).then((res) => {
         if (!res.data.success) {
           console.log(res.data.err);
           return prevState;

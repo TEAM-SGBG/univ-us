@@ -43,7 +43,7 @@ function EventPresenter({ currentPost, currentChannel }) {
   // const onToggleLike = useCallback(() => {
   //   setLiked(((prevState) => !prevState));
   // }, []);
-  const imgURL = `http://localhost:3001/${currentPost.img_url}`;
+  const imgURL = `https://univ-us-server.herokuapp.com/${currentPost.img_url}`;
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column' }}>

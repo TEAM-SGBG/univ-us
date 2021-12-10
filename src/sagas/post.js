@@ -9,7 +9,7 @@ import {
 } from '../reducers/post';
 
 function loadCategoryEventsAPI(categoryType) {
-  return axios.get(`http://localhost:3001/api/events/category_event?category=${categoryType}`);
+  return axios.get(`https://univ-us-server.herokuapp.com/api/events/category_event?category=${categoryType}`);
 }
 
 function* loadCategoryEvents(action) {

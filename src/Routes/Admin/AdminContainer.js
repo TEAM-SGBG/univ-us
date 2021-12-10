@@ -21,7 +21,7 @@ function AdminContainer() {
 
   const channelDelete = (id, e) => {
     e.preventDefault();
-    axios.delete(`http://localhost:3001/api/channel/${id}`, { withCredential: 'true' })
+    axios.delete(`https://univ-us-server.herokuapp.com/api/channel/${id}`, { withCredential: 'true' })
       .then((response) => {
         if (response.status === 200) {
           window.location.replace('/admin');
@@ -33,7 +33,7 @@ function AdminContainer() {
 
   const eventDelete = (id, e) => {
     e.preventDefault();
-    axios.delete(`http://localhost:3001/api/hostCenter/${id}`, { withCredential: 'true' })
+    axios.delete(`https://univ-us-server.herokuapp.com/api/hostCenter/${id}`, { withCredential: 'true' })
       .then((response) => {
         if (response.status === 200) {
           window.location.replace('/admin');
@@ -45,7 +45,7 @@ function AdminContainer() {
 
   const userDelete = (id, e) => {
     e.preventDefault();
-    axios.delete(`http://localhost:3001/api/user/delete_user/${id}`, { withCredential: 'true' })
+    axios.delete(`https://univ-us-server.herokuapp.com/api/user/delete_user/${id}`, { withCredential: 'true' })
       .then((response) => {
         if (response.status === 200) {
           window.location.replace('/admin');
@@ -56,17 +56,17 @@ function AdminContainer() {
   };
 
   useEffect(() => {
-    axios.get('http://localhost:3001/api/channel/all', { withCredential: 'true' })
+    axios.get('https://univ-us-server.herokuapp.com/api/channel/all', { withCredential: 'true' })
       .then((response) => {
         setChannels(response.data.data);
       });
 
-    axios.get('http://localhost:3001/api/events/all_event', { withCredential: 'true' })
+    axios.get('https://univ-us-server.herokuapp.com/api/events/all_event', { withCredential: 'true' })
       .then((response) => {
         setEvents(response.data.data);
       });
 
-    axios.get('http://localhost:3001/api/user/all_user', { withCredential: 'true' })
+    axios.get('https://univ-us-server.herokuapp.com/api/user/all_user', { withCredential: 'true' })
       .then((response) => {
         setUsers(response.data.data);
       });

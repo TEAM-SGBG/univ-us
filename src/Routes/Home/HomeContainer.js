@@ -16,7 +16,7 @@ function HomeContainer() {
   const [popularChannel, setpopularChannel] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:3001/api/events/get_recommanded_events').then((response) => {
+    axios.get('https://univ-us-server.herokuapp.com/api/events/get_recommanded_events').then((response) => {
       if (response.data.success) {
         // console.log(response.data.data);
         setrecommendationEvents(response.data.data);
@@ -25,7 +25,7 @@ function HomeContainer() {
       }
     });
 
-    axios.get('http://localhost:3001/api/events/get_popular_events').then((response) => {
+    axios.get('https://univ-us-server.herokuapp.com/api/events/get_popular_events').then((response) => {
       if (response.data.success) {
         setpopularEvents(response.data.data);
       } else {
@@ -33,7 +33,7 @@ function HomeContainer() {
       }
     });
 
-    axios.get('http://localhost:3001/api/events/get_new_events').then((response) => {
+    axios.get('https://univ-us-server.herokuapp.com/api/events/get_new_events').then((response) => {
       if (response.data.success) {
         setnewEvents(response.data.data);
       } else {
@@ -41,7 +41,7 @@ function HomeContainer() {
       }
     });
 
-    axios.get('http://localhost:3001/api/channel/all').then((response) => {
+    axios.get('https://univ-us-server.herokuapp.com/api/channel/all').then((response) => {
       if (response.data.success) {
         setpopularChannel(response.data.data);
       } else {

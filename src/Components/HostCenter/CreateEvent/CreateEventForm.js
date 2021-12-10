@@ -118,7 +118,7 @@ const CreateEventForm = () => {
       header: { 'content-type': 'multipart/form-data' },
     };
     formData.append('file', files[0]);
-    axios.post('http://localhost:3001/api/images/uploadfiles', formData, config)
+    axios.post('https://univ-us-server.herokuapp.com/api/images/uploadfiles', formData, config)
       .then((res) => {
         if (res.data.success) {
           setImagePath(res.data.url);
@@ -312,7 +312,7 @@ const CreateEventForm = () => {
         {imagePath // 이렇게 하면 이미지가 업로드 되는 순간 표시가 됨
           && (
           <div>
-            <img src={`http://localhost:3001/${imagePath}`} style={thumb} alt="thumbnail" />
+            <img src={`https://univ-us-server.herokuapp.com/${imagePath}`} style={thumb} alt="thumbnail" />
           </div>
           )}
       </Form.Item>

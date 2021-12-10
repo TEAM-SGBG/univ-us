@@ -42,7 +42,7 @@ const PreviewItemsImage = styled.img`
 
 function EventPreview({ eventPost }) {
   const history = useHistory();
-  const imgURL = `http://localhost:3001/${eventPost.img_url}`;
+  const imgURL = `https://univ-us-server.herokuapp.com/${eventPost.img_url}`;
 
   const goEventPage = useCallback(() => {
     history.push(`/events/${eventPost.event_id}`);

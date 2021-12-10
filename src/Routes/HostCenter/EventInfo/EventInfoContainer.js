@@ -32,7 +32,7 @@ function EventInfoContainer() {
     setIsModalVisible(false);
   };
   const loadEventInfo = useCallback(async () => {
-    const { data } = await axios.post('http://localhost:3001/api/events/detail', {
+    const { data } = await axios.post('https://univ-us-server.herokuapp.com/api/events/detail', {
       event_id: params.eventID,
     });
     setMyEventPost(data.data[0]);

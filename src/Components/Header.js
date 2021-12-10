@@ -135,7 +135,7 @@ const Header = () => {
           )}
           {isLoggedIn ? (
             <ButtonWrapper>
-              <a href="http://localhost:3001/auth/logout">
+              <a href="https://univ-us-server.herokuapp.com/auth/logout">
                 로그아웃
               </a>
             </ButtonWrapper>

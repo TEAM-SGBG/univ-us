@@ -11,7 +11,7 @@ function UserInfoContainer() {
   const [user, setUser] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:3001/api/mypage/my_info', { withCredential: 'true' })
+    axios.get('https://univ-us-server.herokuapp.com/api/mypage/my_info', { withCredential: 'true' })
       .then((response) => {
         setUser(response.data.data[0]);
       });
@@ -26,7 +26,7 @@ function UserInfoContainer() {
   };
 
   function Save() {
-    axios.put('http://localhost:3001/api/mypage/modify_info', {
+    axios.put('https://univ-us-server.herokuapp.com/api/mypage/modify_info', {
       phone_num: myPh, // myPh가 입력창에 입력한 새 전화번호
     }, { withCredential: 'true' }).then((response) => {
       if (response.status === 200) {

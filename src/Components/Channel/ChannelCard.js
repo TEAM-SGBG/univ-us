@@ -40,7 +40,7 @@ const ChannelCard = ({ currentChannel, isSubscribed }) => {
         showPopConfirm();
         return prevState;
       }
-      axios.post('http://localhost:3001/api/channel/subscribe', {
+      axios.post('https://univ-us-server.herokuapp.com/api/channel/subscribe', {
         channel_id: currentChannel.channel_id,
       }).then((response) => {
         if (response.data.success) {
@@ -52,7 +52,7 @@ const ChannelCard = ({ currentChannel, isSubscribed }) => {
 
   const handleOk = () => {
     setConfirmLoading(true);
-    axios.delete(`http://localhost:3001/api/channel/subscribe/${currentChannel.channel_id}`)
+    axios.delete(`https://univ-us-server.herokuapp.com/api/channel/subscribe/${currentChannel.channel_id}`)
       .then((response) => {
         if (response.data.success) {
           setSubscribed(false);
