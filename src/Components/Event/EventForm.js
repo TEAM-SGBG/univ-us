@@ -1,25 +1,59 @@
 import { Button, Popconfirm } from 'antd';
-import { useCallback, useState } from 'react';
+import axios from 'axios';
+import { useCallback, useState, useEffect } from 'react';
 import moment from 'moment';
 
 const EventForm = ({ currentPost }) => {
+  // setEventID(currentPost.event_id);
   const [subscribed, setSubscribed] = useState();
   const [visible, setVisible] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
+  // const [event, setEvent] = useState();
+  // console.log(currentPost);
+  // setEvent(currentPost);
 
-  const showPopConfirm = () => {
-    setVisible(true);
-  };
+  useEffect(() => {
+    // setEventID(event[0].event_id);
+    if (currentPost.event_id) {
+      axios.get(`http://localhost:3001/api/events/is_applied/${currentPost.event_id}`).then((res) => {
+        if (res.data.success) {
+          // console.log('success');
+          setSubscribed(res.data.applied);
+        } else {
+          console.log(res.data.err);
+        }
+      });
+    }
+  }, [currentPost.event_id]);
+
+  // const showPopConfirm = () => {
+  //   setVisible(true);
+  // };
 
   const onToggleDescribe = useCallback(() => {
     setSubscribed(((prevState) => {
       if (prevState === true) {
-        showPopConfirm();
-        return prevState;
+        axios.post('http://localhost:3001/api/events/cancel', { event_id: currentPost.event_id }).then((res) => {
+          if (!res.data.success) {
+            console.log(res.data.err);
+            return prevState;
+          }
+          return !prevState;
+        });
+        // showPopConfirm();
+        return !prevState;
       }
+      // console.log(currentPost.event_id);
+      axios.post('http://localhost:3001/api/events/apply', { event_id: currentPost.event_id }).then((res) => {
+        if (!res.data.success) {
+          console.log(res.data.err);
+          return prevState;
+        }
+        return !prevState;
+      });
       return !prevState;
     }));
-  }, []);
+  }, [currentPost.event_id]);
 
   const handleOk = () => {
     setConfirmLoading(true);
@@ -70,7 +104,7 @@ const EventForm = ({ currentPost }) => {
             color: 'white',
           }}
         >
-          {subscribed ? '신청됨' : '신청'}
+          {subscribed ? '신청 완료' : '신청하기'}
         </Button>
       </Popconfirm>
     </div>
