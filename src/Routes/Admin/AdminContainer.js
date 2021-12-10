@@ -45,9 +45,7 @@ function AdminContainer() {
 
   const userDelete = (id, e) => {
     e.preventDefault();
-    axios.post('http://localhost:3001/api/user/delete_user', {
-      id_token: id,
-    }, { withCredential: 'true' })
+    axios.delete(`http://localhost:3001/api/user/delete_user/${id}`, { withCredential: 'true' })
       .then((response) => {
         if (response.status === 200) {
           window.location.replace('/admin');
