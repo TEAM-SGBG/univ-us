@@ -87,7 +87,6 @@ function LoginPresenter({ redirectURL }) {
   return (
     <>
       <MiniHeader />
-      {console.log(redirectURL)}
       <Wrapper>
         <Image />
         <LoginForm>

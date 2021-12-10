@@ -21,7 +21,6 @@ function AdminContainer() {
 
   const channelDelete = (id, e) => {
     e.preventDefault();
-    console.log(id);
     axios.delete(`http://localhost:3001/api/channel/${id}`, { withCredential: 'true' })
       .then((response) => {
         if (response.status === 200) {
@@ -34,7 +33,6 @@ function AdminContainer() {
 
   const eventDelete = (id, e) => {
     e.preventDefault();
-    console.log(id);
     axios.delete(`http://localhost:3001/api/hostCenter/${id}`, { withCredential: 'true' })
       .then((response) => {
         if (response.status === 200) {
@@ -47,7 +45,6 @@ function AdminContainer() {
 
   const userDelete = (id, e) => {
     e.preventDefault();
-    console.log(id);
     axios.post('http://localhost:3001/api/user/delete_user', {
       id_token: id,
     }, { withCredential: 'true' })

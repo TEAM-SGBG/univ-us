@@ -14,22 +14,18 @@ function UserInfoContainer() {
     axios.get('http://localhost:3001/api/mypage/my_info', { withCredential: 'true' })
       .then((response) => {
         setUser(response.data.data[0]);
-        console.log(response.data.data[0]);
       });
   }, []);
 
   const onChangeName = (e) => {
     setName(e.target.value);
-    console.log(myName);
   };
 
   const onChangePh = (e) => {
     setPh(e.target.value);
-    console.log(myPh);
   };
 
   function Save() {
-    console.log(myPh);
     axios.put('http://localhost:3001/api/mypage/modify_info', {
       phone_num: myPh, // myPh가 입력창에 입력한 새 전화번호
     }, { withCredential: 'true' }).then((response) => {
@@ -43,18 +39,15 @@ function UserInfoContainer() {
   }
 
   function ChangeName() {
-    console.log(myName);
     alert('변경되었습니다.');
   }
 
   function ChangePh() {
-    console.log(myPh);
     alert('변경되었습니다.');
   }
 
   function DontGo() {
     alert('어딜 갈라고 그래');
-    console.log('DontGo');
   }
 
   return (

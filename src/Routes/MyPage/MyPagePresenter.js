@@ -181,6 +181,7 @@ function MyPagePresenter({
                     <ChannelCard
                       key={subscribedChannel.id}
                       currentChannel={subscribedChannel}
+                      isSubscribed
                     />
                   ))}
                 </SubChannel>

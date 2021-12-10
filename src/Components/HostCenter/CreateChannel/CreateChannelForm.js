@@ -121,7 +121,6 @@ const CreateChannelForm = () => {
   const onFinish = () => {
     if (validate) {
       setIsModalVisible(true);
-      console.log('channel name: ', channelName.value);
     }
   };
 

@@ -90,7 +90,6 @@ async function createMyChannelAPI(data) {
 
 function* createMyChannel(action) {
   try {
-    console.log('test: ', action.data);
     const result = yield call(createMyChannelAPI, action.data);
     yield put({
       type: CREATE_MY_CHANNEL_SUCCESS,
@@ -218,7 +217,6 @@ function* deleteMyEvent(action) {
 }
 
 async function loadEventParticipantAPI(data) {
-  console.log('here', data);
   const result = await axios.post('http://localhost:3001/api/hostCenter/get_participants', {
     event_id: data.event_id,
   });
@@ -228,7 +226,6 @@ async function loadEventParticipantAPI(data) {
 
 function* loadEventParticipant(action) {
   try {
-    console.log(action);
     const result = yield call(loadEventParticipantAPI, action.data);
     yield put({
       type: LOAD_EVENT_PARTICIPANT_SUCCESS,
@@ -265,7 +262,7 @@ function* loadMyEventInfo() {
 
 async function urlDuplicateCheckAPI(data) {
   const result = await axios.post('http://localhost:3001/api/channel/duplicate', data);
-  console.log(result.data);
+
   return result.data.data;
 }
 

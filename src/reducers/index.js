@@ -12,7 +12,6 @@ const rootReducer = combineReducers({
   index: (state = initialState, action) => {
     switch (action.type) {
       case 'TEST':
-        console.log('test');
         return state;
       default:
         return state;

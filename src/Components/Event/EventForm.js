@@ -31,7 +31,6 @@ const EventForm = ({ currentPost }) => {
   };
 
   const handleCancel = () => {
-    console.log('Clicked cancel button');
     setVisible(false);
   };
 

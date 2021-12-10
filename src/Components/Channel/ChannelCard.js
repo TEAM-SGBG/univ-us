@@ -23,7 +23,7 @@ const ChannelName = styled.p`
   align-self: center;
 `;
 
-const ChannelCard = ({ currentChannel }) => {
+const ChannelCard = ({ currentChannel, isSubscribed }) => {
   const [subscribed, setSubscribed] = useState();
   const [visible, setVisible] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
@@ -72,6 +72,12 @@ const ChannelCard = ({ currentChannel }) => {
       setSubscribed(!!currentChannel.subscriber_list.find((subscriber) => subscriber.email === me.email));
     }
   }, [currentChannel]);
+
+  useEffect(() => {
+    if (isSubscribed) {
+      setSubscribed(true);
+    }
+  }, []);
 
   return (
     <div style={{

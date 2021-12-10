@@ -98,7 +98,6 @@ const CreateEventForm = () => {
 
   const onUploadPreview = async (file) => {
     let src = file.url;
-    console.log(src);
     if (!src) {
       src = await new Promise((resolve) => {
         const reader = new FileReader();
@@ -122,7 +121,6 @@ const CreateEventForm = () => {
     axios.post('http://localhost:3001/api/images/uploadfiles', formData, config)
       .then((res) => {
         if (res.data.success) {
-          console.log(res.data);
           setImagePath(res.data.url);
         }
       });

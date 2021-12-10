@@ -87,7 +87,6 @@ const Header = () => {
   const history = useHistory();
 
   const GoAdmin = () => {
-    console.log('go admin');
     history.push('/admin');
   };
 
@@ -96,17 +95,14 @@ const Header = () => {
   };
 
   function GoSignin() {
-    console.log('go signup');
     history.push('/signup');
   }
 
   function GoMypage() {
-    console.log('go mypage');
     history.push('/mypage');
   }
 
   function GoLogin() {
-    console.log('go login');
     history.push('/login');
   }
 
