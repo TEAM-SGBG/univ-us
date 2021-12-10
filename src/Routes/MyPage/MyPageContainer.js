@@ -27,7 +27,7 @@ function MyPageContainer() {
         setApplied(response.data.data);
       });
 
-    axios.post('http://localhost:3001/api/events/user_like_event_list', { withCredential: 'true' })
+    axios.get('http://localhost:3001/api/mypage/user_like_event_list', { withCredential: 'true' })
       .then((response) => {
         setLiked(response.data.data);
       });
