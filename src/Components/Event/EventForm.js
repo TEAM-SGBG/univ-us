@@ -1,21 +1,51 @@
 import { Button, Popconfirm } from 'antd';
-import { useCallback, useState } from 'react';
+import axios from 'axios';
+import { useCallback, useState, useEffect } from 'react';
 
 const EventForm = ({ currentPost }) => {
   const [subscribed, setSubscribed] = useState();
   const [visible, setVisible] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
+  // const [event, setEvent] = useState();
+  // const [eventID, setEventID] = useState(currentPost.event_id);
+  console.log(currentPost);
+  // setEvent(currentPost);
 
-  const showPopConfirm = () => {
-    setVisible(true);
-  };
+  useEffect(() => {
+    // setEventID(event[0].event_id);
+    axios.get(`http://localshot:3001/api/events/is_applied/${currentPost?.event_id}`).then((res) => {
+      if (res.data.success) {
+        setSubscribed(res.data.applied);
+      } else {
+        console.log(res.data.err);
+      }
+    });
+  }, []);
+
+  // const showPopConfirm = () => {
+  //   setVisible(true);
+  // };
 
   const onToggleDescribe = useCallback(() => {
     setSubscribed(((prevState) => {
       if (prevState === true) {
-        showPopConfirm();
+        axios.post('http://localshot:3001/api/events/cancel', { event_id: currentPost.event_id }).then((res) => {
+          if (!res.data.success) {
+            console.log(res.data.err);
+            return !prevState;
+          }
+          return prevState;
+        });
+        // showPopConfirm();
         return prevState;
       }
+      axios.post('http://localshot:3001/api/events/apply', { event_id: currentPost.event_id }).then((res) => {
+        if (!res.data.success) {
+          console.log(res.data.err);
+          return prevState;
+        }
+        return !prevState;
+      });
       return !prevState;
     }));
   }, []);
@@ -70,7 +100,7 @@ const EventForm = ({ currentPost }) => {
             color: 'white',
           }}
         >
-          {subscribed ? '신청됨' : '신청'}
+          {subscribed ? '신청 완료' : '신청하기'}
         </Button>
       </Popconfirm>
     </div>
