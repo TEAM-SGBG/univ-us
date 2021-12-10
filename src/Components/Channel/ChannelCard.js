@@ -1,6 +1,8 @@
 import { Button, Popconfirm } from 'antd';
 import styled from 'styled-components';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
+import axios from 'axios';
+import { useSelector } from 'react-redux';
 
 const Description = styled.p`
   font-family: Roboto;
@@ -26,6 +28,8 @@ const ChannelCard = ({ currentChannel }) => {
   const [visible, setVisible] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
 
+  const { me } = useSelector((state) => state.user);
+
   const showPopConfirm = () => {
     setVisible(true);
   };
@@ -36,22 +40,38 @@ const ChannelCard = ({ currentChannel }) => {
         showPopConfirm();
         return prevState;
       }
-      return !prevState;
+      axios.post('http://localhost:3001/api/channel/subscribe', {
+        channel_id: currentChannel.channel_id,
+      }).then((response) => {
+        if (response.data.success) {
+          setSubscribed(true);
+        }
+      });
     }));
-  }, []);
+  }, [currentChannel]);
 
   const handleOk = () => {
     setConfirmLoading(true);
-    setTimeout(() => {
-      setSubscribed(false);
-      setVisible(false);
-      setConfirmLoading(false);
-    }, 500);
+    axios.delete(`http://localhost:3001/api/channel/subscribe/${currentChannel.channel_id}`)
+      .then((response) => {
+        if (response.data.success) {
+          setSubscribed(false);
+        }
+        setVisible(false);
+        setConfirmLoading(false);
+      });
   };
 
   const handleCancel = () => {
     setVisible(false);
   };
+
+  useEffect(() => {
+    if (currentChannel.subscriber_list) {
+      // 구독 정보 요청
+      setSubscribed(!!currentChannel.subscriber_list.find((subscriber) => subscriber.email === me.email));
+    }
+  }, [currentChannel]);
 
   return (
     <div style={{

@@ -1,6 +1,7 @@
 import { Button, Popconfirm } from 'antd';
 import axios from 'axios';
 import { useCallback, useState, useEffect } from 'react';
+import moment from 'moment';
 
 const EventForm = ({ currentPost }) => {
   const [subscribed, setSubscribed] = useState();
@@ -75,10 +76,10 @@ const EventForm = ({ currentPost }) => {
     }}
     >
       <p style={{ alignSelf: 'flex-start' }}>
-        {`일시: ${new Date(currentPost.created_at).toLocaleDateString()}`}
+        {`일시: ${moment(currentPost.expired_at).add(1, 'days').format('YYYY. MM. DD')}`}
       </p>
       <p style={{ alignSelf: 'flex-start' }}>
-        {`신청: ${new Date(currentPost.created_at).toLocaleDateString()} - ${new Date(currentPost.expired_at).toLocaleDateString()}`}
+        {`신청: ${moment(currentPost.created_at).format('YYYY. MM. DD')} - ${moment(currentPost.expired_at).format('YYYY. MM. DD')}`}
       </p>
       <p style={{ alignSelf: 'flex-start' }}>
         {`장소: ${currentPost.place || 'online'}`}
