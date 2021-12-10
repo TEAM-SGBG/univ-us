@@ -4,24 +4,27 @@ import { useCallback, useState, useEffect } from 'react';
 import moment from 'moment';
 
 const EventForm = ({ currentPost }) => {
+  // setEventID(currentPost.event_id);
   const [subscribed, setSubscribed] = useState();
   const [visible, setVisible] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
   // const [event, setEvent] = useState();
-  // const [eventID, setEventID] = useState(currentPost.event_id);
-  console.log(currentPost);
+  // console.log(currentPost);
   // setEvent(currentPost);
 
   useEffect(() => {
     // setEventID(event[0].event_id);
-    axios.get(`http://localshot:3001/api/events/is_applied/${currentPost?.event_id}`).then((res) => {
-      if (res.data.success) {
-        setSubscribed(res.data.applied);
-      } else {
-        console.log(res.data.err);
-      }
-    });
-  }, []);
+    if (currentPost.event_id) {
+      axios.get(`http://localhost:3001/api/events/is_applied/${currentPost.event_id}`).then((res) => {
+        if (res.data.success) {
+          // console.log('success');
+          setSubscribed(res.data.applied);
+        } else {
+          console.log(res.data.err);
+        }
+      });
+    }
+  }, [currentPost.event_id]);
 
   // const showPopConfirm = () => {
   //   setVisible(true);
@@ -30,17 +33,18 @@ const EventForm = ({ currentPost }) => {
   const onToggleDescribe = useCallback(() => {
     setSubscribed(((prevState) => {
       if (prevState === true) {
-        axios.post('http://localshot:3001/api/events/cancel', { event_id: currentPost.event_id }).then((res) => {
+        axios.post('http://localhost:3001/api/events/cancel', { event_id: currentPost.event_id }).then((res) => {
           if (!res.data.success) {
             console.log(res.data.err);
-            return !prevState;
+            return prevState;
           }
-          return prevState;
+          return !prevState;
         });
         // showPopConfirm();
-        return prevState;
+        return !prevState;
       }
-      axios.post('http://localshot:3001/api/events/apply', { event_id: currentPost.event_id }).then((res) => {
+      // console.log(currentPost.event_id);
+      axios.post('http://localhost:3001/api/events/apply', { event_id: currentPost.event_id }).then((res) => {
         if (!res.data.success) {
           console.log(res.data.err);
           return prevState;
@@ -49,7 +53,7 @@ const EventForm = ({ currentPost }) => {
       });
       return !prevState;
     }));
-  }, []);
+  }, [currentPost.event_id]);
 
   const handleOk = () => {
     setConfirmLoading(true);
